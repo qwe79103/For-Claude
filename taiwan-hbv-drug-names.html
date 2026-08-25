@@ -1,7 +1,7 @@
 <title>台灣B肝用藥對照表</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500&family=Noto+Serif+TC:wght@600&display=swap">
 
 <style>
   :root {
@@ -15,8 +15,6 @@
     --accent:      #1C6A4F;
     --accent-soft: #E0EDE5;
     --accent-ink:  #14503C;
-    --dim:         #8A7A55;
-    --dim-soft:    #F0EADA;
 
     --serif: "Noto Serif TC", "PingFang TC", "Songti TC", serif;
     --sans:  "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
@@ -35,8 +33,6 @@
       --accent:      #6FC49D;
       --accent-soft: #1B2E26;
       --accent-ink:  #8FD6B4;
-      --dim:         #C0AC7C;
-      --dim-soft:    #2A2519;
     }
   }
 
@@ -51,8 +47,6 @@
     --accent:      #6FC49D;
     --accent-soft: #1B2E26;
     --accent-ink:  #8FD6B4;
-    --dim:         #C0AC7C;
-    --dim-soft:    #2A2519;
   }
 
   * { box-sizing: border-box; }
@@ -63,22 +57,20 @@
     color: var(--ink);
     font-family: var(--sans);
     font-size: 17px;
-    line-height: 1.75;
+    line-height: 1.7;
     -webkit-font-smoothing: antialiased;
   }
 
   .page {
-    max-width: 54rem;
+    max-width: 46rem;
     margin: 0 auto;
-    padding: clamp(2rem, 5vw, 4.5rem) clamp(1.1rem, 4vw, 2.5rem) 4rem;
+    padding: clamp(2.25rem, 6vw, 4.5rem) clamp(1.1rem, 4vw, 2.5rem) 4rem;
     display: flex;
     flex-direction: column;
-    gap: clamp(2.25rem, 5vw, 3.25rem);
+    gap: clamp(1.75rem, 4vw, 2.5rem);
   }
 
-  /* ---------- header ---------- */
-
-  header { display: flex; flex-direction: column; gap: .85rem; }
+  header { display: flex; flex-direction: column; gap: .8rem; }
 
   .eyebrow {
     font-family: var(--mono);
@@ -100,18 +92,11 @@
   h1 {
     font-family: var(--serif);
     font-weight: 600;
-    font-size: clamp(1.85rem, 5.5vw, 2.7rem);
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
     line-height: 1.3;
     letter-spacing: .01em;
     margin: 0;
     text-wrap: balance;
-  }
-
-  .standfirst {
-    margin: 0;
-    max-width: 34em;
-    color: var(--ink-2);
-    font-size: 1.02rem;
   }
 
   .stamp {
@@ -119,40 +104,6 @@
     font-size: .8rem;
     color: var(--muted);
     letter-spacing: .02em;
-  }
-
-  /* ---------- sections ---------- */
-
-  section { display: flex; flex-direction: column; gap: 1.1rem; }
-
-  .sec-head { display: flex; flex-direction: column; gap: .3rem; }
-
-  h2 {
-    font-family: var(--serif);
-    font-weight: 600;
-    font-size: 1.3rem;
-    line-height: 1.5;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: .6rem;
-  }
-
-  h2 .en {
-    font-family: var(--mono);
-    font-size: .78rem;
-    font-weight: 400;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  .sec-note {
-    margin: 0;
-    color: var(--muted);
-    font-size: .93rem;
-    max-width: 40em;
   }
 
   .list {
@@ -165,9 +116,9 @@
 
   .drug {
     display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
     gap: .5rem 1.75rem;
-    padding: 1.15rem clamp(1rem, 3vw, 1.6rem);
+    padding: 1.5rem clamp(1.1rem, 3vw, 1.75rem);
     border-top: 1px solid var(--line);
   }
   .drug:first-child { border-top: none; }
@@ -178,46 +129,32 @@
     letter-spacing: .14em;
     text-transform: uppercase;
     color: var(--muted);
-    margin-bottom: .3rem;
+    margin-bottom: .35rem;
   }
 
-  .generic-en {
+  .generic {
     font-family: var(--mono);
     font-weight: 500;
-    font-size: 1.02rem;
-    line-height: 1.45;
+    font-size: 1.05rem;
+    line-height: 1.5;
     color: var(--ink);
     word-break: break-word;
-  }
-
-  .generic-zh {
-    font-size: .95rem;
-    color: var(--ink-2);
   }
 
   .brand-zh {
     font-family: var(--serif);
     font-weight: 600;
-    font-size: 1.35rem;
+    font-size: 1.45rem;
     line-height: 1.4;
-    letter-spacing: .04em;
+    letter-spacing: .05em;
     color: var(--accent);
   }
 
   .brand-en {
     font-family: var(--mono);
-    font-size: .92rem;
+    font-size: .95rem;
     color: var(--ink-2);
   }
-
-  .aka {
-    grid-column: 1 / -1;
-    font-size: .86rem;
-    color: var(--muted);
-    padding-top: .35rem;
-    border-top: 1px dashed var(--line);
-  }
-  .aka b { font-weight: 500; color: var(--ink-2); }
 
   .tag {
     display: inline-block;
@@ -226,42 +163,15 @@
     letter-spacing: .1em;
     padding: .12rem .45rem;
     border-radius: 2px;
-    vertical-align: .12em;
-    margin-left: .45rem;
+    vertical-align: .14em;
+    margin-left: .5rem;
+    background: var(--accent-soft);
+    color: var(--accent-ink);
   }
-  .tag-abbr { background: var(--accent-soft); color: var(--accent-ink); }
-  .tag-old  { background: var(--dim-soft);    color: var(--dim); }
-
-  /* ---------- pipeline ---------- */
-
-  .pipeline {
-    border: 1px dashed var(--line-strong);
-    border-radius: 3px;
-    padding: 1.15rem clamp(1rem, 3vw, 1.6rem);
-    display: flex;
-    flex-direction: column;
-    gap: .35rem;
-  }
-
-  /* ---------- footer ---------- */
-
-  footer {
-    border-top: 2px solid var(--line-strong);
-    padding-top: 1.4rem;
-    display: flex;
-    flex-direction: column;
-    gap: .9rem;
-    font-size: .92rem;
-    color: var(--muted);
-  }
-
-  footer p { margin: 0; max-width: 42em; }
-  footer .key { color: var(--ink); font-weight: 500; }
 
   @media (max-width: 33rem) {
     body { font-size: 16px; }
-    .drug { grid-template-columns: 1fr; gap: .9rem; }
-    .drug .brand { padding-top: .1rem; }
+    .drug { grid-template-columns: 1fr; gap: 1rem; padding-block: 1.3rem; }
   }
 </style>
 
@@ -269,152 +179,48 @@
 
   <header>
     <div class="eyebrow">台灣 · 慢性B型肝炎</div>
-    <h1>B肝治療藥物 中英文藥名對照</h1>
-    <p class="standfirst">給病人核對藥名用。同一種藥常有「成分名」和「商品名」兩種叫法，中英文寫法也不同，這張表把它們放在一起。</p>
+    <h1>B肝口服抗病毒藥物 中英文藥名對照</h1>
     <div class="stamp">資料整理：2026 年 8 月</div>
   </header>
 
-  <section>
-    <div class="sec-head">
-      <h2>口服抗病毒藥・第一線<span class="en">First-line oral</span></h2>
-      <p class="sec-note">目前台灣治療慢性B型肝炎最主要的三種藥，每天口服一次。</p>
-    </div>
+  <div class="list">
 
-    <div class="list">
-
-      <div class="drug">
-        <div class="generic">
-          <div class="col-label">成分名 Generic</div>
-          <div class="generic-en">Entecavir<span class="tag tag-abbr">ETV</span></div>
-          <div class="generic-zh">恩替卡韋</div>
-        </div>
-        <div class="brand">
-          <div class="col-label">商品名 Brand</div>
-          <div class="brand-zh">貝樂克</div>
-          <div class="brand-en">Baraclude</div>
-        </div>
-        <div class="aka"><b>學名藥同成分：</b>恩特肝、肝穩盈等多種廠牌，成分同為 Entecavir。</div>
+    <div class="drug">
+      <div>
+        <div class="col-label">成分名 Generic</div>
+        <div class="generic">Entecavir<span class="tag">ETV</span></div>
       </div>
-
-      <div class="drug">
-        <div class="generic">
-          <div class="col-label">成分名 Generic</div>
-          <div class="generic-en">Tenofovir disoproxil fumarate<span class="tag tag-abbr">TDF</span></div>
-          <div class="generic-zh">替諾福韋二吡呋酯</div>
-        </div>
-        <div class="brand">
-          <div class="col-label">商品名 Brand</div>
-          <div class="brand-zh">惠立妥</div>
-          <div class="brand-en">Viread</div>
-        </div>
-        <div class="aka"><b>學名藥同成分：</b>市面上有多種廠牌的 Tenofovir disoproxil 錠劑，商品名各不相同。</div>
-      </div>
-
-      <div class="drug">
-        <div class="generic">
-          <div class="col-label">成分名 Generic</div>
-          <div class="generic-en">Tenofovir alafenamide<span class="tag tag-abbr">TAF</span></div>
-          <div class="generic-zh">替諾福韋艾拉酚胺</div>
-        </div>
-        <div class="brand">
-          <div class="col-label">商品名 Brand</div>
-          <div class="brand-zh">韋立得</div>
-          <div class="brand-en">Vemlidy</div>
-        </div>
-        <div class="aka"><b>目前最新的口服B肝藥：</b>2017 年在台上市，是 TDF 的改良劑型。</div>
-      </div>
-
-    </div>
-  </section>
-
-  <section>
-    <div class="sec-head">
-      <h2>口服抗病毒藥・早期藥物<span class="en">Earlier agents</span></h2>
-      <p class="sec-note">上市較早、較容易產生抗藥性，現已不是第一線用藥；多見於很早就開始服藥的病人。</p>
-    </div>
-
-    <div class="list">
-
-      <div class="drug">
-        <div class="generic">
-          <div class="col-label">成分名 Generic</div>
-          <div class="generic-en">Lamivudine<span class="tag tag-old">早期</span></div>
-          <div class="generic-zh">拉米夫定</div>
-        </div>
-        <div class="brand">
-          <div class="col-label">商品名 Brand</div>
-          <div class="brand-zh">干安能</div>
-          <div class="brand-en">Zeffix</div>
-        </div>
-      </div>
-
-      <div class="drug">
-        <div class="generic">
-          <div class="col-label">成分名 Generic</div>
-          <div class="generic-en">Adefovir dipivoxil<span class="tag tag-old">早期</span></div>
-          <div class="generic-zh">阿德福韋酯</div>
-        </div>
-        <div class="brand">
-          <div class="col-label">商品名 Brand</div>
-          <div class="brand-zh">干適能</div>
-          <div class="brand-en">Hepsera</div>
-        </div>
-      </div>
-
-      <div class="drug">
-        <div class="generic">
-          <div class="col-label">成分名 Generic</div>
-          <div class="generic-en">Telbivudine<span class="tag tag-old">早期</span></div>
-          <div class="generic-zh">替比夫定</div>
-        </div>
-        <div class="brand">
-          <div class="col-label">商品名 Brand</div>
-          <div class="brand-zh">喜必福</div>
-          <div class="brand-en">Sebivo</div>
-        </div>
-        <div class="aka">台灣臨床上目前幾乎已不使用。</div>
-      </div>
-
-    </div>
-  </section>
-
-  <section>
-    <div class="sec-head">
-      <h2>注射型藥物<span class="en">Injectable</span></h2>
-      <p class="sec-note">不是每天吃藥，而是每週皮下注射一次，療程固定（約 48 週）。</p>
-    </div>
-
-    <div class="list">
-      <div class="drug">
-        <div class="generic">
-          <div class="col-label">成分名 Generic</div>
-          <div class="generic-en">Peginterferon alfa-2a</div>
-          <div class="generic-zh">長效型干擾素 α-2a（聚乙二醇干擾素）</div>
-        </div>
-        <div class="brand">
-          <div class="col-label">商品名 Brand</div>
-          <div class="brand-zh">珮格西施</div>
-          <div class="brand-en">Pegasys</div>
-        </div>
-        <div class="aka">早年使用的一般型干擾素（Interferon alfa-2b）現已幾乎不用於B型肝炎。</div>
+      <div>
+        <div class="col-label">商品名 Brand</div>
+        <div class="brand-zh">貝樂克</div>
+        <div class="brand-en">Baraclude</div>
       </div>
     </div>
-  </section>
 
-  <section>
-    <div class="sec-head">
-      <h2>研發中・尚未上市<span class="en">In development</span></h2>
+    <div class="drug">
+      <div>
+        <div class="col-label">成分名 Generic</div>
+        <div class="generic">Tenofovir disoproxil fumarate<span class="tag">TDF</span></div>
+      </div>
+      <div>
+        <div class="col-label">商品名 Brand</div>
+        <div class="brand-zh">惠立妥</div>
+        <div class="brand-en">Viread</div>
+      </div>
     </div>
-    <div class="pipeline">
-      <div class="generic-en">Bepirovirsen</div>
-      <div class="generic-zh">尚無正式中文藥名（反義寡核苷酸新藥）</div>
-      <p class="sec-note">2026 年 1 月公布第三期臨床試驗結果，目標是「功能性治癒」。<strong>目前世界各國均尚未核准上市，台灣也還買不到</strong>，只能透過臨床試驗參與。</p>
-    </div>
-  </section>
 
-  <footer>
-    <p><span class="key">領藥時請認「成分名」。</span>同一種成分會有很多廠牌、很多商品名，藥袋或藥盒上換了名字，不一定是換了藥。有疑問時，把成分名（英文那一行）拿給藥師核對最準。</p>
-    <p><span class="key">這張表只列藥名。</span>該不該用藥、用哪一種、健保是否給付、什麼時候可以停藥，都要由您的肝膽腸胃科或感染科醫師依檢驗結果判斷，請勿自行停藥或換藥。</p>
-  </footer>
+    <div class="drug">
+      <div>
+        <div class="col-label">成分名 Generic</div>
+        <div class="generic">Tenofovir alafenamide<span class="tag">TAF</span></div>
+      </div>
+      <div>
+        <div class="col-label">商品名 Brand</div>
+        <div class="brand-zh">韋立得</div>
+        <div class="brand-en">Vemlidy</div>
+      </div>
+    </div>
+
+  </div>
 
 </div>
