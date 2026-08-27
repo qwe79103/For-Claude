@@ -1,0 +1,735 @@
+<title>10771 E 28th Place</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Public+Sans:wght@400;500;600&display=swap">
+
+<style>
+  :root {
+    --ground:      #F2F4F6;
+    --surface:     #FFFFFF;
+    --surface-2:   #E9EDF1;
+    --ink:         #151D24;
+    --ink-2:       #38454F;
+    --muted:       #6B7A85;
+    --line:        #DAE1E7;
+    --line-strong: #BDC8D1;
+    --accent:      #23566E;
+    --accent-soft: #DEEAF0;
+    --brass:       #8A6415;
+    --brass-soft:  #F2E9D4;
+    --neg:         #9B3A31;
+    --neg-soft:    #F6E2DF;
+    --pos:         #2F6B4F;
+    --pos-soft:    #DFEDE5;
+
+    --display: "Newsreader", Georgia, "Times New Roman", serif;
+    --sans:    "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono:    "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:      #10161B;
+      --surface:     #182028;
+      --surface-2:   #1F2933;
+      --ink:         #E6ECF1;
+      --ink-2:       #B4C1CB;
+      --muted:       #8595A1;
+      --line:        #29343E;
+      --line-strong: #3A4854;
+      --accent:      #74B4D0;
+      --accent-soft: #1B3542;
+      --brass:       #D3A94F;
+      --brass-soft:  #2C2314;
+      --neg:         #E08A7F;
+      --neg-soft:    #33201D;
+      --pos:         #7EC49E;
+      --pos-soft:    #172C22;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground:      #10161B;
+    --surface:     #182028;
+    --surface-2:   #1F2933;
+    --ink:         #E6ECF1;
+    --ink-2:       #B4C1CB;
+    --muted:       #8595A1;
+    --line:        #29343E;
+    --line-strong: #3A4854;
+    --accent:      #74B4D0;
+    --accent-soft: #1B3542;
+    --brass:       #D3A94F;
+    --brass-soft:  #2C2314;
+    --neg:         #E08A7F;
+    --neg-soft:    #33201D;
+    --pos:         #7EC49E;
+    --pos-soft:    #172C22;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16.5px;
+    line-height: 1.62;
+    margin: 0;
+    padding: 0 20px 96px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 820px; margin: 0 auto; }
+  .prose { max-width: 66ch; }
+
+  /* ---------- masthead ---------- */
+
+  header.masthead {
+    padding: 56px 0 30px;
+    border-bottom: 2px solid var(--ink);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .kicker {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--brass);
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(2.1rem, 6vw, 3.15rem);
+    line-height: 1.08;
+    letter-spacing: -0.017em;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  .standfirst {
+    font-family: var(--display);
+    font-size: clamp(1.05rem, 2.4vw, 1.24rem);
+    line-height: 1.5;
+    color: var(--ink-2);
+    max-width: 56ch;
+    margin: 0;
+  }
+
+  /* ---------- property spec rail ---------- */
+
+  .spec {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    margin: 0 0 6px;
+  }
+  .spec div {
+    background: var(--surface);
+    padding: 12px 14px 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .spec dt {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .spec dd {
+    margin: 0;
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+  }
+  .spec .down { color: var(--pos); }
+
+  /* ---------- sections ---------- */
+
+  section { padding-top: 52px; }
+
+  h2 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(1.45rem, 3.4vw, 1.85rem);
+    line-height: 1.2;
+    letter-spacing: -0.012em;
+    text-wrap: balance;
+    margin: 0 0 4px;
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-bottom: 10px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--line-strong);
+    display: block;
+  }
+
+  h3 {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 1.02rem;
+    letter-spacing: 0.002em;
+    margin: 30px 0 6px;
+    color: var(--ink);
+  }
+
+  p { margin: 0 0 14px; }
+  section > .prose > p:last-child,
+  .callout p:last-child { margin-bottom: 0; }
+
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible, summary:focus-visible {
+    outline: 2px solid var(--brass);
+    outline-offset: 3px;
+  }
+
+  strong { font-weight: 600; }
+  em.term { font-style: normal; font-family: var(--mono); font-size: 0.9em; }
+
+  ul, ol { margin: 0 0 14px; padding-left: 1.15em; }
+  li { margin-bottom: 7px; }
+  li::marker { color: var(--muted); }
+
+  .num {
+    font-family: var(--mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 0.95em;
+  }
+
+  /* ---------- callouts ---------- */
+
+  .callout {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    padding: 20px 22px;
+    margin: 22px 0;
+  }
+  .callout.verdict {
+    border-left-color: var(--brass);
+    background: var(--surface);
+  }
+  .callout.warn { border-left-color: var(--neg); }
+  .callout .label {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 8px;
+  }
+  .callout .big {
+    font-family: var(--display);
+    font-size: 1.22rem;
+    line-height: 1.42;
+    color: var(--ink);
+    margin: 0 0 10px;
+  }
+
+  /* ---------- tables ---------- */
+
+  .tablewrap {
+    overflow-x: auto;
+    margin: 20px 0 10px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 480px;
+    font-size: 14.5px;
+  }
+  caption {
+    caption-side: top;
+    text-align: left;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 13px 16px 11px;
+    border-bottom: 1px solid var(--line);
+  }
+  th, td {
+    text-align: left;
+    padding: 9px 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  thead th {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1px solid var(--line-strong);
+    vertical-align: bottom;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  td.n, th.n {
+    text-align: right;
+    font-family: var(--mono);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  tr.total td {
+    border-top: 1px solid var(--line-strong);
+    font-weight: 600;
+    background: var(--surface-2);
+  }
+  tr.subtotal td { background: var(--surface-2); font-weight: 600; }
+  td .note { color: var(--muted); font-size: 13px; }
+
+  .cell-neg { color: var(--neg); background: var(--neg-soft); }
+  .cell-pos { color: var(--pos); background: var(--pos-soft); }
+  .cell-edge { color: var(--brass); background: var(--brass-soft); font-weight: 600; }
+
+  tr.likely td:first-child {
+    box-shadow: inset 3px 0 0 var(--brass);
+  }
+  tr.likely.first td:first-child::after {
+    content: "forecast band";
+    font-family: var(--sans);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--brass);
+    border: 1px solid var(--brass);
+    border-radius: 2px;
+    padding: 1px 5px;
+    margin-left: 9px;
+    vertical-align: 1px;
+    white-space: nowrap;
+  }
+
+  .assump {
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.55;
+    max-width: 72ch;
+    margin: 0 0 8px;
+  }
+
+  /* ---------- checklist ---------- */
+
+  .checklist {
+    list-style: none;
+    padding: 0;
+    margin: 18px 0 0;
+    border-top: 1px solid var(--line);
+  }
+  .checklist li {
+    border-bottom: 1px solid var(--line);
+    padding: 13px 0 13px 34px;
+    position: relative;
+    margin: 0;
+  }
+  .checklist li::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 19px;
+    width: 13px;
+    height: 13px;
+    border: 1.5px solid var(--line-strong);
+    border-radius: 2px;
+  }
+  .checklist .who {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin-bottom: 2px;
+  }
+
+  /* ---------- misc ---------- */
+
+  details {
+    border: 1px solid var(--line);
+    background: var(--surface);
+    padding: 0 18px;
+    margin: 18px 0;
+  }
+  details[open] { padding-bottom: 14px; }
+  summary {
+    cursor: pointer;
+    padding: 14px 0;
+    font-weight: 600;
+    font-size: 0.96rem;
+  }
+  details p, details ul { font-size: 15px; }
+
+  hr.rule {
+    border: none;
+    border-top: 1px solid var(--line-strong);
+    margin: 46px 0 0;
+  }
+
+  footer.sources {
+    padding-top: 44px;
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  footer.sources h2 { font-size: 1.15rem; margin-bottom: 12px; }
+  footer.sources ul { padding-left: 1.1em; }
+  footer.sources li { margin-bottom: 5px; }
+
+  @media (max-width: 560px) {
+    body { font-size: 16px; padding: 0 16px 72px; }
+    header.masthead { padding-top: 40px; }
+    .callout { padding: 17px 18px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <span class="kicker">Buy / rent analysis &middot; 27 August 2026</span>
+    <h1>10771 E 28th Place</h1>
+    <p class="standfirst">The seller moved $15,000. That is not the question you need answered &mdash; the two&#8209;year horizon is, and it points the other way.</p>
+  </header>
+
+  <dl class="spec">
+    <div><dt>List price</dt><dd>$620,000</dd></div>
+    <div><dt>Was</dt><dd class="down">$635,000</dd></div>
+    <div><dt>Days on market</dt><dd>49</dd></div>
+    <div><dt>Living area</dt><dd>1,639 sf</dd></div>
+    <div><dt>Built</dt><dd>2012</dd></div>
+    <div><dt>Type</dt><dd>Duplex</dd></div>
+  </dl>
+  <p class="assump">Listed 09 Jul 2026 &middot; MLS 5535629 &middot; 3 bd / 3 ba, unfinished basement, 2&#8209;car garage, 3,282 sf lot &middot; Central Park, Denver 80238.</p>
+
+  <section>
+    <span class="eyebrow">The short answer</span>
+    <h2>Rent it. Don't buy it.</h2>
+    <div class="prose">
+      <p>Nothing that changed since we last talked changed the fundamental problem, and one thing that changed made it slightly worse.</p>
+      <p>Your instinct that you need five years to make money on this house is correct &mdash; and it's the reason not to buy. You are planning to be in Denver for two. Buying and selling after two years needs Denver prices to rise about <strong class="num">4.4% a year</strong> just to beat renting and leaving your money in T&#8209;bills. Holding five years &mdash; living in it two, renting it out from Taiwan for three &mdash; needs about <strong class="num">3.0% a year</strong> to break even.</p>
+      <p>Denver's own forecasts for 2026&ndash;27 are 2&ndash;4% a year for detached houses. This is not a detached house. Attached homes in Denver &mdash; duplexes, townhomes, condos &mdash; are down roughly <strong class="num">2.9%</strong> over the past year, sitting on 4.8 months of supply. You would be taking a coin&#8209;flip bet, with a small win and a large loss, to acquire a three&#8209;year unpaid job managing a house eleven time zones away.</p>
+      <p>Meanwhile Denver is the best renter's market in sixteen years. That is the side of the table you should be on.</p>
+    </div>
+
+    <div class="callout verdict">
+      <span class="label">If you want the house itself</span>
+      <p class="big">Rent <em>this</em> house.</p>
+      <p>The seller is already saying he'll lease it if it doesn't sell. Ask Karl to open that conversation now, and ask for a right of first refusal or a purchase option written into the lease. You get the house you like, at roughly $2,900 a month, with no transaction cost, no exit risk, no roof, and the option to buy it in 2027 if you decide to stay longer than two years.</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <span class="eyebrow">What changed since we last spoke</span>
+    <h2>Four updates, and only one helps you</h2>
+
+    <div class="tablewrap">
+      <table>
+        <caption>Then &rarr; now</caption>
+        <thead>
+          <tr><th>Input</th><th>Last time</th><th>Now</th><th>Effect on you</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Asking price</td>
+            <td class="n">$635,000</td>
+            <td class="n">$620,000</td>
+            <td class="cell-pos">Helps &mdash; &minus;2.4%, and more is available</td>
+          </tr>
+          <tr>
+            <td>SGOV yield</td>
+            <td class="n">~4.2%</td>
+            <td class="n">3.60%</td>
+            <td class="cell-pos">Helps slightly &mdash; cash costs less to tie up</td>
+          </tr>
+          <tr>
+            <td>Rate outlook</td>
+            <td>Cuts expected</td>
+            <td>Hikes now priced</td>
+            <td class="cell-neg">Hurts &mdash; your opportunity cost may rise, not fall</td>
+          </tr>
+          <tr>
+            <td>Attached&#8209;home prices</td>
+            <td>Flat</td>
+            <td class="n">&minus;2.9% y/y</td>
+            <td class="cell-neg">Hurts &mdash; this segment is the weak one</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="prose">
+      <p>The price cut is real and you should press it further. But the reason your <span class="num">$585,000</span> number existed was that T&#8209;bills were paying you over 4% to do nothing. They now pay 3.6%, which lowers the bar for the house &mdash; while the market has simultaneously started pricing Fed <em>hikes</em> rather than cuts, which raises it again. Those two roughly cancel.</p>
+      <p>What did not cancel: attached homes are now the weakest segment in Denver, and this property is classified as a duplex.</p>
+    </div>
+
+    <h3>Visa and foreign&#8209;ownership rules: no obstacle</h3>
+    <div class="prose">
+      <p>You asked whether the rules changed. For <em>buying</em>, they have not. There is no citizenship, green card, or visa requirement to purchase a US home. Colorado's foreign&#8209;ownership statute (HB24&#8209;1029) covers agricultural land, mineral rights and water rights, and names China, Russia and state sponsors of terrorism &mdash; not residential property, and not Taiwan. The bills moving in Congress in 2026 target adversary states and entities, not individual Taiwanese buyers.</p>
+      <p>What did change is how long you're allowed to <em>stay</em>: from 15 September 2026, DHS replaces "duration of status" for F&#8209;1, J&#8209;1 and I visa holders with fixed admission periods (four years for exchange visitors), with extensions filed rather than automatic. That matters for planning your two years &mdash; and it matters a great deal for the tax point further down &mdash; but it does not touch your ability to own the house.</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <span class="eyebrow">The core math</span>
+    <h2>What the house actually costs to hold</h2>
+
+    <div class="prose">
+      <p>Central Park's real burden is the metro district. On top of Denver's ~79.6 mills you pay the Westerly Creek Metropolitan District's 68.5 mills for 2026 &mdash; nearly doubling the levy. Colorado insurance is the other quiet killer: premiums are up 61% since 2023, and the Front Range hail belt is why.</p>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <caption>Annual cost of ownership &middot; at a $600,000 purchase</caption>
+        <thead>
+          <tr><th>Line</th><th class="n">Per year</th><th>Basis</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Property tax</td><td class="n">$5,700</td><td class="note">Denver 79.6 mills + Westerly Creek MD 68.5 mills</td></tr>
+          <tr><td>HOA &mdash; Central Park MCA</td><td class="n">$700</td><td class="note">$58/mo as of 1 Jan 2026</td></tr>
+          <tr><td>Sub&#8209;association</td><td class="n">$0&ndash;3,600</td><td class="note">Paired&#8209;home HOAs run $56 to $300+/mo &mdash; <strong>verify</strong></td></tr>
+          <tr><td>Insurance</td><td class="n">$3,500</td><td class="note">Colorado average $4,164; hail&#8209;driven</td></tr>
+          <tr><td>Maintenance reserve</td><td class="n">$5,000</td><td class="note">~1%/yr on a 14&#8209;year&#8209;old house</td></tr>
+          <tr class="subtotal"><td>Cash out of pocket</td><td class="n">$14,900</td><td class="note">$1,240/month</td></tr>
+          <tr><td>Forgone SGOV interest</td><td class="n">$21,700</td><td class="note">$603,000 at 3.60%</td></tr>
+          <tr class="total"><td>True economic cost</td><td class="n">$36,600</td><td class="note">$3,050/month, before any appreciation</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="prose">
+      <p>Renting the equivalent house costs about <strong class="num">$2,900</strong> a month. So owning runs roughly $150 a month more than renting <em>before</em> appreciation &mdash; close enough that appreciation decides everything. And appreciation has to clear the round trip: roughly 0.5% to buy for cash, and about 7% to sell (commissions, title, and the seller concession that now appears in 62.9% of Denver closings).</p>
+      <p>That 7.5% friction is the whole game. It is why two years cannot work and five years might.</p>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Sensitivity</span>
+    <h2>How much you end up with, versus renting</h2>
+
+    <p class="assump">Both columns compare against the same alternative: rent, and hold the same cash in SGOV at 3.60%. Green means buying wins; red means renting wins. Purchase at $600,000.</p>
+
+    <div class="tablewrap">
+      <table>
+        <caption>Wealth after N years, buying minus renting</caption>
+        <thead>
+          <tr>
+            <th>Denver appreciation</th>
+            <th class="n">Sell after 2 years</th>
+            <th class="n">Hold 5 years<br>(live 2, rent 3)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>0% / yr</td><td class="n cell-neg">&minus;$47,700</td><td class="n cell-neg">&minus;$83,900</td></tr>
+          <tr><td>1% / yr</td><td class="n cell-neg">&minus;$36,500</td><td class="n cell-neg">&minus;$55,500</td></tr>
+          <tr class="likely first"><td>2% / yr</td><td class="n cell-neg">&minus;$25,100</td><td class="n cell-neg">&minus;$25,900</td></tr>
+          <tr class="likely"><td>3% / yr</td><td class="n cell-neg">&minus;$13,700</td><td class="n cell-edge">+$5,000</td></tr>
+          <tr class="likely"><td>4% / yr</td><td class="n cell-edge">&minus;$2,100</td><td class="n cell-pos">+$36,900</td></tr>
+          <tr><td>5% / yr</td><td class="n cell-pos">+$9,500</td><td class="n cell-pos">+$70,200</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="prose">
+      <p>Read the two shaded rows in the middle. Across the range Denver's own forecasters actually predict, the two&#8209;year plan loses <span class="num">$14,000&ndash;25,000</span> and the five&#8209;year plan lands somewhere between losing <span class="num">$26,000</span> and making <span class="num">$37,000</span>.</p>
+      <p>That is not an investment thesis. That is a coin flip where heads pays modestly, tails costs real money, and you have to work for three years either way.</p>
+    </div>
+
+    <details>
+      <summary>Assumptions behind these numbers</summary>
+      <p>Same starting cash in both scenarios ($623,000), with all housing costs paid out of it. Buying costs $3,000 (cash purchase, no appraisal or lender fees; Colorado sellers customarily pay the owner's title policy). Selling costs 7% of price. Rent starts at $2,900/month and grows 3%/year. Carrying costs as tabulated, with the sub&#8209;association assumed at zero &mdash; if it turns out to be $250/month, subtract about $15,000 from the five&#8209;year column.</p>
+      <p>The five&#8209;year column credits three years of net rental income at roughly $13,900/year (gross rent less 8% management, a leasing fee, 5% vacancy and all carrying costs) and deducts depreciation recapture of about $13,100 at sale. It does not deduct US or Taiwanese income tax on rental profit, because depreciation should shelter most of it &mdash; nor does it price a hail claim, an extended vacancy, or a bad tenant.</p>
+      <p>Every one of those omissions cuts against buying.</p>
+    </details>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <span class="eyebrow">Negotiation</span>
+    <h2>How far the seller will go &mdash; and why that isn't the right question</h2>
+
+    <div class="prose">
+      <p>The signals are good. Forty&#8209;nine days on market against a ~40&#8209;day median for attached homes. One cut already, of 2.4%. A metro where 62.9% of closings include a seller concession, median $10,000, and buyers are reportedly extracting $15,000&ndash;50,000 of total value. A 99.1% close&#8209;to&#8209;list ratio that quietly excludes all of those concessions.</p>
+      <p>A realistic landing zone is <strong class="num">$595,000&ndash;605,000</strong> on the contract plus <strong class="num">$10,000&ndash;15,000</strong> in concessions &mdash; an effective price of about <span class="num">$585,000&ndash;592,000</span>. Your target is achievable. Open at $580,000 and be visibly willing to walk.</p>
+      <p>Your cash is worth something specific here: no financing contingency, no appraisal contingency, no lender timeline. In this market that is worth two to three points to a seller who has already been waiting seven weeks. Have Karl price it explicitly in the offer letter rather than leaving it as an implied virtue.</p>
+    </div>
+
+    <div class="callout">
+      <span class="label">The reframe</span>
+      <p class="big">Stop negotiating toward $585,000 because that's the number your spreadsheet needs.</p>
+      <p>Negotiating only makes you money if you buy <em>below market value</em> &mdash; because you also sell at market. If the house is genuinely worth $605,000 and you pay $585,000, you've banked $20,000. If it's worth $585,000 and you pay $585,000, you've captured nothing; you've paid a fair price for an asset that still has to appreciate 3% a year for five years to beat a Treasury bill.</p>
+      <p>So the number to ask Karl for is not "how low will he go." It's <strong>closed comps &mdash; Central Park paired homes, 1,500&ndash;1,800 sq ft, sold in the last 90 days.</strong> That tells you what you're actually buying.</p>
+    </div>
+
+    <h3>One argument to make through Karl</h3>
+    <div class="prose">
+      <p>The seller's fallback is to rent it. That fallback is weaker than he thinks, and it's fair to say so. At $2,900/month on a $620,000 asset, his gross yield is 5.6% &mdash; and after taxes, HOA, insurance, maintenance and management, his net is around 2.2%. That is below a Treasury bill, for considerably more work. Worse, a tenant in place makes the house materially harder to sell next spring, and he'd be re&#8209;entering the market having lost a year in a segment that's currently falling.</p>
+      <p>A clean cash close in September is worth more to him than a lease. He may not have done that arithmetic.</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <span class="eyebrow">The rental option</span>
+    <h2>Is $2,900 a reasonable rent? Yes &mdash; and that's the tell</h2>
+
+    <div class="prose">
+      <p>Comparable Central Park three&#8209;bedroom townhomes are currently listing between <span class="num">$2,695</span> and <span class="num">$3,350</span>. For 1,639 sq ft with a two&#8209;car garage backing onto Bluff Lake, roughly <strong class="num">$2,800&ndash;3,100</strong> is fair. Don't pay above $3,000.</p>
+      <p>At $2,900, the price&#8209;to&#8209;rent ratio is about <strong class="num">17.8</strong>. Anything much above 15 tilts toward renting for short horizons &mdash; and your horizon is short. The rent is reasonable in the sense that matters: it is cheap relative to what the house costs to own.</p>
+      <p>You also have the market behind you. Metro Denver apartment vacancy hit 7.6% at the end of 2025, the highest in sixteen years, average rents fell back to 2022 levels, and Denver leads the country in concessions. Single&#8209;family rentals are tighter than apartments, but landlords are still negotiating.</p>
+    </div>
+
+    <h3>Locking it in from Taiwan before October</h3>
+    <div class="prose">
+      <p>Your worry &mdash; that someone else takes it first &mdash; is real but manageable, and smaller than it feels. Central Park has roughly 30 single&#8209;family rentals listed at any given time; this is not a scarce commodity.</p>
+      <ul>
+        <li><strong>Start now, not in October.</strong> A landlord will hold for a qualified tenant five or six weeks out. Have Karl approach this seller directly about a lease starting 1 October.</li>
+        <li><strong>A big deposit is not the lever you think.</strong> Colorado caps security deposits at one month's rent (1.5 if furnished), and as of 1 January 2026 HB25&#8209;1249 treats deposits as tenant property held in trust. Offering three months won't be accepted.</li>
+        <li><strong>What does work</strong> without US credit history: proof of funds, your employment or program letter, Taiwanese bank statements, a US&#8209;based guarantor, or a third&#8209;party guarantor service. Prepaid rent is sometimes structured lawfully &mdash; ask the landlord's agent, don't assume.</li>
+        <li><strong>Ask for the purchase option.</strong> A right of first refusal costs the landlord nothing and keeps the door open. If you love the house in mid&#8209;2027, buy it then &mdash; with a year of knowing the road noise, the neighbours, and whether you're staying.</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <span class="eyebrow">The two-year problem</span>
+    <h2>What the five-year hold actually asks of you</h2>
+
+    <div class="prose">
+      <p>You identified this yourself and you were right to. If you buy and need five years, three of those years are spent as a landlord in Colorado while living in Taiwan. Concretely:</p>
+      <ul>
+        <li><strong>A property manager, not optional.</strong> 8&ndash;10% of rent plus a leasing fee per new tenancy. At an eleven&#8209;hour time difference you cannot self&#8209;manage a burst pipe.</li>
+        <li><strong>A Denver rental licence.</strong> Required for any rental of 30 days or more &mdash; four&#8209;year term, $50 fee, and a passing inspection by a certified private inspector that you arrange and pay for. The licence number must appear in every advertisement.</li>
+        <li><strong>Hail.</strong> Colorado premiums are up 61% since 2023, wind/hail carries a separate 1&ndash;2% deductible ($6,000&ndash;12,000 out of pocket), and insurers increasingly pay actual cash value rather than replacement cost on older roofs. This house's roof is fourteen years old unless it's been replaced &mdash; find out which.</li>
+        <li><strong>A US tax return every year.</strong> Rental income to a non&#8209;resident is withheld at 30% <em>of gross</em> by default. The fix is the §871(d) election to be taxed on net income &mdash; the difference between tax on $34,800 and tax on roughly zero after depreciation. It requires filing Form 1040NR. Don't discover this in year three.</li>
+        <li><strong>Roughly $100,000 frozen at closing.</strong> Selling as a non&#8209;resident triggers FIRPTA withholding of 15% of the gross price (10% if the buyer will occupy and the price is under $1M) plus Colorado's 2% non&#8209;resident withholding. Both are refundable when you file &mdash; months later.</li>
+      </ul>
+      <p>None of this is fatal. All of it is unpaid work, in a second language, across a twelve&#8209;hour gap, for an expected return the table above says is roughly zero.</p>
+    </div>
+
+    <div class="callout warn">
+      <span class="label">The risk nobody mentions</span>
+      <p class="big">A non&#8209;resident gets a $60,000 US estate tax exemption &mdash; not $13 million.</p>
+      <p>If you own this house and die while still a non&#8209;resident, the US taxes it above $60,000 at rates up to 40%. On a $620,000 house that's roughly <strong>$165,000</strong>, and there is no US&ndash;Taiwan estate tax treaty to soften it. The cheap fix is a ten&#8209;year term life policy covering the holding period &mdash; a few hundred dollars a year for a healthy adult. (A mortgage would also reduce the US&#8209;situs value, which is one genuine argument against paying all cash &mdash; though at 6.4% borrowing against 3.6% T&#8209;bills, the carry costs more than the exposure.)</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <span class="eyebrow">Highest-value item in this memo</span>
+    <h2>Sell your Taiwanese stocks before 31 December 2026</h2>
+
+    <div class="prose">
+      <p>This is worth more than anything you'll win in the price negotiation, and it is time&#8209;sensitive.</p>
+      <p>Taiwan does not tax individual capital gains on listed domestic shares &mdash; you pay the 0.3% transaction tax and nothing more. The United States taxes its residents on <em>worldwide</em> income, including Taiwanese stock gains, at 15&ndash;20% plus the 3.8% net investment income tax. Critically, there is <strong>no step&#8209;up in basis</strong> on the day you arrive: the US would measure the gain from your original purchase price, however many years ago that was.</p>
+      <p>Arriving around October 2026 gives you roughly 90 days of US presence this year &mdash; below the substantial&#8209;presence threshold. You should be a non&#8209;resident for US tax purposes for all of 2026, with residency beginning in 2027. Which means the window to realise those gains outside the US tax net closes on <strong>31 December 2026</strong>.</p>
+      <p>On a large embedded gain this is a five&#8209;figure difference and quite possibly six. It applies whether or not you buy the house &mdash; you're moving the money either way.</p>
+      <p>Two caveats. If you'll be on an F&#8209;1 or J&#8209;1 visa you're an "exempt individual" (five years and two years respectively) and remain a non&#8209;resident regardless, so the urgency drops &mdash; but confirm rather than assume, especially given the September 2026 rule change. And confirm the whole thing with a cross&#8209;border CPA before you sell anything. This is the one item in this memo worth paying for advice on.</p>
+    </div>
+
+    <h3>Moving the money</h3>
+    <div class="prose">
+      <ul>
+        <li>Taiwan raised the individual annual outward remittance cap to <strong>US$10 million</strong> in October 2024. Your $600,000 is comfortably inside it.</li>
+        <li>Any single remittance of <strong>US$500,000 or more</strong> requires the Foreign Exchange Receipts or Payments Declaration Form with documented source and purpose, submitted through your bank to the Central Bank. Allow two to four weeks &mdash; do not start this under a contract deadline.</li>
+        <li>USD/TWD is around <strong class="num">31.89</strong>, with the TWD down 4.2% over twelve months. You'd be converting at a relatively weak TWD. A 3% move on $600,000 is $18,000, so consider staging the conversion across two or three tranches rather than one.</li>
+        <li>Worth naming: a $600,000 US house is a large unhedged USD position for someone whose life may well return to Taiwan.</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <span class="eyebrow">Your other two worries</span>
+    <h2>The road, and the roof</h2>
+
+    <h3>Noise &mdash; a smaller problem than you fear, and a bigger one than Karl says</h3>
+    <div class="prose">
+      <p>One quiet night with the windows closed, reported by the agent who wants the sale, is weak evidence. It isn't dishonest &mdash; it's just not a measurement. Do this instead:</p>
+      <ul>
+        <li>Stand there on a weekday from 7:30&ndash;8:30am and 4:30&ndash;6:00pm, and again on a Friday or Saturday night. Windows open, then closed, in the bedrooms specifically.</li>
+        <li>Use a phone dB meter for a rough read. Outdoors, ~55 dB is quiet suburban; 65+ dB is arterial.</li>
+        <li>Pull the road's actual traffic volume from the DRCOG regional traffic count map before you go.</li>
+        <li>A 2012 Colorado build has double&#8209;pane windows but not acoustic glass. Laminated acoustic units on the exposed side run $600&ndash;1,200 per window &mdash; a real and effective fix, and a legitimate thing to ask the seller to credit.</li>
+      </ul>
+      <p>But here's the part that matters for you specifically: studies put the discount on homes near busy roads at roughly 5&ndash;12%. Whatever that discount is here, it is in the price you pay <em>and</em> in the price you'll get when you sell &mdash; and you're a forced seller on a short clock. If you buy this house, you should be capturing that discount, not paying through it. Ask Karl to show you how the comps he pulls compare on road exposure.</p>
+    </div>
+
+    <h3>Maintenance &mdash; survivable for two years, expensive for five</h3>
+    <div class="prose">
+      <p>A 2012 house is at the age where the first wave of replacements arrives. Roof (hail&#8209;shortened in Denver), water heater (10&ndash;12 year life), furnace and AC (15&ndash;20 years) are all inside the window. The $5,000/year reserve in the table is an average, not a schedule &mdash; a roof is $15,000&ndash;25,000 in one hit.</p>
+      <p>Before making any offer, ask for the roof's age and the CLUE claim history on the property. In this neighbourhood that single document tells you more about your future costs than the inspection will.</p>
+      <p>For two years of living there, this is manageable. For three further years run from Taipei, add $3,000&ndash;4,000 a year of what amounts to a remote&#8209;owner tax.</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <span class="eyebrow">Next steps</span>
+    <h2>What to do this week</h2>
+
+    <ul class="checklist">
+      <li><span class="who">Ask Karl</span>Closed comps: Central Park paired homes, 1,500&ndash;1,800 sq ft, sold in the last 90 days. This is the number that decides whether $585,000 is a bargain or just a price.</li>
+      <li><span class="who">Ask Karl</span>The actual annual property tax bill, and the full HOA picture &mdash; MCA plus any sub&#8209;association, with its reserve study. A $250/month sub&#8209;HOA changes the five&#8209;year answer by about $15,000.</li>
+      <li><span class="who">Ask Karl</span>Roof age and the CLUE claim history.</li>
+      <li><span class="who">Ask Karl</span>Whether the seller will lease it to you from 1 October, at what rent, and whether he'll write in a right of first refusal.</li>
+      <li><span class="who">Do now</span>Talk to a US&ndash;Taiwan cross&#8209;border CPA about realising your Taiwanese stock gains before 31 December 2026. Do this before anything else on this list.</li>
+      <li><span class="who">Do now</span>Start the remittance paperwork with your Taiwanese bank so it isn't on the critical path later.</li>
+      <li><span class="who">Decide</span>Whether you would genuinely be willing to run this house remotely from Taiwan for three years. If the honest answer is no, the five&#8209;year column doesn't exist and the two&#8209;year column is the whole analysis &mdash; and it says rent.</li>
+    </ul>
+
+    <div class="callout">
+      <span class="label">Two things I need from you</span>
+      <p><strong>Which visa?</strong> F&#8209;1, J&#8209;1, H&#8209;1B and L&#8209;1 produce genuinely different answers on the stock&#8209;sale timing and on rental taxation. The F/J "exempt individual" rules would keep you a non&#8209;resident for your whole stay; H&#8209;1B or L&#8209;1 would make you a US tax resident from 2027.</p>
+      <p><strong>Which road is it?</strong> Tell me the street and I'll pull the actual traffic counts rather than guessing between Havana Street and MLK Boulevard.</p>
+    </div>
+  </section>
+
+  <footer class="sources">
+    <h2>Sources</h2>
+    <ul>
+      <li>Market data: <a href="https://coloradorealtors.com/2026/08/12/colorado-housing-market-holds-steady-but-growing-divide-emerges-between-single-family-and-attached-homes/">Colorado Association of Realtors, Aug 2026</a> &middot; <a href="https://www.dmarealtors.com/sites/default/files/file/2026-07/DMAR_MarketTrendsReport_June26Data_0.pdf">DMAR Market Trends</a> &middot; <a href="https://www.corcoranperry.com/blog/posts/2026/08/11/august-2026-denver-housing-market/">Corcoran Perry, Aug 2026</a> &middot; <a href="https://www.redfin.com/neighborhood/122503/CO/Denver/Central-Park/housing-market">Redfin, Central Park</a></li>
+      <li>Rents: <a href="https://coloradosun.com/2026/01/21/apartments-in-metro-denver-reach-highest-vacancy-rate-in-16-years-pushing-down-rents-again/">Colorado Sun on vacancy</a> &middot; <a href="https://coloradosun.com/2026/04/25/denver-renters-market-average-rents/">Colorado Sun on concessions</a></li>
+      <li>Taxes &amp; fees: <a href="https://dpt.colorado.gov/understanding-property-taxes-in-colorado">Colorado Division of Property Taxation</a> &middot; <a href="https://www.mca80238.com/what-we-do/assessment-management-tools">Central Park MCA</a> &middot; <a href="https://tax.colorado.gov/DR1083">Colorado DR 1083</a> &middot; <a href="https://www.law.cornell.edu/uscode/text/26/871">26 U.S.C. §871</a></li>
+      <li>Yields: <a href="https://www.ishares.com/us/products/314116/ishares-0-3-month-treasury-bond-etf">iShares SGOV</a> &middot; <a href="https://tradingeconomics.com/taiwan/currency">USD/TWD</a></li>
+      <li>Rules: <a href="https://www.nixonpeabody.com/insights/alerts/2026/07/17/dhs-finalizes-rule-replacing-duration-of-status-for-f-1-j-1-and-i-visa-holders">DHS duration&#8209;of&#8209;status final rule</a> &middot; <a href="https://leg.colorado.gov/bills/HB24-1029">Colorado HB24&#8209;1029</a> &middot; <a href="https://www.cbc.gov.tw/en/cp-448-30356-CFA60-2.html">Central Bank of the ROC, outward remittance</a> &middot; <a href="https://frascona.com/hb25-1249-revisions-to-security-deposit-law-changes-explained-2026-update/">Colorado HB25&#8209;1249</a></li>
+    </ul>
+    <p style="margin-top:18px">Estimates, not advice. Every figure marked <em>verify</em> should be confirmed against the actual documents before you commit money, and the tax positions should be reviewed by a cross&#8209;border professional.</p>
+  </footer>
+
+</div>
