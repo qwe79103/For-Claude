@@ -408,257 +408,369 @@
   }
 </style>
 
+<style>
+  .viz {
+    --s-house: #B07D15;
+    --s-eq:    #2a78d6;
+    --s-ref:   var(--muted);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .viz { --s-house: #C98500; --s-eq: #3987e5; }
+  }
+  :root[data-theme="dark"] .viz { --s-house: #C98500; --s-eq: #3987e5; }
+
+  figure.viz {
+    margin: 24px 0 10px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    padding: 20px 20px 8px;
+  }
+  figure.viz svg { width: 100%; height: auto; display: block; overflow: visible; }
+  .viz .row-hit { cursor: default; }
+  .viz .row-hit:hover .band, .viz .row-hit:focus-visible .band { filter: brightness(1.08); }
+  .viz .axis-line { stroke: var(--line-strong); stroke-width: 1; }
+  .viz .grid { stroke: var(--line); stroke-width: 1; }
+  .viz .ref { stroke: var(--muted); stroke-width: 2; stroke-dasharray: 4 4; }
+  .viz text { font-family: var(--sans); fill: var(--ink-2); }
+  .viz .tick { font-family: var(--mono); font-size: 11px; fill: var(--muted); }
+  .viz .rowlabel { font-size: 13.5px; font-weight: 600; fill: var(--ink); }
+  .viz .rowsub { font-size: 11.5px; fill: var(--muted); }
+  .viz .val { font-family: var(--mono); font-size: 12px; font-weight: 600; fill: var(--ink); }
+  .viz .reflabel { font-family: var(--mono); font-size: 11px; fill: var(--muted); }
+  .viz .dot { stroke: var(--surface); stroke-width: 2; }
+  figcaption {
+    font-size: 13px; color: var(--muted); line-height: 1.5;
+    padding-top: 12px; margin-top: 4px; border-top: 1px solid var(--line);
+  }
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 16px;
+    font-size: 12.5px; color: var(--ink-2); padding: 2px 0 12px;
+  }
+  .legend span { display: inline-flex; align-items: center; gap: 7px; }
+  .legend i { width: 22px; height: 9px; border-radius: 4px; display: inline-block; }
+</style>
+
 <div class="wrap">
 
   <header class="masthead">
-    <span class="kicker">Buy / rent analysis &middot; revised 27 August 2026</span>
+    <span class="kicker">Buy vs. rent &amp; invest &middot; revised 27 August 2026</span>
     <h1>10771 E 28th Place</h1>
-    <p class="standfirst">At $3,300 rent instead of $2,900, the five&#8209;year case flips from a coin flip to a favourable bet. The two&#8209;year case still doesn't work. So the decision is no longer about the house.</p>
+    <p class="standfirst">Against Treasury bills the house looked good. Against equities it doesn't &mdash; it returns less, and it isn't safer. It fails the test you set for it.</p>
   </header>
 
   <dl class="spec">
     <div><dt>List price</dt><dd>$620,000</dd></div>
-    <div><dt>Was</dt><dd class="down">$635,000</dd></div>
     <div><dt>Market rent</dt><dd>$3,300</dd></div>
-    <div><dt>Days on market</dt><dd>49</dd></div>
-    <div><dt>Living area</dt><dd>1,639 sf</dd></div>
+    <div><dt>House returns</dt><dd>~4.7%</dd></div>
+    <div><dt>S&amp;P consensus</dt><dd>4&ndash;7%</dd></div>
+    <div><dt>Horizon</dt><dd>5 yr min</dd></div>
     <div><dt>Structure</dt><dd>Duplex</dd></div>
   </dl>
-  <p class="assump">Listed 09 Jul 2026 &middot; MLS 5535629 &middot; 3 bd / 3 ba, unfinished basement, 2&#8209;car garage, 3,282 sf lot &middot; Central Park, Denver 80238 &middot; paired home (one half of a two&#8209;unit building), confirmed.</p>
+  <p class="assump">Live in it two years, let it for three, sell in year five. The two&#8209;year buy&#8209;and&#8209;sell case is dropped &mdash; you're not considering it. "House returns" is the whole package (rent saved, rent earned, sale proceeds) at 3% Denver appreciation.</p>
 
   <section>
-    <span class="eyebrow">Revised answer</span>
-    <h2>The rent correction moves this. Here's how far.</h2>
+    <span class="eyebrow">The answer</span>
+    <h2>You asked for less risk or more profit. It delivers neither.</h2>
     <div class="prose">
-      <p>I had rent at $2,900. You're paying $3,000 for something considerably smaller, so this house is $3,200&ndash;3,400. That single input is worth about <span class="num">$4,700</span> a year, because it works twice: it raises what renting costs you, and it raises what the house earns when you let it.</p>
-      <p>At $3,300, owning this house costs <strong class="num">$36,600</strong> a year including the interest you give up on the cash &mdash; against <strong class="num">$39,600</strong> to rent the same thing. Owning is now roughly $3,000 a year <em>cheaper</em> before any appreciation. Under my earlier number it was $1,700 a year more expensive. That is the whole swing.</p>
+      <p>Changing the benchmark from T&#8209;bills to equities changes the verdict, and it should. A house at 3.6% opportunity cost is a different proposition from a house at 6.5%.</p>
+      <p>Run whole&#8209;package returns &mdash; rent saved while you live there, rent earned while you let it, sale proceeds net of the 7% exit &mdash; and this house returns about <strong class="num">4.7% a year</strong> if Denver appreciates at 3%. Denver's own forecasts are 2&ndash;4%, which puts the house between <span class="num">3.8%</span> and <span class="num">5.7%</span>.</p>
+      <p>Goldman's ten&#8209;year base case for the S&amp;P 500 is <strong class="num">6.5%</strong>; Vanguard and JPMorgan both sit in the 4&ndash;7% range. The ranges overlap. The centres don't.</p>
     </div>
+
+    <div class="legend viz">
+      <span><i style="background:var(--s-house)"></i> This house, total return</span>
+      <span><i style="background:var(--s-eq)"></i> S&amp;P 500, forecast range</span>
+    </div>
+
+    <figure class="viz">
+      <svg viewBox="0 0 720 178" role="img" aria-label="Expected annual return: this house 3.8 to 5.7 percent with a central case of 4.7 percent; S and P 500 forecast range 4 to 7 percent with a central case of 6.5 percent; Treasury bills 3.6 percent.">
+        <g class="grid">
+          <line x1="170" y1="26" x2="170" y2="132"></line>
+          <line x1="300" y1="26" x2="300" y2="132"></line>
+          <line x1="430" y1="26" x2="430" y2="132"></line>
+          <line x1="560" y1="26" x2="560" y2="132"></line>
+          <line x1="690" y1="26" x2="690" y2="132"></line>
+        </g>
+
+        <line class="ref" x1="404" y1="20" x2="404" y2="138"></line>
+        <text class="reflabel" x="399" y="15" text-anchor="end">T&#8209;bills 3.6%</text>
+
+        <g class="row-hit" tabindex="0">
+          <title>This house: 3.8% if Denver appreciates at 2%/yr, 4.7% at 3%, 5.7% at 4%. Net of the 7% cost of selling.</title>
+          <rect x="0" y="34" width="720" height="40" fill="transparent"></rect>
+          <text class="rowlabel" x="0" y="50">This house</text>
+          <text class="rowsub" x="0" y="66">Denver at 2&ndash;4%/yr</text>
+          <rect class="band" x="417" y="42" width="124" height="22" rx="4" fill="var(--s-house)"></rect>
+          <circle class="dot" cx="476" cy="53" r="6" fill="var(--s-house)"></circle>
+          <text class="val" x="551" y="58">4.7%</text>
+        </g>
+
+        <g class="row-hit" tabindex="0">
+          <title>S&amp;P 500: Vanguard and JPMorgan forecast 4-7% annualised over ten years; Goldman Sachs base case 6.5%.</title>
+          <rect x="0" y="86" width="720" height="40" fill="transparent"></rect>
+          <text class="rowlabel" x="0" y="102">S&amp;P 500</text>
+          <text class="rowsub" x="0" y="118">10&#8209;year forecasts</text>
+          <rect class="band" x="430" y="94" width="195" height="22" rx="4" fill="var(--s-eq)"></rect>
+          <circle class="dot" cx="593" cy="105" r="6" fill="var(--s-eq)"></circle>
+          <text class="val" x="635" y="110">6.5%</text>
+        </g>
+
+        <line class="axis-line" x1="170" y1="140" x2="690" y2="140"></line>
+        <g class="tick" text-anchor="middle">
+          <text x="170" y="158">0%</text>
+          <text x="300" y="158">2%</text>
+          <text x="430" y="158">4%</text>
+          <text x="560" y="158">6%</text>
+          <text x="690" y="158">8%</text>
+        </g>
+        <text class="tick" x="430" y="174" text-anchor="middle">annualised return over five years</text>
+      </svg>
+      <figcaption>The house's bar is its <em>whole</em> return, not just appreciation: net rental yield of about 3.3% plus price growth, less the 7% cost of selling amortised across five years. Dots mark the central case of each.</figcaption>
+    </figure>
 
     <div class="tablewrap">
       <table>
-        <caption>Appreciation needed to beat renting + SGOV</caption>
+        <caption>The same figures</caption>
         <thead>
-          <tr><th>Horizon</th><th class="n">At $2,900 rent</th><th class="n">At $3,300 rent</th><th>Verdict</th></tr>
+          <tr><th>Asset</th><th class="n">Low</th><th class="n">Central</th><th class="n">High</th><th>Basis</th></tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Sell after 2 years</td>
-            <td class="n">4.40% / yr</td>
-            <td class="n">3.32% / yr</td>
-            <td class="cell-neg">Still a coin flip at best</td>
-          </tr>
-          <tr>
-            <td>Hold 5 years</td>
-            <td class="n">3.00% / yr</td>
-            <td class="n">1.80% / yr</td>
-            <td class="cell-pos">Now favourable</td>
-          </tr>
+          <tr><td>This house, 5&#8209;year hold</td><td class="n">3.79%</td><td class="n">4.72%</td><td class="n">5.66%</td><td class="note">Denver at 2 / 3 / 4% a year</td></tr>
+          <tr><td>This house, 10&#8209;year hold</td><td class="n">4.57%</td><td class="n">5.45%</td><td class="n">6.13%</td><td class="note">Friction amortises over more years</td></tr>
+          <tr><td>S&amp;P 500</td><td class="n">4.0%</td><td class="n">6.5%</td><td class="n">7.0%</td><td class="note">Vanguard / JPMorgan band; Goldman base case</td></tr>
+          <tr><td>SGOV</td><td class="n">&mdash;</td><td class="n">3.60%</td><td class="n">&mdash;</td><td class="note">Current 30&#8209;day SEC yield</td></tr>
         </tbody>
       </table>
     </div>
 
-    <div class="prose">
-      <p>Denver is forecast at 2&ndash;4% a year through 2027. A 1.8% hurdle sits <em>below</em> that band; a 3.3% hurdle sits in the middle of it. So the five&#8209;year hold should beat Treasury bills, and the two&#8209;year buy&#8209;and&#8209;sell is a wager with no edge.</p>
-    </div>
-
     <div class="callout verdict">
-      <span class="label">Where this leaves you</span>
-      <p class="big">The question is no longer "is this house a good buy." It's "will you actually be a landlord for three years?"</p>
-      <p>Buying only works on the five&#8209;year path, and three of those five years are spent letting this house from Taiwan. If you'd genuinely do that &mdash; and mean it in year four when a tenant leaves in February &mdash; buying is now the better financial choice, and I'd support it. If you know in your gut you'd rather sell and be done when you leave Denver, the two&#8209;year column is the real analysis, and it says rent.</p>
-      <p>Answer that honestly and the decision makes itself. Everything below is about making the five&#8209;year path work if you choose it.</p>
+      <span class="label">Against your own criterion</span>
+      <p class="big">Roughly 1.8 points a year less, for materially more risk and three years of work.</p>
+      <p>You said the house needs less risk or more profit to be worth the effort and the illiquidity. On the central estimates it offers about 1.8 percentage points a year <em>less</em> profit than the S&amp;P. And as the next section argues, it isn't the safer asset either &mdash; it's the one whose risk you can't see.</p>
     </div>
   </section>
 
   <hr class="rule">
 
   <section>
-    <span class="eyebrow">Sensitivity</span>
-    <h2>What you end up with, versus renting</h2>
+    <span class="eyebrow">Break-even</span>
+    <h2>What Denver would have to do</h2>
 
-    <p class="assump">Both columns start from the same cash and pay all housing costs out of it. Buy at $600,000; rent this house at $3,300/month. Green means buying wins.</p>
-
-    <div class="tablewrap">
-      <table>
-        <caption>Wealth after N years, buying minus renting</caption>
-        <thead>
-          <tr>
-            <th>Denver appreciation</th>
-            <th class="n">Sell after 2 years</th>
-            <th class="n">Hold 5 years<br>(live 2, let 3)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>0% / yr</td><td class="n cell-neg">&minus;$37,700</td><td class="n cell-neg">&minus;$51,900</td></tr>
-          <tr><td>1% / yr</td><td class="n cell-neg">&minus;$26,500</td><td class="n cell-neg">&minus;$23,500</td></tr>
-          <tr class="likely first"><td>2% / yr</td><td class="n cell-neg">&minus;$15,200</td><td class="n cell-pos">+$6,100</td></tr>
-          <tr class="likely"><td>3% / yr</td><td class="n cell-edge">&minus;$3,700</td><td class="n cell-pos">+$36,900</td></tr>
-          <tr class="likely"><td>4% / yr</td><td class="n cell-pos">+$7,800</td><td class="n cell-pos">+$68,900</td></tr>
-          <tr><td>5% / yr</td><td class="n cell-pos">+$19,500</td><td class="n cell-pos">+$102,200</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>Does the conclusion survive the things we don't know yet?</h3>
-    <div class="prose">
-      <p>Several inputs are still unconfirmed &mdash; the sub&#8209;association fee, the maintenance profile, what Karl charges, what you actually pay for the house. Here is the break&#8209;even under each, so you can see which uncertainties matter.</p>
-    </div>
+    <p class="assump">Appreciation the house needs to match each equity assumption. Denver is forecast at 2&ndash;4% a year.</p>
 
     <div class="tablewrap">
       <table>
-        <caption>Break-even appreciation under each assumption</caption>
+        <caption>Required Denver appreciation</caption>
         <thead>
-          <tr><th>If&hellip;</th><th class="n">2&#8209;year</th><th class="n">5&#8209;year</th></tr>
+          <tr><th>If equities return&hellip;</th><th class="n">5&#8209;year hold</th><th class="n">10&#8209;year hold</th><th>Reachable?</th></tr>
         </thead>
         <tbody>
-          <tr><td>Base case &mdash; $600,000, $3,300 rent, 8% management</td><td class="n">3.32%</td><td class="n">1.80%</td></tr>
-          <tr><td>Rent comes in at the low end, $3,200</td><td class="n">3.54%</td><td class="n">2.01%</td></tr>
-          <tr><td>Rent comes in at the high end, $3,400</td><td class="n">3.11%</td><td class="n">1.58%</td></tr>
-          <tr><td>Sub&#8209;association turns out to be $250/mo</td><td class="n cell-neg">3.85%</td><td class="n cell-neg">2.33%</td></tr>
-          <tr><td>Roof and HVAC confirmed new (reserve $3,500)</td><td class="n">3.06%</td><td class="n">1.53%</td></tr>
-          <tr><td>Karl manages at 6% rather than 8%</td><td class="n">3.32%</td><td class="n">1.71%</td></tr>
-          <tr><td>You land an effective $585,000</td><td class="n">3.20%</td><td class="n">1.67%</td></tr>
-          <tr class="total"><td>Everything breaks your way at once</td><td class="n">2.70%</td><td class="n cell-pos">1.08%</td></tr>
+          <tr><td>3.0% &mdash; a lost decade</td><td class="n">1.14%</td><td class="n">0.11%</td><td class="cell-pos">Yes, easily</td></tr>
+          <tr><td>4.0% &mdash; Vanguard's low end</td><td class="n">2.23%</td><td class="n">1.34%</td><td class="cell-pos">Yes</td></tr>
+          <tr><td>5.0%</td><td class="n">3.33%</td><td class="n">2.63%</td><td class="cell-edge">Only at the top of the forecast</td></tr>
+          <tr class="likely first"><td>6.5% &mdash; Goldman base case</td><td class="n">4.96%</td><td class="n">4.45%</td><td class="cell-neg">Above every Denver forecast</td></tr>
+          <tr><td>8.0%</td><td class="n">6.50%</td><td class="n">5.88%</td><td class="cell-neg">No</td></tr>
+          <tr><td>10.0% &mdash; the historical average</td><td class="n">8.74%</td><td class="n">8.53%</td><td class="cell-neg">No</td></tr>
         </tbody>
       </table>
     </div>
 
     <div class="prose">
-      <p>Read the right&#8209;hand column: across <em>every</em> variant, the five&#8209;year hurdle stays between 1.1% and 2.3% &mdash; under the forecast band in all of them. That conclusion is robust. The two&#8209;year hurdle stays between 2.7% and 4.0%, straddling the forecast in all of them. That conclusion is robust too, in the other direction.</p>
-      <p>Note what barely moves the needle: Karl's management fee changes the five&#8209;year break&#8209;even by nine basis points. Don't choose a manager on price. The one input that genuinely hurts is a sub&#8209;association fee &mdash; find that number before you write an offer.</p>
+      <p>Read the highlighted row. To match the consensus S&amp;P forecast, this house needs to appreciate at <strong class="num">4.96%</strong> a year for five years. Nobody is forecasting that for Denver &mdash; the range is 2&ndash;4%, and attached homes are currently negative.</p>
+      <p>Time helps, but not enough. Stretch the hold to ten years and the hurdle only falls to 4.45%, because the 7% exit cost was never the main problem. The main problem is that a paid&#8209;off house yields about 3.3% net and grows at 2&ndash;4%, and that simply is not an equity return.</p>
+      <p>And it survives every favourable assumption. If you land an effective $585,000, rent hits $3,400, Karl manages at 6%, and the roof turns out new &mdash; all at once &mdash; the five&#8209;year hurdle falls only to <span class="num">4.23%</span>. Still above the forecast. If instead the sub&#8209;association turns out to be $250 a month, it rises to <span class="num">5.40%</span>.</p>
     </div>
 
     <details>
-      <summary>Full assumptions</summary>
-      <p>Same starting cash in both scenarios ($623,000), all housing costs paid from it. Purchase $600,000 plus $3,000 closing (cash, no lender fees; Colorado sellers customarily pay the owner's title policy). Sale costs 7%. SGOV at 3.60%. Rent $3,300/month growing 3%/year, on both sides of the comparison.</p>
-      <p>Carrying costs $14,900/year: property tax $5,700 (Denver 79.6 mills plus Westerly Creek Metropolitan District 68.5 mills), Central Park MCA $700, insurance $3,500, maintenance reserve $5,000, sub&#8209;association assumed at zero.</p>
-      <p>Letting phase (years 3&ndash;5) nets about $20,000&ndash;22,000/year: gross rent less 8% management, 5% vacancy, a $1,650 annual leasing allowance, and all carrying costs. Depreciation recapture of $13,100 deducted at sale. No income tax charged on rental profit, since depreciation of ~$17,500/year should shelter it.</p>
-      <p>Not priced: a hail claim, an extended vacancy, a bad tenant, or a special assessment. Also not priced &mdash; cutting the other way &mdash; that your real alternative is the $3,000 flat you're signing, which is smaller. Costed against that flat rather than against this house, the five&#8209;year break&#8209;even rises to 2.07% and the two&#8209;year to 3.97%. Neither changes the verdict.</p>
+      <summary>Assumptions</summary>
+      <p>Every scenario starts with the same $623,000 and pays all housing costs out of it, so end balances are comparable. Purchase $600,000 plus $3,000 closing (cash). Sale costs 7%. Rent $3,300/month growing 3% a year &mdash; paid in the rent case, earned in the letting case. Carrying costs $14,900/year: property tax $5,700 (Denver 79.6 mills plus Westerly Creek Metropolitan District 68.5 mills), MCA $700, insurance $3,500, maintenance $5,000, sub&#8209;association assumed at zero. Letting phase nets ~$20,000&ndash;22,000/year after 8% management, 5% vacancy and a $1,650 leasing allowance. Depreciation recapture of $13,100 deducted at sale; no income tax on rental profit, since depreciation should shelter it.</p>
+      <p>Equity returns are modelled as clean compounding, which flatters equities slightly by ignoring dividend withholding &mdash; see the vehicle section, where that costs 0.2&ndash;0.4 points a year depending on how you hold it. It also ignores sequence risk, which cuts the other way. The full model is in <em>denver&#8209;buy&#8209;rent&#8209;model.py</em> in the repository if you want to change an input.</p>
     </details>
   </section>
 
   <hr class="rule">
 
   <section>
-    <span class="eyebrow">The decisive question</span>
-    <h2>Three years as a landlord, eleven time zones away</h2>
+    <span class="eyebrow">Your test, second limb</span>
+    <h2>Is the house actually the lower-risk asset?</h2>
 
     <div class="prose">
-      <p>The five&#8209;year path is where the money is, so be clear&#8209;eyed about what it involves. None of this is exotic. All of it is work you cannot delegate entirely.</p>
-      <ul>
-        <li><strong>A Denver rental licence.</strong> Required for any let of 30 days or more &mdash; four&#8209;year term, $50 fee, and a passing inspection by a certified private inspector you arrange and pay for. The licence number must appear in every advertisement.</li>
-        <li><strong>A US tax return every year.</strong> Rent paid to a non&#8209;resident is withheld at 30% <em>of gross</em> by default. The fix is the §871(d) election to be taxed on net income instead &mdash; the difference between tax on $42,000 and tax on roughly nothing after depreciation. It requires filing Form 1040NR, every year, on time.</li>
-        <li><strong>About $100,000 frozen at closing when you sell.</strong> FIRPTA withholding of 15% of the gross price (10% if the buyer will occupy and the price is under $1M), plus Colorado's 2% non&#8209;resident withholding. Both refundable when you file &mdash; many months later.</li>
-        <li><strong>Hail.</strong> Colorado premiums are up 61% since 2023, wind and hail carry a separate 1&ndash;2% deductible ($6,000&ndash;12,000 out of pocket), and insurers increasingly pay actual cash value rather than replacement cost on an older roof.</li>
-        <li><strong>A party wall.</strong> It's confirmed a duplex, so one neighbour shares your structure. Shared&#8209;wall disputes, their roof work, their tenants and their insurance all touch you, and they're harder to handle remotely.</li>
-      </ul>
+      <p>It feels like it, because you never see a price for it. But volatility you can't observe isn't volatility you don't have. Line the two up on the things that actually determine whether you lose money.</p>
     </div>
 
-    <h3>Karl as your property manager</h3>
+    <div class="tablewrap">
+      <table>
+        <caption>Risk, side by side</caption>
+        <thead>
+          <tr><th></th><th>This house</th><th>An index fund</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Concentration</td>
+            <td class="cell-neg">One building, one street, one party wall, one tenant, one hail season &mdash; and ~100% of your liquid capital</td>
+            <td>500 companies (S&amp;P) or ~9,000 (global)</td>
+          </tr>
+          <tr>
+            <td>Time to cash</td>
+            <td class="cell-neg">40&ndash;60 days, 7% friction, plus ~$100,000 withheld for months under FIRPTA</td>
+            <td class="cell-pos">Same day, spread under 0.1%</td>
+          </tr>
+          <tr>
+            <td>Partial sale</td>
+            <td class="cell-neg">Impossible &mdash; it's all or nothing</td>
+            <td class="cell-pos">Sell any fraction, any day</td>
+          </tr>
+          <tr>
+            <td>Effort</td>
+            <td class="cell-neg">Licence, manager, annual 1040NR, insurance, repairs &mdash; from eleven time zones away</td>
+            <td class="cell-pos">None</td>
+          </tr>
+          <tr>
+            <td>Visible volatility</td>
+            <td>Low &mdash; but only because nobody quotes a price</td>
+            <td>High &mdash; and quoted every second</td>
+          </tr>
+          <tr>
+            <td>Real drawdown</td>
+            <td>Denver is down ~2.5% since June 2022; attached homes ~2.9% in the last year</td>
+            <td>&minus;20% to &minus;50% in a bad cycle, historically recovered</td>
+          </tr>
+          <tr>
+            <td>Leverage</td>
+            <td class="cell-neg">None &mdash; paying cash forfeits the thing that makes property returns work</td>
+            <td>None needed</td>
+          </tr>
+          <tr>
+            <td>Tax on exit (as a non&#8209;resident)</td>
+            <td class="cell-neg">25% depreciation recapture, plus FIRPTA and Colorado withholding to reclaim</td>
+            <td class="cell-pos">No US capital gains tax at all</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
     <div class="prose">
-      <p>Your instinct is right, and it isn't about Karl personally. Three things are worth separating.</p>
-      <p><strong>The conflict is structural.</strong> He earns a commission on the sale, then a management fee on the letting. Both of his income streams point at "buy it." That doesn't make his advice wrong &mdash; but it means you shouldn't use him as the check on whether to buy. A fair test: ask him to send you the three closed comps that argue <em>against</em> this price. A good agent will do it without flinching.</p>
-      <p><strong>The licensing is probably fine, but confirm it.</strong> Colorado requires a real estate broker's licence to manage property for someone else for compensation, with client money held in a designated trust account under Commission rule CP&#8209;27 and $1,000,000 of errors&#8209;and&#8209;omissions cover. Karl has a licence. The question is whether <em>Kentwood</em> permits property management under its brokerage and covers it under its E&amp;O policy &mdash; many sales&#8209;focused brokerages don't. Ask him directly: <em>"Would you be managing this under Kentwood, with a written management agreement and a brokerage trust account?"</em> If the answer is that he'd do it personally on the side, that's a different and weaker arrangement.</p>
-      <p><strong>The real risk isn't the fee, it's attention.</strong> A sales agent managing a couple of properties as a favour is fine until he has a busy spring, changes brokerage, or moves. Then you're finding a manager from Taipei with a tenant in place. So: get a written agreement with a defined scope, a named maintenance response time, and a termination clause &mdash; and identify a backup Denver management company <em>before</em> you leave, not after. Keep 8% in your model regardless. If Karl does it for less, treat that as upside, never as the base case.</p>
+      <p>The honest summary: the house has <em>lower measured volatility</em> and <em>higher concentration, illiquidity and operational risk</em>. Swapping a diversified position for a single leveraged&#8209;free asset in one neighbourhood of one city is not a reduction in risk. It's a change in which risks you're exposed to, and a removal of your ability to react.</p>
+      <p>One fair objection, and it's a real one: <strong>0050 is not diversified either.</strong> TSMC is roughly 58% of it. Owning 0050 is closer to owning one company than most people admit, and its 28% annualised return over the past five years is that concentration paying off spectacularly &mdash; not a repeatable base rate. If the comparison you actually want is "a safer thing than 0050," the answer isn't a Denver duplex; it's a global equity fund.</p>
     </div>
   </section>
 
   <hr class="rule">
 
   <section>
-    <span class="eyebrow">Negotiation</span>
-    <h2>Your leverage is real, but weaker than I first said</h2>
+    <span class="eyebrow">The fair case for buying</span>
+    <h2>Where the house wins</h2>
 
     <div class="prose">
-      <p>One correction. I argued you should tell the seller his rental fallback is poor. At $2,900 that was true. At $3,300 it isn't: he'd be grossing 6.4% on a $620,000 asset and netting close to 3.9% before appreciation. That's a respectable outcome, not a threat. Drop that argument &mdash; he can afford to wait, and he probably knows it.</p>
-      <p>What's left is still solid. Forty&#8209;nine days on market against a ~40&#8209;day median for attached homes. One cut already, of 2.4%. A metro where 62.9% of closings include a seller concession, median $10,000, and buyers are extracting $15,000&ndash;50,000 of total value. And a 99.1% close&#8209;to&#8209;list ratio that quietly excludes every one of those concessions.</p>
-      <p>A realistic landing zone is <strong class="num">$595,000&ndash;605,000</strong> on the contract plus <strong class="num">$10,000&ndash;15,000</strong> in concessions &mdash; an effective <span class="num">$585,000&ndash;592,000</span>. Open at $580,000. Your cash, with no financing or appraisal contingency and no lender timeline, is worth two to three points to a seller seven weeks in; have Karl price that explicitly in the offer letter rather than leaving it implied.</p>
-    </div>
-
-    <div class="callout">
-      <span class="label">Still the most important thing to ask for</span>
-      <p class="big">Closed comps: Central Park paired homes, 1,500&ndash;1,800 sq ft, sold in the last 90 days.</p>
-      <p>Negotiating only makes you money if you buy <em>below market</em>, because you also sell at market. Look at the sensitivity table: landing $585,000 instead of $600,000 moves the five&#8209;year break&#8209;even by thirteen basis points. Almost nothing. What actually matters is whether $585,000 is under what the house is worth &mdash; and only the comps answer that.</p>
+      <p>I've argued one side hard, so here is the other, honestly.</p>
+      <ul>
+        <li><strong>If equities disappoint, the house wins.</strong> At a 4% S&amp;P the house only needs 2.23% &mdash; inside the forecast. Buying is, in effect, a bet that US equities underperform their consensus over the next five years. That is not a crazy bet at 21&times; forward earnings.</li>
+        <li><strong>The historical Denver number is much better than the forecast.</strong> Case&#8209;Shiller Denver returned 7.01% annualised over the ten years to February 2025. If Denver repeats that, the house is equivalent to equities at about 8.4% and wins comfortably. The forecasts say it won't, but the forecasts have been wrong about Denver before.</li>
+        <li><strong>Sequence risk is real.</strong> Equities can be down 30% exactly when you want the money. On a five&#8209;year horizon that isn't a remote scenario.</li>
+        <li><strong>It hedges your actual expenses.</strong> For two years your costs are in USD. Owning a USD asset is a natural hedge; holding 0050 while paying Denver rent is a currency mismatch.</li>
+        <li><strong>Inflation.</strong> Rents and house prices track inflation more directly than a bond does &mdash; though equities do too.</li>
+      </ul>
+      <p>What none of these change: even in the cases where the house wins, it wins while being illiquid, concentrated, and three years of work. That was your point, and it stands.</p>
     </div>
   </section>
 
   <hr class="rule">
 
   <section>
-    <span class="eyebrow">Condition</span>
-    <h2>"Just renewed" &mdash; and why the inspection timing is normal</h2>
-
-    <h3>The renovation is probably the cheap kind</h3>
-    <div class="prose">
-      <p>The listing itself tells you what was done: fresh interior paint, hardwood floors, granite counters, stainless appliances, gas range, subway tile, an island, expanded cabinetry. That is a pre&#8209;sale cosmetic refresh &mdash; the work that raises the asking price, not the work that lowers your future costs. It says nothing about the systems that will actually cost you money.</p>
-      <p>So don't let "just renewed" reduce your maintenance reserve. Ask for a written list with dates and receipts for exactly five things:</p>
-      <ol>
-        <li><strong>Roof</strong> &mdash; age, and whether it's been replaced on a hail claim. This is the big one in Central Park.</li>
-        <li><strong>Furnace and air conditioning</strong> &mdash; a 2012 original is at 14 years against a 15&ndash;20 year life.</li>
-        <li><strong>Water heater</strong> &mdash; 10&ndash;12 year life, so an original is overdue.</li>
-        <li><strong>Sewer line</strong> &mdash; whether it's ever been scoped.</li>
-        <li><strong>The CLUE claim history</strong> on the property, which shows every insurance claim filed. In this neighbourhood that single document tells you more than the inspection will.</li>
-      </ol>
-      <p>If roof and HVAC come back genuinely new, drop the reserve to $3,500 and the five&#8209;year break&#8209;even falls to 1.53%. If they're original, keep $5,000 and expect one lumpy year.</p>
-    </div>
-
-    <h3>Inspection after the offer is standard, not a trap</h3>
-    <div class="prose">
-      <p>Karl is describing the normal Colorado process, and it protects you. You go under contract, your earnest money (typically about 1%, so $6,000) goes into escrow with the title company &mdash; not to the seller &mdash; and then the Inspection Objection deadline runs, usually 7 to 15 days after acceptance. Inside that window you inspect, and you can object or simply terminate. Terminate correctly and on time and <strong>your earnest money comes back</strong>. In practice the Colorado contract lets you walk during that period for essentially any reason.</p>
-      <p>Three things to hold firm on:</p>
-      <ul>
-        <li><strong>Never waive the inspection</strong> to make the offer more attractive. In this market you don't need to.</li>
-        <li><strong>Add a separate roof inspection by a roofing contractor</strong> and a <strong>sewer scope</strong>. A general home inspector looks at the roof from the ground or a ladder; in hail country that isn't enough.</li>
-        <li><strong>Ask for 10&ndash;12 days rather than 7</strong>, and confirm you can attend by video call if you're still in Taiwan. Have Karl there in person.</li>
-      </ul>
-      <p>Get every notice in writing, and diary the deadline yourself &mdash; don't rely on anyone else to track it. Missing it is how buyers lose their earnest money.</p>
-    </div>
-  </section>
-
-  <hr class="rule">
-
-  <section>
-    <span class="eyebrow">Unchanged, and still the highest-value item</span>
-    <h2>Sell your Taiwanese stocks before 31 December 2026</h2>
+    <span class="eyebrow">If you invest instead</span>
+    <h2>The vehicle matters nearly as much as the return</h2>
 
     <div class="prose">
-      <p>This is worth more than anything you'll win in the price negotiation, and it applies whether or not you buy the house &mdash; you're moving the money either way.</p>
-      <p>Taiwan does not tax individual capital gains on listed domestic shares; you pay the 0.3% transaction tax and nothing more. The United States taxes its residents on <em>worldwide</em> income, including Taiwanese stock gains, at 15&ndash;20% plus the 3.8% net investment income tax. Critically, there is <strong>no step&#8209;up in basis</strong> when you arrive: the US measures the gain from your original purchase price, however long ago that was.</p>
-      <p>Arriving around October 2026 gives you roughly 90 days of US presence this year, below the substantial&#8209;presence threshold. You should be a non&#8209;resident for US tax purposes for all of 2026, with residency beginning in 2027. The window to realise those gains outside the US tax net closes on <strong>31 December 2026</strong>.</p>
-      <p>Two caveats. On an F&#8209;1 or J&#8209;1 you're an "exempt individual" (five years and two years respectively) and stay a non&#8209;resident regardless, so the urgency drops &mdash; but confirm rather than assume, particularly with the DHS duration&#8209;of&#8209;status rule changing on 15 September 2026. And check the whole thing with a cross&#8209;border CPA before selling anything. This is the one item here worth paying for advice on.</p>
+      <p>This is the part most people get wrong, and it's worth more than a percentage point a year. As a Taiwanese citizen, <em>how</em> you hold equities determines whether you're taxed at 30%, 15%, 0%, or punitively. And the right answer flips depending on your visa.</p>
+      <p>Two facts drive it. There is <strong>no US&ndash;Taiwan tax treaty</strong> &mdash; the Expedited Double&#8209;Tax Relief Act passed the House but has not been enacted, so US&#8209;source dividends to a Taiwan resident are still withheld at the full 30%. And US estate tax follows <em>domicile</em>, not income&#8209;tax residency: on a two&#8209;year posting you almost certainly stay non&#8209;domiciled, so the $60,000 exemption applies to your US&#8209;situs assets the whole time, even if you become a US income&#8209;tax resident.</p>
     </div>
 
-    <h3>Moving the money</h3>
+    <div class="tablewrap">
+      <table>
+        <caption>How each vehicle is treated</caption>
+        <thead>
+          <tr><th>Vehicle</th><th>While you're a non&#8209;resident</th><th>If you become a US tax resident</th><th>US estate tax</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>0050</strong><br><span class="note">Taiwan&#8209;domiciled</span></td>
+            <td class="cell-pos">No US tax at all</td>
+            <td class="cell-neg">A PFIC &mdash; excess&#8209;distribution regime with interest charges, or a mark&#8209;to&#8209;market election taxing unrealised gains as ordinary income. Form 8621 every year.</td>
+            <td class="cell-pos">Not US&#8209;situs &mdash; exempt</td>
+          </tr>
+          <tr>
+            <td><strong>VOO / SPY</strong><br><span class="note">US&#8209;domiciled</span></td>
+            <td class="cell-neg">30% withheld on dividends; no capital gains tax</td>
+            <td class="cell-pos">Ideal &mdash; qualified dividends and long&#8209;term capital gains</td>
+            <td class="cell-neg">US&#8209;situs &mdash; $60,000 exemption</td>
+          </tr>
+          <tr>
+            <td><strong>CSPX / VUAA</strong><br><span class="note">Irish&#8209;domiciled</span></td>
+            <td class="cell-pos">15% withheld inside the fund; no US filing</td>
+            <td class="cell-neg">Also a PFIC</td>
+            <td class="cell-pos">Not US&#8209;situs &mdash; exempt</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
     <div class="prose">
-      <ul>
-        <li>Taiwan raised the individual annual outward remittance cap to <strong>US$10 million</strong> in October 2024. Your $600,000 sits comfortably inside it.</li>
-        <li>Any single remittance of <strong>US$500,000 or more</strong> requires the Foreign Exchange Receipts or Payments Declaration Form with documented source and purpose, filed through your bank to the Central Bank. Allow two to four weeks &mdash; don't start this under a contract deadline.</li>
-        <li>USD/TWD is around <strong class="num">31.89</strong>, with the TWD down 4.2% over twelve months, so you'd be converting at a relatively weak TWD. A 3% move on $600,000 is $18,000; consider staging the conversion across two or three tranches.</li>
-      </ul>
-    </div>
-
-    <div class="callout warn">
-      <span class="label">The risk nobody mentions</span>
-      <p class="big">A non&#8209;resident gets a $60,000 US estate tax exemption &mdash; not $13 million.</p>
-      <p>If you own this house and die while still a non&#8209;resident, the US taxes it above $60,000 at rates reaching 40%. On a $620,000 house that's roughly <strong>$165,000</strong>, and there's no US&ndash;Taiwan estate tax treaty to soften it. This matters more on the five&#8209;year path, because you'd still own it after leaving. The cheap fix is a ten&#8209;year term life policy covering the holding period &mdash; a few hundred dollars a year for a healthy adult. Buy it in the same month you buy the house.</p>
+      <p><strong>If you'll be on F&#8209;1 or J&#8209;1</strong> you stay a non&#8209;resident for your whole stay (five years and two years respectively as an "exempt individual"). An Irish&#8209;domiciled S&amp;P fund is then the clean answer: 15% dividend withholding instead of 30%, no US estate exposure, no US filing. Keeping 0050 is also fine on tax grounds &mdash; the objection to it is concentration, not tax.</p>
+      <p><strong>If you'll be on H&#8209;1B or L&#8209;1</strong> you become a US tax resident from 2027, and both foreign&#8209;domiciled funds turn into PFICs. That makes US&#8209;domiciled VOO the right vehicle for income tax &mdash; but it's US&#8209;situs, so you'd carry the same $60,000 estate&#8209;tax exposure the house has. The fix is identical and cheap either way: a ten&#8209;year term life policy sized to the exposure.</p>
+      <p>Note what this does to the comparison. If you'd hold VOO as a non&#8209;resident, the 30% dividend withholding costs roughly 0.36 points a year, trimming the S&amp;P's edge from 1.8 points to about 1.4. Via an Irish fund the drag is about 0.18 points. Either way the ranking doesn't change &mdash; but it's real money, and it's free to get right.</p>
     </div>
   </section>
 
   <hr class="rule">
 
   <section>
-    <span class="eyebrow">Still open</span>
-    <h2>The road</h2>
+    <span class="eyebrow">Deadline</span>
+    <h2>31 December 2026 now matters twice over</h2>
 
     <div class="prose">
-      <p>One quiet night reported by the agent earning the commission isn't a measurement. It isn't dishonest &mdash; it's just not evidence. Test it yourself:</p>
+      <p>I flagged this before as the highest&#8209;value item. Deciding to stay invested rather than buy makes it more urgent, not less, because it now does two jobs.</p>
+      <p><strong>One: the gains.</strong> Taiwan doesn't tax individual capital gains on listed domestic shares &mdash; you pay the 0.3% transaction tax and nothing more. The US taxes residents on worldwide income at 15&ndash;20% plus the 3.8% net investment income tax, measured from your original cost basis with <em>no step&#8209;up</em> on arrival. Arriving around October gives you ~90 days of US presence in 2026, below the substantial&#8209;presence threshold, so you should be a non&#8209;resident for all of 2026 with residency beginning in 2027.</p>
+      <p><strong>Two: the PFIC problem.</strong> If you're heading for H&#8209;1B or L&#8209;1, every share of 0050 you still hold on 1 January 2027 becomes a PFIC in your hands. Selling before year end solves the capital gains question and the PFIC question in a single transaction &mdash; and you can rebuy the same exposure through a US&#8209;domiciled fund the following week.</p>
+      <p>On F&#8209;1 or J&#8209;1 neither problem bites, because you remain a non&#8209;resident. Which is precisely why the visa is the one thing I still need from you &mdash; it determines whether this deadline is worth five figures or nothing at all.</p>
+      <p>Either way: confirm with a US&ndash;Taiwan cross&#8209;border CPA before you sell anything. This is the one item here worth paying for advice on.</p>
+    </div>
+
+    <h3>Moving money, if you do buy</h3>
+    <div class="prose">
       <ul>
-        <li>Stand there on a weekday from 7:30&ndash;8:30am and 4:30&ndash;6:00pm, and again on a Friday or Saturday night. Windows open, then closed, in the bedrooms specifically.</li>
-        <li>Use a phone dB meter for a rough read. Outdoors, ~55 dB is quiet suburban; 65+ dB is arterial.</li>
-        <li>Pull the road's actual volume from the DRCOG regional traffic count map before you go.</li>
-        <li>A 2012 Colorado build has double&#8209;pane windows but not acoustic glass. Laminated acoustic units on the exposed side run $600&ndash;1,200 per window &mdash; an effective fix, and a legitimate thing to ask the seller to credit at the inspection objection.</li>
+        <li>Taiwan's individual annual outward remittance cap rose to <strong>US$10 million</strong> in October 2024 &mdash; $600,000 sits well inside it.</li>
+        <li>Any single remittance of <strong>US$500,000 or more</strong> needs the Foreign Exchange Receipts or Payments Declaration Form with documented source and purpose, filed through your bank to the Central Bank. Allow two to four weeks; don't start it under a contract deadline.</li>
+        <li>USD/TWD is around <strong class="num">31.89</strong>, the TWD down 4.2% over twelve months. A 3% move on $600,000 is $18,000 &mdash; stage the conversion across two or three tranches.</li>
       </ul>
-      <p>The part that matters for you: studies put the discount on homes near busy roads at roughly 5&ndash;12%. Whatever it is here, it's in the price you pay <em>and</em> the price you'll get. On the five&#8209;year path you're selling into the same discount you bought into &mdash; which is fine, provided you bought into it rather than paying through it. That's another thing the closed comps will show, if Karl flags which ones front the road.</p>
-      <p>Tell me the street name and I'll pull the real traffic counts.</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <span class="eyebrow">If you buy anyway</span>
+    <h2>Then at least buy it properly</h2>
+
+    <div class="prose">
+      <p>The financial case is weaker than equities, but it isn't absurd, and there are non&#8209;financial reasons to own where you live. If you go ahead, these are the things that actually move the outcome.</p>
+    </div>
+
+    <h3>Price</h3>
+    <div class="prose">
+      <p>Forty&#8209;nine days on market against a ~40&#8209;day median for attached homes, one cut of 2.4% already, and a metro where 62.9% of closings include a concession (median $10,000, with buyers extracting $15,000&ndash;50,000 of total value) against a 99.1% close&#8209;to&#8209;list ratio that excludes every one of them. A realistic landing zone is <strong class="num">$595,000&ndash;605,000</strong> plus <strong class="num">$10,000&ndash;15,000</strong> in concessions. Open at $580,000.</p>
+      <p>But look at the break&#8209;even table before you spend energy here: landing $585,000 instead of $600,000 moves the five&#8209;year hurdle from 4.96% to 4.78%. Almost nothing. Negotiating only makes money if you buy <em>below market</em> &mdash; so the thing to ask Karl for is <strong>closed comps: Central Park paired homes, 1,500&ndash;1,800 sq ft, last 90 days.</strong> One correction from earlier: don't tell the seller his rental fallback is weak. At $3,300 he'd gross 6.4% and net near 3.9%. He can afford to wait.</p>
+    </div>
+
+    <h3>Condition</h3>
+    <div class="prose">
+      <p>"Just renewed" describes what the listing describes: paint, hardwood, granite, appliances, subway tile, cabinetry. That's a pre&#8209;sale cosmetic refresh &mdash; the work that raises the asking price, not the work that lowers your costs. Don't reduce the maintenance reserve for it. Ask for dated receipts on five things: <strong>roof</strong> (and whether it was a hail claim), <strong>furnace</strong>, <strong>air conditioning</strong>, <strong>water heater</strong>, <strong>sewer line</strong> &mdash; plus the CLUE claim history, which lists every insurance claim ever filed on the property.</p>
+      <p>Inspection after the offer is normal Colorado process and it protects you. Earnest money (~1%, so $6,000) goes into the title company's escrow, not to the seller, and the Inspection Objection deadline runs 7&ndash;15 days after acceptance. Terminate correctly and on time and it comes back; in practice you can walk during that window for essentially any reason. Never waive it, ask for 10&ndash;12 days rather than 7, and add a <strong>roofer's inspection and a sewer scope</strong> on top of the general one. Diary the deadline yourself.</p>
+    </div>
+
+    <h3>The road, and the estate-tax trap</h3>
+    <div class="prose">
+      <p>One quiet night reported by the agent earning the commission isn't a measurement. Stand there on a weekday at 7:30&ndash;8:30am and 4:30&ndash;6:00pm and again on a weekend night, windows open then closed, in the bedrooms; use a phone dB meter (~55 dB outdoors is quiet suburban, 65+ is arterial); and pull the road's volume from the DRCOG traffic count map first. A 2012 build has double&#8209;pane but not acoustic glass &mdash; laminated units run $600&ndash;1,200 per window and are a legitimate inspection&#8209;objection credit. Busy&#8209;road discounts run 5&ndash;12% in the literature, and that discount is in what you pay <em>and</em> what you'll get. Tell me the street name and I'll pull the real counts.</p>
+      <p>And whatever you decide: if you end up holding US&#8209;situs assets &mdash; this house, or a US&#8209;domiciled ETF &mdash; buy a ten&#8209;year term life policy sized to the exposure. A $620,000 house above a $60,000 exemption is roughly <strong>$165,000</strong> of US estate tax with no treaty to soften it. The insurance costs a few hundred dollars a year.</p>
     </div>
   </section>
 
@@ -669,32 +781,27 @@
     <h2>What to do this week</h2>
 
     <ul class="checklist">
-      <li><span class="who">Decide first</span>Whether you would genuinely let this house from Taiwan for three years after you leave. Everything else depends on this answer, and only you have it. If it's no, rent and stop here.</li>
-      <li><span class="who">Do now</span>Talk to a US&ndash;Taiwan cross&#8209;border CPA about realising your Taiwanese stock gains before 31 December 2026. This is worth the most money and has the hardest deadline.</li>
-      <li><span class="who">Do now</span>Start the remittance paperwork with your Taiwanese bank so it isn't on the critical path later.</li>
-      <li><span class="who">Ask Karl</span>The sub&#8209;association fee and its reserve study. This is the one unknown that meaningfully moves the answer &mdash; $250/month pushes the five&#8209;year break&#8209;even from 1.80% to 2.33%.</li>
-      <li><span class="who">Ask Karl</span>Closed comps: Central Park paired homes, 1,500&ndash;1,800 sq ft, last 90 days &mdash; including which ones front the road. And the three that argue against this price.</li>
-      <li><span class="who">Ask Karl</span>What "just renewed" covered, in writing, with dates and receipts &mdash; roof, furnace, AC, water heater, sewer. Plus the CLUE claim history and the actual annual tax bill.</li>
-      <li><span class="who">Ask Karl</span>Whether he'd manage it under Kentwood with a written agreement, a brokerage trust account and E&amp;O cover &mdash; and at what fee. Then find a backup Denver management company anyway.</li>
-      <li><span class="who">If you offer</span>Open at $580,000. Keep the inspection contingency, ask for 10&ndash;12 days, and add a roofer's inspection and a sewer scope on top of the general one.</li>
+      <li><span class="who">Tell me</span>Which visa. It decides whether 0050 becomes a PFIC in January, whether the December deadline is worth five figures, and which fund you should hold. Everything in the vehicle section forks on it.</li>
+      <li><span class="who">Do now</span>Book a US&ndash;Taiwan cross&#8209;border CPA. Two questions: realising the 0050 gains before 31 December, and which domicile of fund to rebuy into.</li>
+      <li><span class="who">Decide</span>Whether you want this house for reasons that aren't financial. The numbers say equities; they don't say the house is a mistake, only that it costs you about 1.8 points a year to own a home instead of an index. That can be worth paying &mdash; just pay it knowingly.</li>
+      <li><span class="who">If you buy</span>Get the sub&#8209;association fee first. It's the one input that meaningfully moves the answer &mdash; $250/month pushes the five&#8209;year hurdle from 4.96% to 5.40%.</li>
+      <li><span class="who">If you buy</span>Closed comps for Central Park paired homes, 1,500&ndash;1,800 sq ft, last 90 days &mdash; including which ones front the road, and the three that argue against this price.</li>
+      <li><span class="who">If you buy</span>Written record of what "just renewed" covered, with dates and receipts, plus the CLUE claim history and the actual annual tax bill.</li>
+      <li><span class="who">If you buy</span>Ask Karl whether he'd manage under Kentwood, with a written agreement, a brokerage trust account and E&amp;O cover. Then line up a backup Denver management company regardless, and keep 8% in your model.</li>
+      <li><span class="who">Either way</span>Start the remittance or brokerage paperwork now, so currency and settlement aren't on the critical path in December.</li>
     </ul>
-
-    <div class="callout">
-      <span class="label">One thing I still need</span>
-      <p><strong>Which visa?</strong> F&#8209;1, J&#8209;1, H&#8209;1B and L&#8209;1 give genuinely different answers on the stock&#8209;sale timing and on how your rental income is taxed. The F/J "exempt individual" rules would keep you a non&#8209;resident for your whole stay; H&#8209;1B or L&#8209;1 would make you a US tax resident from 2027, which is what makes the December deadline bite.</p>
-    </div>
   </section>
 
   <footer class="sources">
     <h2>Sources</h2>
     <ul>
-      <li>Market data: <a href="https://coloradorealtors.com/2026/08/12/colorado-housing-market-holds-steady-but-growing-divide-emerges-between-single-family-and-attached-homes/">Colorado Association of Realtors, Aug 2026</a> &middot; <a href="https://www.dmarealtors.com/sites/default/files/file/2026-07/DMAR_MarketTrendsReport_June26Data_0.pdf">DMAR Market Trends</a> &middot; <a href="https://www.redfin.com/neighborhood/122503/CO/Denver/Central-Park/housing-market">Redfin, Central Park</a></li>
-      <li>Rents: <a href="https://coloradosun.com/2026/04/25/denver-renters-market-average-rents/">Colorado Sun on the renters' market</a> &middot; your own quoted comps</li>
-      <li>Taxes &amp; fees: <a href="https://dpt.colorado.gov/understanding-property-taxes-in-colorado">Colorado Division of Property Taxation</a> &middot; <a href="https://www.mca80238.com/what-we-do/assessment-management-tools">Central Park MCA</a> &middot; <a href="https://tax.colorado.gov/DR1083">Colorado DR 1083</a> &middot; <a href="https://www.law.cornell.edu/uscode/text/26/871">26 U.S.C. §871</a></li>
-      <li>Contract &amp; licensing: <a href="https://dre.colorado.gov/">Colorado Division of Real Estate</a> &middot; <a href="https://www.milehightitleguy.com/post/how-earnest-money-works-in-colorado-a-guide-for-denver-real-estate-agents">Earnest money in Colorado</a> &middot; <a href="https://recolorado.com/recolorado-matrix-quick-guide-residential-property-type-property-subtype-and-structure-type/">REcolorado structure types</a></li>
-      <li>Yields &amp; rules: <a href="https://www.ishares.com/us/products/314116/ishares-0-3-month-treasury-bond-etf">iShares SGOV</a> &middot; <a href="https://tradingeconomics.com/taiwan/currency">USD/TWD</a> &middot; <a href="https://www.cbc.gov.tw/en/cp-448-30356-CFA60-2.html">Central Bank of the ROC</a> &middot; <a href="https://www.nixonpeabody.com/insights/alerts/2026/07/17/dhs-finalizes-rule-replacing-duration-of-status-for-f-1-j-1-and-i-visa-holders">DHS duration&#8209;of&#8209;status rule</a></li>
+      <li>Return forecasts: <a href="https://www.gspublishing.com/content/research/en/reports/2025/11/12/0c292cc7-ce42-4fba-a026-744231e9f4f4.html">Goldman Sachs 10&#8209;year forecasts</a> &middot; <a href="https://corporate.vanguard.com/content/corporatesite/us/en/corp/vemo/vemo-return-forecasts.html">Vanguard Capital Markets Model</a> &middot; <a href="https://www.ishares.com/us/products/314116/ishares-0-3-month-treasury-bond-etf">iShares SGOV</a></li>
+      <li>0050: <a href="https://www.yuantaetfs.com/product/detail/0050/ratio">Yuanta holdings and weights</a> &middot; <a href="https://tw.stock.yahoo.com/quote/0050.TW/performance">trailing performance</a></li>
+      <li>Denver market: <a href="https://coloradorealtors.com/2026/08/12/colorado-housing-market-holds-steady-but-growing-divide-emerges-between-single-family-and-attached-homes/">Colorado Association of Realtors, Aug 2026</a> &middot; <a href="https://www.dmarealtors.com/sites/default/files/file/2026-07/DMAR_MarketTrendsReport_June26Data_0.pdf">DMAR Market Trends</a> &middot; <a href="https://fred.stlouisfed.org/series/DNXRSA">Case&#8209;Shiller Denver (FRED)</a></li>
+      <li>Tax: <a href="https://www.irs.gov/forms-pubs/about-form-8621">IRS Form 8621 (PFIC)</a> &middot; <a href="https://www.law.cornell.edu/uscode/text/26/871">26 U.S.C. §871</a> &middot; <a href="https://www.congress.gov/bill/119th-congress/house-bill/33/text">H.R.33, US&ndash;Taiwan double&#8209;tax relief</a> &middot; <a href="https://tax.colorado.gov/DR1083">Colorado DR 1083</a> &middot; <a href="https://www.cbc.gov.tw/en/cp-448-30356-CFA60-2.html">Central Bank of the ROC</a></li>
+      <li>Property costs &amp; process: <a href="https://dpt.colorado.gov/understanding-property-taxes-in-colorado">Colorado Division of Property Taxation</a> &middot; <a href="https://www.mca80238.com/what-we-do/assessment-management-tools">Central Park MCA</a> &middot; <a href="https://dre.colorado.gov/">Colorado Division of Real Estate</a></li>
     </ul>
-    <p style="margin-top:18px">Estimates, not advice. Every figure still marked unconfirmed should be checked against the actual documents before you commit money, and the tax positions should be reviewed by a cross&#8209;border professional.</p>
+    <p style="margin-top:18px">Estimates, not advice. Figures still marked unconfirmed should be checked against the actual documents before you commit money, and the tax positions reviewed by a cross&#8209;border professional.</p>
   </footer>
 
 </div>
