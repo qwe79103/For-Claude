@@ -1,0 +1,665 @@
+<title>2027 稅務死線</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap">
+
+<style>
+  :root {
+    --ground:      #EAEDF1;
+    --surface:     #FFFFFF;
+    --surface-2:   #F4F6F9;
+    --ink:         #131A22;
+    --ink-2:       #3A4553;
+    --muted:       #6B7684;
+    --line:        #D8DEE6;
+    --line-strong: #BCC5D1;
+
+    --accent:      #2F4573;
+    --accent-soft: #E3E8F2;
+    --accent-ink:  #24365C;
+
+    --ok:          #10775A;
+    --ok-soft:     #E2F1EC;
+    --warn:        #9A6212;
+    --warn-soft:   #F8EEDD;
+    --bad:         #C0362C;
+    --bad-soft:    #FBE9E7;
+
+    --serif: "Noto Serif TC", "PingFang TC", "Songti TC", serif;
+    --sans:  "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+    --mono:  "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:      #0E1319;
+      --surface:     #161D26;
+      --surface-2:   #1D2531;
+      --ink:         #E6EBF2;
+      --ink-2:       #BCC6D4;
+      --muted:       #8B96A6;
+      --line:        #252E3A;
+      --line-strong: #35404F;
+
+      --accent:      #8AA3D8;
+      --accent-soft: #1B2436;
+      --accent-ink:  #A8BDE8;
+
+      --ok:          #4FC49B;
+      --ok-soft:     #12271F;
+      --warn:        #D9A354;
+      --warn-soft:   #2A2213;
+      --bad:         #F0736A;
+      --bad-soft:    #2C1A19;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground:      #0E1319;
+    --surface:     #161D26;
+    --surface-2:   #1D2531;
+    --ink:         #E6EBF2;
+    --ink-2:       #BCC6D4;
+    --muted:       #8B96A6;
+    --line:        #252E3A;
+    --line-strong: #35404F;
+
+    --accent:      #8AA3D8;
+    --accent-soft: #1B2436;
+    --accent-ink:  #A8BDE8;
+
+    --ok:          #4FC49B;
+    --ok-soft:     #12271F;
+    --warn:        #D9A354;
+    --warn-soft:   #2A2213;
+    --bad:         #F0736A;
+    --bad-soft:    #2C1A19;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 50rem;
+    margin: 0 auto;
+    padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 4vw, 2.5rem) 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2.25rem, 5vw, 3.25rem);
+  }
+
+  header { display: flex; flex-direction: column; gap: .75rem; }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: .76rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+  }
+  .eyebrow::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--line-strong);
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: clamp(1.7rem, 5.5vw, 2.45rem);
+    line-height: 1.28;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .standfirst { color: var(--ink-2); font-size: 1.02rem; max-width: 34em; margin: 0; }
+  .stamp { font-family: var(--mono); font-size: .78rem; color: var(--muted); }
+
+  section { display: flex; flex-direction: column; gap: 1.1rem; }
+
+  h2 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(1.22rem, 3.6vw, 1.5rem);
+    line-height: 1.4;
+    margin: 0;
+    padding-bottom: .55rem;
+    border-bottom: 2px solid var(--accent);
+    display: flex;
+    align-items: baseline;
+    gap: .7rem;
+    text-wrap: balance;
+  }
+  h2 .num {
+    font-family: var(--mono);
+    font-size: .8rem;
+    font-weight: 500;
+    letter-spacing: .1em;
+    color: var(--accent);
+    flex: none;
+  }
+
+  h3 { font-family: var(--sans); font-weight: 700; font-size: 1.02rem; margin: 0; }
+
+  p { margin: 0; }
+  section > p { max-width: 38em; }
+  strong { font-weight: 700; color: var(--ink); }
+
+  .num-inline, code {
+    font-family: var(--mono);
+    font-size: .93em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  ul { margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: .5rem; }
+  li { max-width: 37em; }
+  li::marker { color: var(--accent); }
+
+  /* ---------- 死線橫幅 ---------- */
+
+  .deadline {
+    background: var(--bad-soft);
+    border: 1px solid var(--bad);
+    border-radius: 3px;
+    padding: 1.3rem clamp(1rem, 3vw, 1.6rem);
+    display: flex;
+    flex-direction: column;
+    gap: .45rem;
+  }
+  .deadline .label {
+    font-family: var(--mono);
+    font-size: .68rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--bad);
+  }
+  .deadline .date {
+    font-family: var(--mono);
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+    font-weight: 600;
+    line-height: 1.1;
+    color: var(--bad);
+    font-variant-numeric: tabular-nums;
+  }
+  .deadline p { color: var(--ink-2); font-size: .96rem; max-width: 36em; }
+
+  /* ---------- 年度卡 ---------- */
+
+  .years { display: flex; flex-direction: column; gap: .8rem; }
+
+  .year {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--line-strong);
+    border-radius: 3px;
+    padding: 1.05rem clamp(1rem, 3vw, 1.5rem);
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+  }
+  .year.ok   { border-left-color: var(--ok); }
+  .year.warn { border-left-color: var(--warn); }
+  .year.bad  { border-left-color: var(--bad); }
+
+  .year-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: .8rem;
+    flex-wrap: wrap;
+  }
+  .year-head .y {
+    font-family: var(--mono);
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: .02em;
+    font-variant-numeric: tabular-nums;
+  }
+  .year-head .status {
+    font-family: var(--mono);
+    font-size: .7rem;
+    letter-spacing: .1em;
+    padding: .18rem .5rem;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  .status.ok   { background: var(--ok-soft);   color: var(--ok); }
+  .status.warn { background: var(--warn-soft); color: var(--warn); }
+  .status.bad  { background: var(--bad-soft);  color: var(--bad); }
+
+  .year .days {
+    font-family: var(--mono);
+    font-size: .82rem;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .rates {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: .35rem .9rem;
+    border-top: 1px solid var(--line);
+    padding-top: .6rem;
+    font-size: .92rem;
+  }
+  .rates .k { color: var(--ink-2); }
+  .rates .v {
+    font-family: var(--mono);
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .v.ok   { color: var(--ok);   font-weight: 600; }
+  .v.warn { color: var(--warn); font-weight: 600; }
+  .v.bad  { color: var(--bad);  font-weight: 600; }
+
+  /* ---------- 表格 ---------- */
+
+  .table-wrap {
+    overflow-x: auto;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+  }
+  table { width: 100%; min-width: 28rem; border-collapse: collapse; }
+  thead th {
+    font-family: var(--mono);
+    font-size: .66rem;
+    font-weight: 500;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    padding: .8rem .7rem;
+    border-bottom: 1px solid var(--line-strong);
+    white-space: nowrap;
+  }
+  thead th:first-child { padding-left: 1.1rem; }
+  thead th:last-child { padding-right: 1.1rem; text-align: right; }
+  tbody td {
+    padding: .7rem;
+    border-top: 1px solid var(--line);
+    font-size: .93rem;
+    vertical-align: top;
+  }
+  tbody td:first-child { padding-left: 1.1rem; }
+  tbody td:last-child {
+    padding-right: 1.1rem;
+    text-align: right;
+    font-family: var(--mono);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  tbody tr:first-child td { border-top: none; }
+
+  /* ---------- 選項 ---------- */
+
+  .opts { display: flex; flex-direction: column; gap: .9rem; }
+  .opt {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 1.1rem clamp(1rem, 3vw, 1.5rem);
+    display: flex;
+    flex-direction: column;
+    gap: .55rem;
+  }
+  .opt.pick { border-color: var(--ok); background: var(--ok-soft); }
+  .opt-head { display: flex; align-items: baseline; gap: .7rem; flex-wrap: wrap; }
+  .opt-head .tag {
+    font-family: var(--mono);
+    font-size: .95rem;
+    font-weight: 600;
+    color: var(--accent-ink);
+    flex: none;
+  }
+  .opt.pick .opt-head .tag { color: var(--ok); }
+  .opt p { font-size: .95rem; color: var(--ink-2); max-width: 38em; }
+  .opt .cost {
+    font-family: var(--mono);
+    font-size: .84rem;
+    color: var(--muted);
+    border-top: 1px solid var(--line);
+    padding-top: .5rem;
+  }
+
+  /* ---------- 提醒方塊 ---------- */
+
+  .note {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--warn);
+    border-radius: 3px;
+    padding: 1.05rem clamp(1rem, 3vw, 1.4rem);
+    display: flex;
+    flex-direction: column;
+    gap: .55rem;
+  }
+  .note.info { border-left-color: var(--accent); }
+  .note .label {
+    font-family: var(--mono);
+    font-size: .68rem;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    color: var(--warn);
+  }
+  .note.info .label { color: var(--accent); }
+  .note p { max-width: 38em; font-size: .96rem; }
+
+  /* ---------- 問題清單 ---------- */
+
+  .qs { display: flex; flex-direction: column; gap: 0; counter-reset: q; }
+  .q {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: .2rem .8rem;
+    padding: .8rem 0;
+    border-top: 1px solid var(--line);
+  }
+  .q:first-child { border-top: none; padding-top: 0; }
+  .q::before {
+    counter-increment: q;
+    content: "Q" counter(q);
+    font-family: var(--mono);
+    font-size: .74rem;
+    letter-spacing: .06em;
+    color: var(--accent);
+    padding-top: .28rem;
+  }
+  .q .ask { font-weight: 500; }
+  .q .why {
+    grid-column: 2;
+    font-size: .87rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding-top: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+  }
+  footer p { font-size: .82rem; color: var(--muted); line-height: 1.7; max-width: 40em; }
+
+  a { color: var(--accent-ink); text-underline-offset: .18em; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  @media (max-width: 34rem) {
+    body { font-size: 16px; }
+  }
+</style>
+
+<div class="page">
+
+  <header>
+    <div class="eyebrow">赴美 J-1 · 台美稅務時程</div>
+    <h1>台股獲利要在哪一天前實現完</h1>
+    <p class="standfirst">2026/9/21 赴美、2028 年 10 月返台。三個日曆年、三種稅務身分 —— 其中只有前兩年，你的台股獲利對美國免稅。</p>
+    <div class="stamp">整理：2026 / 08 / 31 · 出發倒數 21 天</div>
+  </header>
+
+  <div class="deadline">
+    <div class="label">Hard deadline</div>
+    <div class="date">2027 / 12 / 31</div>
+    <p>台股該實現的獲利，必須在這一天前賣完。<strong>不是 2028/9/21</strong> —— 免計年度是按「日曆年」算，不是入境滿兩年。</p>
+  </div>
+
+  <!-- ============ 1 ============ -->
+  <section>
+    <h2><span class="num">01</span>三個年度，三種身分</h2>
+
+    <div class="years">
+
+      <div class="year ok">
+        <div class="year-head">
+          <span class="y">2026</span>
+          <span class="status ok">NRA · 安全</span>
+        </div>
+        <div class="days">9/21–12/31 · 在美 102 天 · 免計第 1 年</div>
+        <div class="rates">
+          <span class="k">台股資本利得</span><span class="v ok">0%</span>
+          <span class="k">美股利得 / wheel 權利金</span><span class="v ok">0%</span>
+          <span class="k">美股股息</span><span class="v">30% 預扣</span>
+        </div>
+      </div>
+
+      <div class="year warn">
+        <div class="year-head">
+          <span class="y">2027</span>
+          <span class="status warn">NRA · 美股受限</span>
+        </div>
+        <div class="days">全年 365 天 · 免計第 2 年 · 7/2 起累積滿 183 天</div>
+        <div class="rates">
+          <span class="k">台股資本利得</span><span class="v ok">0%</span>
+          <span class="k">美股利得 / wheel 權利金</span><span class="v warn">30%</span>
+          <span class="k">美股股息</span><span class="v">30% 預扣</span>
+        </div>
+      </div>
+
+      <div class="year bad">
+        <div class="year-head">
+          <span class="y">2028</span>
+          <span class="status bad">美國稅務居民</span>
+        </div>
+        <div class="days">1/1–10 月 · 274 天以上 · 免計年度已用盡</div>
+        <div class="rates">
+          <span class="k">台股資本利得</span><span class="v bad">15–20% + NIIT 3.8%</span>
+          <span class="k">美股利得 / wheel 權利金</span><span class="v">一般居民稅率</span>
+          <span class="k">全球所得</span><span class="v bad">全部納入</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="note">
+      <div class="label">為什麼是 2028/1/1 而不是 9/21</div>
+      <p>三件事疊在一起：<strong>①</strong> J-1 學者的免計天數只有<strong>兩個日曆年</strong>，2026 只住 102 天也整年算掉一次。<strong>②</strong> 2028 起在美天數開始計入 substantial presence test，住到 10 月＝274 天，遠超過 183 天門檻。<strong>③</strong> 通過 SPT 後，<strong>residency starting date 回溯到該年度第一天在美的日子</strong>，也就是 2028/1/1 —— 不是滿 183 天那天。</p>
+      <p>另外 closer connection 例外需要當年在美 &lt; 183 天才能用，美台又沒有租稅協定可作 tie-breaker。<strong>2028 沒有退路。</strong></p>
+    </div>
+  </section>
+
+  <!-- ============ 2 ============ -->
+  <section>
+    <h2><span class="num">02</span>NRA 不是免稅身分</h2>
+
+    <p>「非居住外國人」決定的是<strong>課稅範圍</strong>，不是免不免稅。它保護的只有外國來源所得 —— 也就是你的台股。</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th scope="col">所得類型</th><th scope="col">NRA 期間</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>J-1 薪資（美國來源）<span style="display:block;font-size:.84rem;color:var(--muted);">且不能用 standard deduction，美台無租稅協定</span></td>
+            <td>課稅</td>
+          </tr>
+          <tr>
+            <td>美股股息<span style="display:block;font-size:.84rem;color:var(--muted);">跟在美天數無關，一律預扣</span></td>
+            <td>30%</td>
+          </tr>
+          <tr>
+            <td>美股資本利得 · wheel 權利金<span style="display:block;font-size:.84rem;color:var(--muted);">當年在美 ≥183 天才課；&lt;183 天為 0%</span></td>
+            <td>30% / 0%</td>
+          </tr>
+          <tr>
+            <td><strong>台股資本利得（外國來源）</strong><span style="display:block;font-size:.84rem;color:var(--muted);">這才是死線在保護的東西</span></td>
+            <td>不課</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ 3 ============ -->
+  <section>
+    <h2><span class="num">03</span>待處理的部位</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th scope="col">標的</th><th scope="col">未實現損益</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>台積電</td><td>+7,153,196</td></tr>
+          <tr><td>聯發科</td><td>+5,850,196</td></tr>
+          <tr><td>台達電</td><td>+4,062,319</td></tr>
+          <tr><td>元大台灣50</td><td>+2,601,468</td></tr>
+          <tr><td>主動統一台股增長</td><td>+171,670</td></tr>
+          <tr style="background:var(--surface-2);"><td><strong>合計</strong></td><td><strong>+19,838,849</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>約 <strong>1,984 萬</strong>。若拖到 2028 年以美國稅務居民身分賣出，長期資本利得 15–20%、金額大時再加 3.8% NIIT，<strong>潛在美國稅負約 300～470 萬台幣</strong>。</p>
+
+    <div class="note info">
+      <div class="label">關鍵：美國不給成本重設</div>
+      <p>成為美國稅務居民時，你的持股<strong>不會</strong>取得 step-up 成本基礎。台積電的 1,159 元均價會一路帶進美國稅制 —— 你在台灣累積十幾年的獲利，會變成美國的應稅所得。台灣端本身則永遠零稅（證所稅停徵），這筆稅純粹是身分轉換造成的。</p>
+    </div>
+  </section>
+
+  <!-- ============ 4 ============ -->
+  <section>
+    <h2><span class="num">04</span>三個選項</h2>
+
+    <div class="opts">
+
+      <div class="opt pick">
+        <div class="opt-head">
+          <span class="tag">選項 A</span>
+          <h3>2027/12/31 前把台股該實現的獲利實現完</h3>
+        </div>
+        <p>你本來就要賣約 1,000 萬移到 Firstrade。這個選項只是把它從「有空再說」變成有明確截止日的事，並順便把其餘想減碼的部位一起處理掉。</p>
+        <div class="cost">成本：零 · 完全避開 2028 · <strong>建議採用</strong></div>
+      </div>
+
+      <div class="opt">
+        <div class="opt-head">
+          <span class="tag">選項 B</span>
+          <h3>2028/6/30 前離開美國</h3>
+        </div>
+        <p>2028 是閏年，1/1–6/30 共 <span class="num-inline">182</span> 天，差一天不到 183 → 不通過 SPT → 2028 全年維持 NRA。7/1 就是那條線。</p>
+        <div class="cost">成本：program 縮短約 4 個月 · 做了 A 就不需要 B</div>
+      </div>
+
+      <div class="opt">
+        <div class="opt-head">
+          <span class="tag">選項 C</span>
+          <h3>2028 離美後（11–12 月）才賣</h3>
+        </div>
+        <p>離美日可作為 residency termination date，之後屬非居民期間。但需要 dual-status 申報、符合 closer connection 測試，且 <strong>2029 年不能有任何美國居民身分</strong>。窗口只有兩個月。</p>
+        <div class="cost">風險報酬比差 · 不建議作為主要方案</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ 5 ============ -->
+  <section>
+    <h2><span class="num">05</span>行動時程</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th scope="col">時間</th><th scope="col">動作</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="white-space:nowrap;"><strong>出發前<br><span style="font-family:var(--mono);font-size:.85rem;">～9/21</span></strong></td>
+            <td style="text-align:left;font-family:var(--sans);white-space:normal;">找懂台美雙邊的會計師談一次（問題清單見下）。確認 Firstrade 出入金與 HSBC US 連結可用。備妥所有台股成本證明文件。</td>
+          </tr>
+          <tr>
+            <td style="white-space:nowrap;"><strong>2026 內</strong></td>
+            <td style="text-align:left;font-family:var(--sans);white-space:normal;">Wheel 全速做（0% 稅）。完成 1,000 萬的台股賣出、換匯、匯出。</td>
+          </tr>
+          <tr>
+            <td style="white-space:nowrap;"><strong>2027 全年</strong></td>
+            <td style="text-align:left;font-family:var(--sans);white-space:normal;">美股帳戶<strong>純買進持有</strong> —— 不做 wheel、不實現獲利。台股獲利在這一年實現仍完全免稅，<strong>年底前做完</strong>。</td>
+          </tr>
+          <tr>
+            <td style="white-space:nowrap;"><strong>2028 起</strong></td>
+            <td style="text-align:left;font-family:var(--sans);white-space:normal;">以美國稅務居民規則重新規劃。Wheel 反而可能比 30% 划算。開始 FBAR / Form 8938 申報義務。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <div class="label">2028 才會遇到的合規義務</div>
+      <p><strong>FBAR（FinCEN 114）</strong>：成為 US person 後，境外金融帳戶合計超過 1 萬美元即須申報。你的台灣券商戶＋銀行帳戶遠超過門檻，未申報罰則很重。<br>
+      <strong>Form 8938</strong>：門檻較高但你也會踩到，與 FBAR 是兩套要分別申報的東西。<br>
+      2026–2027 身為 NRA 則不需要。</p>
+    </div>
+
+    <div class="note info">
+      <div class="label">公平話</div>
+      <p>2028 變成居民不是全然壞事：可以用 standard deduction、美股長期資本利得是 0/15/20% 而非 30%、wheel 的稅負反而比 2027 輕。<strong>問題只出在那 1,984 萬台股未實現獲利。</strong>把它在 2027 年底前解決掉，2028 變居民對你其實還好。</p>
+    </div>
+  </section>
+
+  <!-- ============ 6 ============ -->
+  <section>
+    <h2><span class="num">06</span>出發前要問會計師的六題</h2>
+
+    <div class="qs">
+      <div class="q">
+        <div>
+          <div class="ask">§871(a)(2) 的 183 天測試，對 J-1 exempt individual 是用實際天數還是免計後的天數？</div>
+          <div class="why">這一題直接決定我 2027 一整年能不能做 wheel。保守見解是實際天數（＝不能做），但法條文字有解釋空間。</div>
+        </div>
+      </div>
+      <div class="q">
+        <div>
+          <div class="ask">我 2028 的 residency starting date 確定是 1/1 嗎？有沒有 dual-status 的空間？</div>
+          <div class="why">若能主張較晚的起算日，台股實現的窗口就能往後延。</div>
+        </div>
+      </div>
+      <div class="q">
+        <div>
+          <div class="ask">選項 C（2028 離美後才賣）實際可行度多高？closer connection 要備什麼文件？</div>
+          <div class="why">若 A 因故做不完，C 是備援方案，要先知道門檻。</div>
+        </div>
+      </div>
+      <div class="q">
+        <div>
+          <div class="ask">台股的成本基礎，美國國稅局接受什麼形式的證明？</div>
+          <div class="why">我的持股成本橫跨多年，均價 1,159 / 1,510 這類數字要能舉證。出發前先把對帳單整理好。</div>
+        </div>
+      </div>
+      <div class="q">
+        <div>
+          <div class="ask">美台租稅協定（Expedited Double-Tax Relief 相關立法）目前狀態？若生效會如何改變上面的結論？</div>
+          <div class="why">若有協定，tie-breaker 與股息稅率都會變，整份時程要重算。</div>
+        </div>
+      </div>
+      <div class="q">
+        <div>
+          <div class="ask">2027 若我不再是台灣稅務居民，台股配息的 21% 就源扣繳能否退還或抵扣？</div>
+          <div class="why">剩餘的 0050 與台積電部位每年配息，這是持續性成本。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>本文是根據你提供的持股與行程所整理的規劃架構與時間軸，<strong>不是稅務意見</strong>。條文適用（特別是 §871(a)(2) 對 exempt individual 的解釋）實務見解不一致，金額門檻與免稅額亦逐年調整。1,984 萬未實現獲利加上跨境身分轉換，請務必在出發前取得執業會計師的正式意見再據以執行。</p>
+    <p class="stamp">2026 / 08 / 31 · 姊妹文件：三百萬出金計畫</p>
+  </footer>
+
+</div>
