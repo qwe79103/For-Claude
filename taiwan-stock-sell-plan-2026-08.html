@@ -1,0 +1,807 @@
+<title>三百萬出金計畫</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap">
+
+<style>
+  :root {
+    /* 冷調石墨紙 —— 中性偏藍，與靛藍主色同溫 */
+    --ground:      #EAEDF1;
+    --surface:     #FFFFFF;
+    --surface-2:   #F4F6F9;
+    --ink:         #131A22;
+    --ink-2:       #3A4553;
+    --muted:       #6B7684;
+    --line:        #D8DEE6;
+    --line-strong: #BCC5D1;
+
+    --accent:      #2F4573;   /* 靛藍：結構、標題線 */
+    --accent-soft: #E3E8F2;
+    --accent-ink:  #24365C;
+
+    /* 台股慣例：紅漲綠跌 */
+    --up:          #C0362C;
+    --up-soft:     #FBE9E7;
+    --down:        #10775A;
+    --down-soft:   #E2F1EC;
+
+    --flag:        #9A6212;   /* 提醒 / 注意 */
+    --flag-soft:   #F8EEDD;
+
+    --serif: "Noto Serif TC", "PingFang TC", "Songti TC", serif;
+    --sans:  "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+    --mono:  "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:      #0E1319;
+      --surface:     #161D26;
+      --surface-2:   #1D2531;
+      --ink:         #E6EBF2;
+      --ink-2:       #BCC6D4;
+      --muted:       #8B96A6;
+      --line:        #252E3A;
+      --line-strong: #35404F;
+
+      --accent:      #8AA3D8;
+      --accent-soft: #1B2436;
+      --accent-ink:  #A8BDE8;
+
+      --up:          #F0736A;
+      --up-soft:     #2C1A19;
+      --down:        #4FC49B;
+      --down-soft:   #12271F;
+
+      --flag:        #D9A354;
+      --flag-soft:   #2A2213;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground:      #0E1319;
+    --surface:     #161D26;
+    --surface-2:   #1D2531;
+    --ink:         #E6EBF2;
+    --ink-2:       #BCC6D4;
+    --muted:       #8B96A6;
+    --line:        #252E3A;
+    --line-strong: #35404F;
+
+    --accent:      #8AA3D8;
+    --accent-soft: #1B2436;
+    --accent-ink:  #A8BDE8;
+
+    --up:          #F0736A;
+    --up-soft:     #2C1A19;
+    --down:        #4FC49B;
+    --down-soft:   #12271F;
+
+    --flag:        #D9A354;
+    --flag-soft:   #2A2213;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 50rem;
+    margin: 0 auto;
+    padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 4vw, 2.5rem) 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2.25rem, 5vw, 3.25rem);
+  }
+
+  /* ---------- header ---------- */
+
+  header { display: flex; flex-direction: column; gap: .75rem; }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: .76rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+  }
+  .eyebrow::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--line-strong);
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: clamp(1.7rem, 5.5vw, 2.45rem);
+    line-height: 1.28;
+    letter-spacing: .01em;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .standfirst {
+    color: var(--ink-2);
+    font-size: 1.02rem;
+    max-width: 34em;
+    margin: 0;
+  }
+
+  .stamp {
+    font-family: var(--mono);
+    font-size: .78rem;
+    color: var(--muted);
+    letter-spacing: .02em;
+  }
+
+  /* ---------- sections ---------- */
+
+  section { display: flex; flex-direction: column; gap: 1.1rem; }
+
+  h2 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(1.22rem, 3.6vw, 1.5rem);
+    line-height: 1.4;
+    margin: 0;
+    padding-bottom: .55rem;
+    border-bottom: 2px solid var(--accent);
+    display: flex;
+    align-items: baseline;
+    gap: .7rem;
+    text-wrap: balance;
+  }
+  h2 .num {
+    font-family: var(--mono);
+    font-size: .8rem;
+    font-weight: 500;
+    letter-spacing: .1em;
+    color: var(--accent);
+    flex: none;
+  }
+
+  h3 {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 1.02rem;
+    margin: 0;
+    letter-spacing: .01em;
+  }
+
+  p { margin: 0; }
+  section > p { max-width: 38em; }
+
+  strong { font-weight: 700; color: var(--ink); }
+  em { font-style: normal; background: var(--accent-soft); padding: 0 .25em; border-radius: 2px; }
+
+  .num-inline, code {
+    font-family: var(--mono);
+    font-size: .93em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  ul { margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: .5rem; }
+  li { max-width: 37em; }
+  li::marker { color: var(--accent); }
+
+  /* ---------- 部位盤點表 ---------- */
+
+  .table-wrap {
+    overflow-x: auto;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  table {
+    width: 100%;
+    min-width: 34rem;
+    border-collapse: collapse;
+    font-variant-numeric: tabular-nums;
+  }
+
+  thead th {
+    font-family: var(--mono);
+    font-size: .66rem;
+    font-weight: 500;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: right;
+    padding: .85rem .7rem;
+    border-bottom: 1px solid var(--line-strong);
+    white-space: nowrap;
+  }
+  thead th:first-child { text-align: left; padding-left: 1.1rem; }
+  thead th:last-child  { padding-right: 1.1rem; }
+
+  tbody td {
+    padding: .7rem;
+    border-top: 1px solid var(--line);
+    text-align: right;
+    font-family: var(--mono);
+    font-size: .88rem;
+    white-space: nowrap;
+  }
+  tbody td:first-child {
+    text-align: left;
+    padding-left: 1.1rem;
+    font-family: var(--sans);
+    font-size: .95rem;
+  }
+  tbody td:last-child { padding-right: 1.1rem; }
+  tbody tr:first-child td { border-top: none; }
+
+  .name { font-weight: 500; }
+  .ticker {
+    font-family: var(--mono);
+    font-size: .74rem;
+    color: var(--muted);
+    margin-left: .4rem;
+  }
+  .sub {
+    display: block;
+    font-family: var(--mono);
+    font-size: .7rem;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-top: .1rem;
+  }
+
+  .pos { color: var(--up); }
+  .neg { color: var(--down); }
+
+  tr.total td {
+    border-top: 2px solid var(--line-strong);
+    font-weight: 600;
+    background: var(--surface-2);
+  }
+
+  tr.sell td:first-child { box-shadow: inset 3px 0 0 var(--flag); }
+
+  /* ---------- 賣出清單 ---------- */
+
+  .stack { display: flex; flex-direction: column; gap: .9rem; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 1.15rem clamp(1rem, 3vw, 1.5rem);
+    display: flex;
+    flex-direction: column;
+    gap: .7rem;
+  }
+
+  .card-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .card-head .amount {
+    font-family: var(--mono);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--accent-ink);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .orders {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+  .order {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: .15rem .9rem;
+    align-items: baseline;
+    padding: .6rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .order:last-child { border-bottom: none; }
+  .order .why {
+    grid-column: 1 / -1;
+    font-size: .84rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .order .qty {
+    font-family: var(--mono);
+    font-size: .88rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink-2);
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .chip {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: .66rem;
+    letter-spacing: .1em;
+    padding: .1rem .45rem;
+    border-radius: 2px;
+    vertical-align: .15em;
+    margin-left: .45rem;
+    background: var(--accent-soft);
+    color: var(--accent-ink);
+    white-space: nowrap;
+  }
+  .chip.warn { background: var(--flag-soft); color: var(--flag); }
+
+  /* ---------- 觀念方塊 ---------- */
+
+  .note {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--flag);
+    border-radius: 3px;
+    padding: 1.05rem clamp(1rem, 3vw, 1.4rem);
+    display: flex;
+    flex-direction: column;
+    gap: .55rem;
+  }
+  .note .label {
+    font-family: var(--mono);
+    font-size: .68rem;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    color: var(--flag);
+  }
+  .note p { max-width: 38em; font-size: .97rem; }
+
+  /* ---------- 限價試算 ---------- */
+
+  .sim {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .sim-row {
+    display: grid;
+    grid-template-columns: minmax(5.5rem, .9fr) minmax(5rem, .8fr) minmax(0, 1.4fr);
+    gap: .5rem 1rem;
+    padding: .75rem clamp(.9rem, 3vw, 1.3rem);
+    border-top: 1px solid var(--line);
+    align-items: center;
+    font-family: var(--mono);
+    font-size: .85rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .sim-row.head {
+    border-top: none;
+    background: var(--surface-2);
+    font-size: .66rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .sim-row .verdict { font-family: var(--sans); font-size: .87rem; color: var(--ink-2); }
+  .sim-row .verdict.ok  { color: var(--down); font-weight: 500; }
+  .sim-row .verdict.no  { color: var(--up); font-weight: 500; }
+
+  /* ---------- 時程 ---------- */
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    border-left: 2px solid var(--line-strong);
+    margin-left: .35rem;
+  }
+  .step {
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+    padding: 0 0 1.5rem 1.4rem;
+    position: relative;
+  }
+  .step:last-child { padding-bottom: 0; }
+  .step::before {
+    content: "";
+    position: absolute;
+    left: -6px;
+    top: .62rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--ground);
+  }
+  .step .when {
+    font-family: var(--mono);
+    font-size: .74rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .step .what { font-weight: 700; font-size: 1rem; }
+  .step .detail { color: var(--ink-2); font-size: .94rem; max-width: 36em; }
+
+  /* ---------- footer ---------- */
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding-top: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+  }
+  footer p {
+    font-size: .82rem;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 40em;
+  }
+
+  a { color: var(--accent-ink); text-underline-offset: .18em; }
+  a:focus-visible, [tabindex]:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 34rem) {
+    body { font-size: 16px; }
+    .sim-row { grid-template-columns: 1fr 1fr; }
+    .sim-row .verdict { grid-column: 1 / -1; }
+    .sim-row.head span:last-child { display: none; }
+  }
+</style>
+
+<div class="page">
+
+  <header>
+    <div class="eyebrow">台股 · 出金執行計畫</div>
+    <h1>兩週內變現 300 萬：賣哪些、什麼時候賣、限價怎麼掛</h1>
+    <p class="standfirst">總部位約 4,966 萬，只需要動用其中 6%。這份計畫把「該賣什麼」跟「該幾點賣」分開處理——前者影響很大，後者影響很小。</p>
+    <div class="stamp">2026 / 08 / 29（週六）· 報價基準：8/28 台股收盤</div>
+  </header>
+
+  <!-- ============ 1 ============ -->
+  <section>
+    <h2><span class="num">01</span>先修正前提：這不是「美股大跌」</h2>
+
+    <p>週五 NVDA 收 <span class="num-inline">217.89</span>、<span class="num-inline pos">−4.43%</span>，看起來很嚇人。但把另外兩檔一起看：</p>
+
+    <ul>
+      <li><strong>QQQ −0.67%、VOO −0.20%</strong>——大盤幾乎沒動。這是單一個股事件，不是系統性風險。</li>
+      <li><strong>NVDA 週四才剛漲 +8.7%</strong>（財報後），週五回吐 4.4%。兩天合計<strong>仍是淨漲約 4%</strong>。</li>
+      <li>下跌原因是輝達暫停了 AI Compute Partnership 的部分融資方案，屬於「客戶融資條件」爭議，不是需求端轉弱。分析師目標價當天還被調升。</li>
+    </ul>
+
+    <div class="note">
+      <div class="label">關鍵時序</div>
+      <p>台股週五（8/28）白天交易時，反映的是<strong>週四 NVDA +8.7% 那根大漲</strong>。也就是說，你螢幕上的週五收盤價<strong>已經吃到利多了</strong>。週一要消化的，只是「回吐的那一段」。</p>
+      <p>合理預期：加權指數開低 <span class="num-inline">−0.5% ~ −1.5%</span>，AI 供應鏈（台積電、廣達、台達電）可能 <span class="num-inline">−1.5% ~ −3%</span>。不是崩盤。</p>
+    </div>
+
+    <div class="note" style="border-left-color:var(--accent);">
+      <div class="label" style="color:var(--accent);">8/30 週日更新 · 台指期夜盤實測</div>
+      <p>期交所夜盤商品行情表（8/28 15:00 → 8/29 05:00 那一場，已完整反映美股週五盤）：</p>
+      <p><strong>臺股期貨 45,900，▼457 → −0.99%</strong>（夜盤量 35,622 口）<br>
+      <strong>台積電期貨 2,408.00，▼21.00 → −0.86%</strong>（1,304 口）<br>
+      <span style="color:var(--muted);">小型電子 −0.66%（408 口）· 那斯達克100 −0.38%（312 口）· 費城半導體 −3.12%（僅 31 口，量太少不可信）</span></p>
+      <p>換算：<strong>加權指數週一開盤約 −1.0%</strong>，落在上面基準情境最悲觀的一端。台積電期貨日盤收 2,429、現貨收 2,420（正價差 +9），若價差維持，<strong>台積電現貨開盤約 2,399～2,408（−0.5% ~ −0.9%）</strong>。</p>
+      <p style="color:var(--muted);font-size:.88rem;">此為週五夜盤收盤，距週一開盤逾 40 小時。週一清晨 06:00 美股期貨開盤後若有新消息即會失真——<strong>仍以 8:30–9:00 試撮為準</strong>。</p>
+    </div>
+  </section>
+
+  <!-- ============ 2 ============ -->
+  <section>
+    <h2><span class="num">02</span>部位盤點</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">標的</th>
+            <th scope="col">股數</th>
+            <th scope="col">市值</th>
+            <th scope="col">未實現損益</th>
+            <th scope="col">佔比</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="name">台積電</span><span class="ticker">2330</span><span class="sub">2,420.00 / 1,159.32</span></td>
+            <td>5,700</td><td>13,794,000</td>
+            <td class="pos">+7,185,876<span class="sub pos">+108.7%</span></td>
+            <td>27.8%</td>
+          </tr>
+          <tr>
+            <td><span class="name">元大台灣50</span><span class="ticker">0050</span><span class="sub">106.95 / 77.58</span></td>
+            <td>85,000</td><td>9,090,750</td>
+            <td class="pos">+2,496,450<span class="sub pos">+37.9%</span></td>
+            <td>18.3%</td>
+          </tr>
+          <tr>
+            <td><span class="name">聯發科</span><span class="ticker">2454</span><span class="sub">3,985.00 / 1,510.10</span></td>
+            <td>2,100</td><td>8,368,500</td>
+            <td class="pos">+5,197,290<span class="sub pos">+163.9%</span></td>
+            <td>16.9%</td>
+          </tr>
+          <tr class="sell">
+            <td><span class="name">統一台股增長</span><span class="ticker">00981A</span><span class="sub">30.09 / 29.17</span></td>
+            <td>275,000</td><td>8,274,750</td>
+            <td class="pos">+253,000<span class="sub pos">+3.2%</span></td>
+            <td>16.7%</td>
+          </tr>
+          <tr>
+            <td><span class="name">台達電</span><span class="ticker">2308</span><span class="sub">1,830.00 / 949.03</span></td>
+            <td>4,500</td><td>8,235,000</td>
+            <td class="pos">+3,964,365<span class="sub pos">+92.8%</span></td>
+            <td>16.6%</td>
+          </tr>
+          <tr class="sell">
+            <td><span class="name">廣達</span><span class="ticker">2382</span><span class="sub">332.50 / 320.77</span></td>
+            <td>2,000</td><td>665,000</td>
+            <td class="pos">+23,460<span class="sub pos">+3.7%</span></td>
+            <td>1.3%</td>
+          </tr>
+          <tr class="sell">
+            <td><span class="name">晶彩科</span><span class="ticker">3535</span><span class="sub">90.20 / 137.62</span></td>
+            <td>5,000</td><td>451,000</td>
+            <td class="neg">−237,100<span class="sub neg">−34.5%</span></td>
+            <td>0.9%</td>
+          </tr>
+          <tr class="sell">
+            <td><span class="name">穩懋</span><span class="ticker">3105</span><span class="sub">439.00 / 508.43</span></td>
+            <td>1,000</td><td>439,000</td>
+            <td class="neg">−69,430<span class="sub neg">−13.7%</span></td>
+            <td>0.9%</td>
+          </tr>
+          <tr class="sell">
+            <td><span class="name">祥碩</span><span class="ticker">5269</span><span class="sub">1,450.00 / 1,621.38</span></td>
+            <td>200</td><td>290,000</td>
+            <td class="neg">−34,276<span class="sub neg">−10.6%</span></td>
+            <td>0.6%</td>
+          </tr>
+          <tr class="sell">
+            <td><span class="name">友達</span><span class="ticker">2409</span><span class="sub">25.85 / 15.87</span></td>
+            <td>2,000</td><td>51,700</td>
+            <td class="pos">+19,960<span class="sub pos">+62.9%</span></td>
+            <td>0.1%</td>
+          </tr>
+          <tr class="total">
+            <td>合計</td>
+            <td>—</td><td>49,659,700</td>
+            <td class="pos">+18,799,595<span class="sub pos">+60.9%</span></td>
+            <td>100%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p><span class="chip warn">集中度</span> 前五大佔 <strong>96.2%</strong>。穿透 0050（台積電權重約 57%）與 00981A 之後，<strong>實質台積電曝險約四成</strong>，而剩下的部位幾乎全在同一條 AI／半導體產業鏈上。這次出金正好順便清掉尾巴。</p>
+  </section>
+
+  <!-- ============ 3 ============ -->
+  <section>
+    <h2><span class="num">03</span>先賣哪些</h2>
+
+    <div class="note">
+      <div class="label">最重要的一件事</div>
+      <p>台灣<strong>個人證券交易所得免稅</strong>。賣賺的跟賣賠的，稅上完全一樣，<strong>沒有停損節稅這回事</strong>。所以請把「均價」那一欄從決策裡拿掉——成本價是沉沒成本，不該影響你賣哪一檔。唯一的成本差異是：ETF 證交稅 <span class="num-inline">0.1%</span>，個股 <span class="num-inline">0.3%</span>。</p>
+    </div>
+
+    <div class="stack">
+
+      <div class="card">
+        <div class="card-head">
+          <h3>第一批 · 清掉五檔零碎部位</h3>
+          <span class="amount">1,896,700</span>
+        </div>
+        <p style="color:var(--ink-2);font-size:.95rem;">這五檔加起來只佔 <strong>3.8%</strong>，小到對報酬沒有貢獻，卻讓帳戶多五個要盯的標的。全部出清，部位從 10 檔變 5 檔。</p>
+        <div class="orders">
+          <div class="order">
+            <span><strong>廣達</strong><span class="ticker">2382</span></span>
+            <span class="qty">2 張 · 665,000</span>
+            <span class="why">好公司，但 66 萬佔 1.3%，對你這個規模不痛不癢；低毛利 ODM 又剛好是這次 NVDA 消息的正中央。</span>
+          </div>
+          <div class="order">
+            <span><strong>晶彩科</strong><span class="ticker">3535</span></span>
+            <span class="qty">5 張 · 451,000</span>
+            <span class="why">−34.5%，小型股、無護城河。這是清單裡最該走的一檔——但理由是前景，不是因為它賠錢。</span>
+          </div>
+          <div class="order">
+            <span><strong>穩懋</strong><span class="ticker">3105</span></span>
+            <span class="qty">1 張 · 439,000</span>
+            <span class="why">砷化鎵 PA 長期面對中國低價競爭與客戶集中，產業結構性逆風。</span>
+          </div>
+          <div class="order">
+            <span><strong>祥碩</strong><span class="ticker">5269</span></span>
+            <span class="qty">200 股 · 290,000 <span class="chip warn">零股</span></span>
+            <span class="why">不足一張，只能走盤中零股。高本益比、高 beta，順便把零股尾巴收乾淨。</span>
+          </div>
+          <div class="order">
+            <span><strong>友達</strong><span class="ticker">2409</span></span>
+            <span class="qty">2 張 · 51,700</span>
+            <span class="why">5.17 萬，連手續費都懶得算。純粹是清單整理。</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <h3>第二批 · 補足差額</h3>
+          <span class="amount">1,203,600</span>
+        </div>
+        <div class="orders">
+          <div class="order">
+            <span><strong>統一台股增長</strong><span class="ticker">00981A</span></span>
+            <span class="qty">40 張 · 1,203,600</span>
+            <span class="why">在四檔大部位裡，這是最該減的：主動式 ETF 經理費明顯高於 0050，持股又與 0050／台積電高度重疊，等於為重複的曝險多付一份管理費。而且 ETF 證交稅只有 0.1%，是最便宜的變現管道。</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <h3>不要動</h3>
+          <span class="amount" style="color:var(--muted);">四檔核心</span>
+        </div>
+        <p style="color:var(--ink-2);font-size:.95rem;"><strong>台積電、聯發科、台達電、0050</strong>——這是你資產的骨架。特別是不要在 NVDA 消息造成的開低那天去砍台積電，那正好是最差的時點。至於「實質台積電曝險四成」這件事要不要處理，那是一個獨立的、更大的資產配置決定，不要跟這次 300 萬的現金需求混在一起做。</p>
+      </div>
+
+    </div>
+
+    <div class="note" style="border-left-color:var(--accent);">
+      <div class="label" style="color:var(--accent);">金額試算（以 8/28 收盤價）</div>
+      <p>第一批毛額 <span class="num-inline">1,896,700</span>，扣證交稅 0.3% + 手續費（六折 0.0855%）→ 淨約 <span class="num-inline">1,889,000</span>。<br>
+      第二批毛額 <span class="num-inline">1,203,600</span>，扣 0.1% + 0.0855% → 淨約 <span class="num-inline">1,201,000</span>。<br>
+      <strong>合計淨入帳約 309 萬</strong>，交易成本合計約 <span class="num-inline">9,500</span> 元（0.31%）。留了 3% 緩衝——就算週一整體再跌 3%，仍拿得到 300 萬。</p>
+      <p style="color:var(--muted);font-size:.88rem;">實際下單時用當天真實價格重算 00981A 的張數即可，先賣第一批、湊差額再決定，最精準。</p>
+    </div>
+  </section>
+
+  <!-- ============ 4 ============ -->
+  <section>
+    <h2><span class="num">04</span>週一該不該賣？幾點賣？</h2>
+
+    <div class="note">
+      <div class="label">你的預測沒有 edge</div>
+      <p>「美股跌 → 台股週一會跌」這件事，<strong>市場上每個人都知道</strong>。所以跳空就發生在 9:00 那一瞬間，你沒有任何機會搶在它前面。你趕在週一賣，能避開的<strong>只有「週一之後再跌」的那一段</strong>，而那一段沒人知道方向。</p>
+    </div>
+
+    <p>再加上兩件事：你只需要賣掉 6% 的部位，而且有兩週的時間。<strong>結論是「賣哪些」遠比「幾點賣」重要，不要為了擇時把執行搞複雜。</strong></p>
+
+    <h3 style="margin-top:.5rem;">不要掛在 9:00 開盤集合競價全部倒出來</h3>
+    <ul>
+      <li>開低那一刻是<strong>恐慌賣壓最集中、價差最寬</strong>的時候。單一個股利空引發的開低，台股盤中收斂的情況相當常見（是傾向，不是定律）。</li>
+      <li>小型股（晶彩科、穩懋、祥碩、友達）beta 高、掛單薄，開盤跳空幅度通常比大盤大得多。這幾檔<strong>最不該在開盤市價出</strong>。</li>
+      <li>反過來說，它們合計只有 190 萬（3.8%），多抱三五天的價格風險大概就是正負十萬上下，不值得為此忍受爛成交價。</li>
+    </ul>
+  </section>
+
+  <!-- ============ 5 ============ -->
+  <section>
+    <h2><span class="num">05</span>限價怎麼掛：你問錯方向了</h2>
+
+    <p>你問「掛平盤還是 −1%」，背後假設是「掛越低賣越便宜」。<strong>在集合競價裡這個假設是錯的。</strong></p>
+
+    <div class="note" style="border-left-color:var(--accent);">
+      <div class="label" style="color:var(--accent);">集合競價的成交規則</div>
+      <p>開盤（9:00）與收盤（13:25–13:30）都是集合競價：撮合出<strong>單一個成交價</strong>，所有限價 ≤ 該價格的賣單，<strong>全部以同一個成交價成交</strong>。</p>
+      <p>所以你的限價是<strong>「底線」，不是「成交價」</strong>。掛低唯一的作用是<strong>提高成交機率</strong>，絕對不會讓你賣得比開盤價便宜。</p>
+    </div>
+
+    <p>用 00981A（週五收 <span class="num-inline">30.09</span>）試算，假設週一開盤在 <span class="num-inline">29.65</span>（−1.5%）：</p>
+
+    <div class="sim">
+      <div class="sim-row head"><span>你掛的限價</span><span>結果</span><span>說明</span></div>
+      <div class="sim-row">
+        <span>30.09 <span style="color:var(--muted);">平盤</span></span>
+        <span class="verdict no">不成交</span>
+        <span class="verdict">單子留在盤中排隊，可能整天都等不到</span>
+      </div>
+      <div class="sim-row">
+        <span>29.79 <span style="color:var(--muted);">−1%</span></span>
+        <span class="verdict no">不成交</span>
+        <span class="verdict">開盤價比你的底線還低，一樣掛在那裡</span>
+      </div>
+      <div class="sim-row">
+        <span>29.04 <span style="color:var(--muted);">−3.5%</span></span>
+        <span class="verdict ok">成交 @ 29.65</span>
+        <span class="verdict">拿到真實開盤價，不是你掛的 29.04</span>
+      </div>
+      <div class="sim-row">
+        <span>27.08 <span style="color:var(--muted);">跌停</span></span>
+        <span class="verdict ok">成交 @ 29.65</span>
+        <span class="verdict">價格一樣，但萬一開盤崩到 −8% 你也照吃</span>
+      </div>
+    </div>
+
+    <p style="color:var(--ink-2);font-size:.95rem;">撮合價是由整體供需決定的——交易所試算每個候選價能成交多少量，取<strong>成交量最大</strong>的那一個。你的 40 張在總撮合量裡只是零頭，<strong>掛 29.04 或掛跌停，算出來的開盤價都一樣</strong>。規則之所以這樣設計，是因為若「各自按自己的限價成交」，掛得越誠實的人吃虧越大，所有人都會把賣單往天花板掛，價格就失去意義了。</p>
+
+    <ul>
+      <li><strong>想確定週一出得掉 → 掛 −3% 至 −3.5%。</strong> 正常開低你會成交在真正的開盤價；同時把「開盤瞬間崩到 −6%、−7%」的極端情況擋在外面。</li>
+      <li><strong>掛平盤或 −1% → 大概率不會成交。</strong> 這不是錯，只是等於「你不急，願意等反彈」。要清楚自己選的是哪一種。</li>
+    </ul>
+
+    <div class="note">
+      <div class="label">但這只適用集合競價時段</div>
+      <p>上面整套邏輯只在 <strong>9:00 開盤</strong>與 <strong>13:25–13:30 收盤</strong>這兩個集合競價時段成立。盤中 <strong>9:00–13:25 是逐筆交易</strong>，機制完全不同：你的賣單會<strong>一筆一筆往下吃掉現有買單</strong>——先吃 29.65，吃完往下吃 29.60、29.55⋯⋯一路到你的限價為止。買方掛單薄的時候，均價會明顯低於最佳買價。</p>
+      <p>所以下單要分時段：<strong>集合競價可以放寬到 −3.5%；盤中逐筆則要看著五檔，掛在當下最佳買價附近</strong>（或略低一兩檔）分批出，絕不能用 −3.5% 這種寬限價，更不能用市價單。</p>
+      <p><strong>最省事的做法：直接用 13:25–13:30 的收盤集合競價，限價 −3.5%。</strong>既避開了開盤那根最亂的價格，又留在單一價撮合的保護傘下。記得 13:25 之後不能刪改單。</p>
+    </div>
+
+    <div class="note">
+      <div class="label">現在（週六）就掛預約單嗎？</div>
+      <p><strong>沒必要，也沒有好處。</strong>開盤集合競價中，同價位的委託是<strong>電腦隨機排序</strong>，不是先掛先贏——提早 12 小時掛單不會讓你排在前面。</p>
+      <p>代價卻是實在的：你會放棄台指期夜盤收盤（週六 05:00 已完整反映美股週五盤）、台積電 ADR、週一清晨的美股期貨、以及 8:30–9:00 試撮價這幾份資訊。<strong>建議週一 8:30 之後看著試撮再掛。</strong>唯一例外是週一早上你人不在——那就現在掛，限價放寬到 −3.5%，並記得開盤前都還可以刪改。</p>
+    </div>
+  </section>
+
+  <!-- ============ 6 ============ -->
+  <section>
+    <h2><span class="num">06</span>兩週執行時程</h2>
+
+    <div class="timeline">
+      <div class="step">
+        <div class="when">8/31 週一 · 08:30–08:55</div>
+        <div class="what">看試撮，決定當天出多少</div>
+        <div class="detail">先看加權指數試撮跌幅。判斷規則很簡單：<strong>小型股跌幅若不超過大盤，就一起出；若明顯重挫（−4% 以上），當天只出流動性好的，小型股改天慢慢掛。</strong></div>
+      </div>
+      <div class="step">
+        <div class="when">8/31 週一 · 13:25 收盤競價</div>
+        <div class="what">出 00981A 40 張 + 廣達 2 張</div>
+        <div class="detail">用收盤集合競價，限價 −3.5%——既避開 9:00 開盤的恐慌賣壓，又留在單一價撮合的保護傘下。若要改在盤中 9:30 後出，記得那是逐筆交易，<strong>限價要貼近當下最佳買價</strong>，不能沿用 −3.5%。13:25 之後<strong>不能取消或改單</strong>。</div>
+      </div>
+      <div class="step">
+        <div class="when">9/1–9/4 週二至週五</div>
+        <div class="what">分批處理四檔小型股</div>
+        <div class="detail">晶彩科、穩懋、友達用限價貼近委賣價慢慢出，分兩三天。祥碩 200 股走<strong>盤中零股</strong>（9:00 起可委託、9:10 起定期撮合），零股價差較寬，別急著成交。</div>
+      </div>
+      <div class="step">
+        <div class="when">9/9 週三前</div>
+        <div class="what">結清差額</div>
+        <div class="detail">加總實際入帳，不足的部分用 00981A 補足。台股 <strong>T+2 交割</strong>——9/9 賣出，9/11 上午款項才可動用。抓這條線當最後期限。</div>
+      </div>
+    </div>
+
+    <div class="note">
+      <div class="label">如果不想擇時</div>
+      <p>把整包拆成三批：週一、週三、下週一各三分之一。這會讓你拿到一個接近兩週均價的成交結果，<strong>完全放棄猜方向</strong>。以你只賣 6% 部位的情況，這個做法的期望結果跟上面那份時程差不多，但心理上輕鬆很多。</p>
+    </div>
+  </section>
+
+  <!-- ============ 7 ============ -->
+  <section>
+    <h2><span class="num">07</span>兩個附註</h2>
+
+    <div class="stack">
+      <div class="card">
+        <h3>為什麼不動美股帳戶</h3>
+        <p style="color:var(--ink-2);font-size:.95rem;">NVDA + QQQ + VOO 合計約 <span class="num-inline">4.74 萬美元</span>（約 145 萬台幣），本來就不夠 300 萬。而且賣美股會產生<strong>海外所得</strong>，全戶全年達 100 萬就要計入基本所得額、可能觸及最低稅負制（門檻逐年調整），再加上匯回的匯率與手續成本。相較之下台股出金完全免證所稅，單純太多。</p>
+      </div>
+      <div class="card">
+        <h3>如果這 300 萬只是短期周轉</h3>
+        <p style="color:var(--ink-2);font-size:.95rem;">4,966 萬的部位借 300 萬，質借成數只有 6%，<strong>股票質押借款</strong>是很輕鬆能過的選項，年息大致落在 2.5%–4%，可以完全不動部位。但如果這筆錢是永久性支出（購屋、稅款一類），那還是賣掉乾淨——不要為了不賣而背長期利息。</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>本文為根據你提供的持股截圖所做的部位分析與下單機制整理，不是投資建議，也不保證任何價格或報酬。市場報價以你的券商即時資訊為準；委託規則（零股撮合頻率、預約單受理時間、手續費折數）依各券商公告可能略有差異，實際下單前請確認。</p>
+    <p class="stamp">整理於 2026 年 8 月 29 日</p>
+  </footer>
+
+</div>
