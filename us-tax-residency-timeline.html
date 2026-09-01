@@ -408,15 +408,16 @@
 
   <header>
     <div class="eyebrow">赴美 J-1 · 台美稅務時程</div>
-    <h1>台股獲利要在哪一天前實現完</h1>
-    <p class="standfirst">2026/9/21 赴美、2028 年 10 月返台。三個日曆年、三種稅務身分 —— 其中只有前兩年，你的台股獲利對美國免稅。</p>
-    <div class="stamp">整理：2026 / 08 / 31 · 出發倒數 21 天</div>
+    <h1>台股要在哪一天前處理掉</h1>
+    <p class="standfirst">2026/9/21 赴美、2028 年 10 月返台。三個日曆年、三種稅務身分。不賣就不課稅 —— 但 0050 與 00981A 是例外，它們對美國稅制是 PFIC。</p>
+    <div class="stamp">整理：2026 / 08 / 31 · 出發倒數 21 天 · 修訂 2</div>
   </header>
 
   <div class="deadline">
-    <div class="label">Hard deadline</div>
+    <div class="label">ETF 必須出清的期限</div>
     <div class="date">2027 / 12 / 31</div>
-    <p>台股該實現的獲利，必須在這一天前賣完。<strong>不是 2028/9/21</strong> —— 免計年度是按「日曆年」算，不是入境滿兩年。</p>
+    <p><strong>0050 與 00981A 要在這一天前賣掉</strong> —— 它們對美國稅制是 PFIC（見 04）。<strong>不是 2028/9/21</strong>，免計年度按「日曆年」算，不是入境滿兩年。</p>
+    <p style="color:var(--ink-2);font-size:.94rem;">個股（台積電、聯發科、台達電）<strong>不受此限</strong>，可以一路抱過 2028，2029 回台後再賣，台美兩邊都零稅。</p>
   </div>
 
   <!-- ============ 1 ============ -->
@@ -508,29 +509,41 @@
 
   <!-- ============ 3 ============ -->
   <section>
-    <h2><span class="num">03</span>待處理的部位</h2>
+    <h2><span class="num">03</span>不賣就不課稅 —— 但要分兩類</h2>
+
+    <p><strong>未實現獲利不是所得，不賣就沒有稅。</strong>而且你不會有 exit tax —— 那只適用美國公民與長期綠卡持有者（15 年中持有 8 年），你只是靠 SPT 當一年居民。所以「2028 年不賣台股、2029 回台後再賣」是<strong>完全可行的零稅路徑</strong>。</p>
+
+    <p>但這條路徑對兩類部位的風險完全不同：</p>
 
     <div class="table-wrap">
       <table>
         <thead>
-          <tr><th scope="col">標的</th><th scope="col">未實現損益</th></tr>
+          <tr><th scope="col">標的</th><th scope="col">2028 年若賣出</th></tr>
         </thead>
         <tbody>
-          <tr><td>台積電</td><td>+7,153,196</td></tr>
-          <tr><td>聯發科</td><td>+5,850,196</td></tr>
-          <tr><td>台達電</td><td>+4,062,319</td></tr>
-          <tr><td>元大台灣50</td><td>+2,601,468</td></tr>
-          <tr><td>主動統一台股增長</td><td>+171,670</td></tr>
-          <tr style="background:var(--surface-2);"><td><strong>合計</strong></td><td><strong>+19,838,849</strong></td></tr>
+          <tr>
+            <td><strong>台積電 · 聯發科 · 台達電</strong><span style="display:block;font-size:.84rem;color:var(--muted);">營運公司個股，非 PFIC · 市值 3,125 萬 · 未實現 +1,707 萬</span></td>
+            <td>15–20% + NIIT</td>
+          </tr>
+          <tr style="background:var(--bad-soft);">
+            <td><strong>0050 · 00981A</strong><span style="display:block;font-size:.84rem;color:var(--muted);">外國基金 ＝ PFIC · 市值 1,423 萬 · 未實現 +277 萬</span></td>
+            <td><strong>40–50%+</strong></td>
+          </tr>
         </tbody>
       </table>
     </div>
 
-    <p>約 <strong>1,984 萬</strong>。若拖到 2028 年以美國稅務居民身分賣出，長期資本利得 15–20%、金額大時再加 3.8% NIIT，<strong>潛在美國稅負約 300～470 萬台幣</strong>。</p>
+    <div class="note">
+      <div class="label">PFIC —— 這是真正的地雷</div>
+      <p>對美國稅制而言，外國的基金與 ETF 屬於 <strong>PFIC（被動外國投資公司）</strong>。身為美國稅務居民處分 PFIC，全部獲利視為 excess distribution：<strong>回溯分攤到各持有年度、按當年最高一般稅率（37%）課稅、再加遞延利息費</strong>。</p>
+      <p>而且<strong>光是「持有」就要逐檔申報 Form 8621</strong> —— 未申報會讓整份報稅的核課期間<strong>無限期延長</strong>。</p>
+      <p>所以問題不在於你「打算」2028 年不賣，而在於萬一因為缺錢、市場劇變或任何理由動到 0050，代價會從 15% 跳到 40% 以上。<strong>提前出清就是把這顆地雷拆掉</strong>，而且 0050 + 00981A ＝ 1,423 萬，剛好覆蓋你原本就要移到美國的 1,000 萬 —— 兩件事併成一件做，額外成本是零。</p>
+    </div>
 
     <div class="note info">
-      <div class="label">關鍵：美國不給成本重設</div>
-      <p>成為美國稅務居民時，你的持股<strong>不會</strong>取得 step-up 成本基礎。台積電的 1,159 元均價會一路帶進美國稅制 —— 你在台灣累積十幾年的獲利，會變成美國的應稅所得。台灣端本身則永遠零稅（證所稅停徵），這筆稅純粹是身分轉換造成的。</p>
+      <div class="label">為什麼個股可以安心抱</div>
+      <p>台積電、聯發科、台達電是營運公司，不是 PFIC。2028 年你只要<strong>不賣</strong>，就沒有任何美國所得稅 —— 未實現獲利不課稅，美國也不會因為你變成居民而對持股 mark-to-market。你的大獲利（台積電 +715 萬、聯發科 +585 萬、台達電 +406 萬）全部可以留到 2029 回台後再處理。</p>
+      <p>唯一要注意的是：美國<strong>不給</strong> step-up 成本基礎。台積電 1,159 元的均價會一路帶著，所以「2028 年不小心賣掉」的代價依然是實在的。</p>
     </div>
   </section>
 
@@ -543,28 +556,28 @@
       <div class="opt pick">
         <div class="opt-head">
           <span class="tag">選項 A</span>
-          <h3>2027/12/31 前把台股該實現的獲利實現完</h3>
+          <h3>ETF 在 2027 年底前出清，個股抱到 2029</h3>
         </div>
-        <p>你本來就要賣約 1,000 萬移到 Firstrade。這個選項只是把它從「有空再說」變成有明確截止日的事，並順便把其餘想減碼的部位一起處理掉。</p>
-        <div class="cost">成本：零 · 完全避開 2028 · <strong>建議採用</strong></div>
+        <p>0050 + 00981A（1,423 萬）在 2027 年底前賣掉，同時完成海外移轉 —— 你本來就要搬 1,000 萬過去。個股不動，2028 全年純持有，2029 回台後想賣再賣。</p>
+        <div class="cost">額外成本：零 · 拆掉 PFIC 地雷 · 大獲利完全免稅 · <strong>建議採用</strong></div>
       </div>
 
       <div class="opt">
         <div class="opt-head">
           <span class="tag">選項 B</span>
-          <h3>2028/6/30 前離開美國</h3>
+          <h3>什麼都不賣，2029 回台後一次處理</h3>
         </div>
-        <p>2028 是閏年，1/1–6/30 共 <span class="num-inline">182</span> 天，差一天不到 183 → 不通過 SPT → 2028 全年維持 NRA。7/1 就是那條線。</p>
-        <div class="cost">成本：program 縮短約 4 個月 · 做了 A 就不需要 B</div>
+        <p>純度最高，但 2028 整年帶著兩檔 PFIC：要申報 Form 8621、配息可能落入 excess distribution 制度，且一旦臨時需要動用就會踩到 40%+ 的稅。你在美國的生活費也少了一條退路。</p>
+        <div class="cost">可行，但留著不必要的風險與申報負擔</div>
       </div>
 
       <div class="opt">
         <div class="opt-head">
           <span class="tag">選項 C</span>
-          <h3>2028 離美後（11–12 月）才賣</h3>
+          <h3>2028/6/30 前離開美國</h3>
         </div>
-        <p>離美日可作為 residency termination date，之後屬非居民期間。但需要 dual-status 申報、符合 closer connection 測試，且 <strong>2029 年不能有任何美國居民身分</strong>。窗口只有兩個月。</p>
-        <div class="cost">風險報酬比差 · 不建議作為主要方案</div>
+        <p>2028 是閏年，1/1–6/30 共 <span class="num-inline">182</span> 天，差一天不到 183 → 不通過 SPT → 2028 全年維持 NRA，什麼都能自由賣。7/1 就是那條線。</p>
+        <div class="cost">成本：program 縮短約 4 個月 · 做了 A 就不需要</div>
       </div>
 
     </div>
@@ -590,11 +603,15 @@
           </tr>
           <tr>
             <td style="white-space:nowrap;"><strong>2027 全年</strong></td>
-            <td style="text-align:left;font-family:var(--sans);white-space:normal;">美股帳戶<strong>純買進持有</strong> —— 不做 wheel、不實現獲利。台股獲利在這一年實現仍完全免稅，<strong>年底前做完</strong>。</td>
+            <td style="text-align:left;font-family:var(--sans);white-space:normal;">美股帳戶<strong>純買進持有</strong> —— 不做 wheel、不實現獲利。<strong>0050 與 00981A 最遲在年底前出清完畢</strong>（台股價差在台灣永遠免稅，這一年賣美國也不課）。</td>
           </tr>
           <tr>
-            <td style="white-space:nowrap;"><strong>2028 起</strong></td>
-            <td style="text-align:left;font-family:var(--sans);white-space:normal;">以美國稅務居民規則重新規劃。Wheel 反而可能比 30% 划算。開始 FBAR / Form 8938 申報義務。</td>
+            <td style="white-space:nowrap;"><strong>2028 全年</strong></td>
+            <td style="text-align:left;font-family:var(--sans);white-space:normal;"><strong>台股一律不賣。</strong>個股純持有即可。開始 FBAR / Form 8938 申報義務。Wheel 的稅負反而可能比 2027 輕。</td>
+          </tr>
+          <tr>
+            <td style="white-space:nowrap;"><strong>2029 起</strong></td>
+            <td style="text-align:left;font-family:var(--sans);white-space:normal;">回台、不再是美國稅務居民。台積電、聯發科、台達電想賣就賣 —— <strong>台美兩邊零稅</strong>。</td>
           </tr>
         </tbody>
       </table>
@@ -634,6 +651,18 @@
         <div>
           <div class="ask">選項 C（2028 離美後才賣）實際可行度多高？closer connection 要備什麼文件？</div>
           <div class="why">若 A 因故做不完，C 是備援方案，要先知道門檻。</div>
+        </div>
+      </div>
+      <div class="q">
+        <div>
+          <div class="ask">0050 與 00981A 確定被歸類為 PFIC 嗎？若我 2028 只持有不賣，Form 8621 與 excess distribution 的實際負擔是什麼？</div>
+          <div class="why">這一題決定我需不需要在 2027 年底前出清這兩檔。0050 是證券投資信託基金而非公司，美國稅法上的分類要確認。</div>
+        </div>
+      </div>
+      <div class="q">
+        <div>
+          <div class="ask">我戶籍留在台灣，2027–2028 會被認定為台灣非居民嗎？</div>
+          <div class="why">除了 183 天，還有「有住所並經常居住」這道獨立判斷。這影響台股配息是 21% 就源扣繳還是併入綜所稅。</div>
         </div>
       </div>
       <div class="q">
