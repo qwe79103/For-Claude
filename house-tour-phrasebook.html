@@ -1,0 +1,413 @@
+<title>House Tour Phrasebook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=JetBrains+Mono:wght@500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
+
+<style>
+  :root {
+    --ground:      #EDF1F0;
+    --surface:     #FFFFFF;
+    --surface-2:   #E2EAE8;
+    --ink:         #101819;
+    --ink-2:       #36474A;
+    --muted:       #6B7C7E;
+    --line:        #D5DEDC;
+    --line-strong: #B8C6C3;
+    --accent:      #0A6A5E;
+    --accent-soft: #DCEDE9;
+    --warn:        #9E3B2B;
+    --warn-soft:   #F7E5E1;
+
+    --display: "Bricolage Grotesque", system-ui, sans-serif;
+    --sans:    "Source Sans 3", system-ui, -apple-system, sans-serif;
+    --mono:    "JetBrains Mono", ui-monospace, Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:      #0C1113;
+      --surface:     #151E20;
+      --surface-2:   #1D282A;
+      --ink:         #E6EDEC;
+      --ink-2:       #B2C0BE;
+      --muted:       #7C8B8A;
+      --line:        #253130;
+      --line-strong: #374745;
+      --accent:      #52C0AE;
+      --accent-soft: #123330;
+      --warn:        #E08D7C;
+      --warn-soft:   #2D1B17;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:      #0C1113;
+    --surface:     #151E20;
+    --surface-2:   #1D282A;
+    --ink:         #E6EDEC;
+    --ink-2:       #B2C0BE;
+    --muted:       #7C8B8A;
+    --line:        #253130;
+    --line-strong: #374745;
+    --accent:      #52C0AE;
+    --accent-soft: #123330;
+    --warn:        #E08D7C;
+    --warn-soft:   #2D1B17;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.55;
+    margin: 0;
+    padding: 0 16px 80px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 640px; margin: 0 auto; }
+
+  header.top {
+    padding: 44px 0 22px;
+    border-bottom: 3px solid var(--accent);
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .kicker {
+    font-family: var(--mono);
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent);
+  }
+  h1 {
+    font-family: var(--display); font-weight: 700;
+    font-size: clamp(2rem, 8vw, 2.7rem); line-height: 1.02;
+    letter-spacing: -0.02em; text-wrap: balance; margin: 0;
+  }
+  .sub { color: var(--ink-2); margin: 0; font-size: 1.02rem; }
+
+  section { padding-top: 44px; }
+
+  h2 {
+    font-family: var(--display); font-weight: 700;
+    font-size: clamp(1.35rem, 5vw, 1.6rem); line-height: 1.15;
+    letter-spacing: -0.012em; text-wrap: balance;
+    margin: 0 0 14px; padding-bottom: 9px;
+    border-bottom: 1px solid var(--line-strong);
+  }
+  h3 {
+    font-family: var(--display); font-weight: 500;
+    font-size: 1.06rem; margin: 26px 0 10px; color: var(--ink);
+  }
+  p { margin: 0 0 13px; }
+  strong { font-weight: 600; }
+
+  /* ---- phrase cards ---- */
+  .phrase {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--accent);
+    padding: 14px 16px;
+    margin: 0 0 10px;
+  }
+  .phrase .when {
+    font-family: var(--mono); font-size: 10.5px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); display: block; margin-bottom: 6px;
+  }
+  .phrase .say {
+    font-size: 1.1rem; line-height: 1.4; font-weight: 600;
+    color: var(--ink); margin: 0;
+  }
+  .phrase .say + .say { margin-top: 9px; }
+  .phrase .note {
+    font-size: 14.5px; color: var(--muted);
+    margin: 8px 0 0; line-height: 1.45;
+  }
+  .phrase.soft { border-left-color: var(--line-strong); }
+  .phrase.hot  { border-left-color: var(--warn); }
+
+  /* ---- timeline ---- */
+  .clock { list-style: none; padding: 0; margin: 0; }
+  .clock li {
+    display: grid; grid-template-columns: 62px 1fr; gap: 14px;
+    padding: 13px 0; border-bottom: 1px solid var(--line);
+    align-items: start;
+  }
+  .clock li:first-child { border-top: 1px solid var(--line); }
+  .clock time {
+    font-family: var(--mono); font-size: 14px; font-weight: 500;
+    color: var(--accent); padding-top: 1px;
+  }
+  .clock b { font-weight: 600; display: block; }
+  .clock span { color: var(--muted); font-size: 15px; }
+
+  /* ---- checklist ---- */
+  .check { list-style: none; padding: 0; margin: 0; }
+  .check li {
+    position: relative; padding: 11px 0 11px 30px;
+    border-bottom: 1px solid var(--line); margin: 0;
+  }
+  .check li::before {
+    content: ""; position: absolute; left: 0; top: 17px;
+    width: 14px; height: 14px; border: 2px solid var(--line-strong);
+    border-radius: 3px;
+  }
+  .check b { font-weight: 600; }
+  .check span { color: var(--muted); font-size: 15px; display: block; }
+
+  /* ---- vocab ---- */
+  .vocab { display: flex; flex-direction: column; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .vocab div { background: var(--surface); padding: 11px 14px; }
+  .vocab dt {
+    font-family: var(--mono); font-size: 14px; font-weight: 500;
+    color: var(--accent); margin-bottom: 2px;
+  }
+  .vocab dd { margin: 0; font-size: 15.5px; color: var(--ink-2); line-height: 1.45; }
+
+  .callout {
+    background: var(--accent-soft); border: 1px solid var(--line);
+    border-left: 4px solid var(--accent);
+    padding: 16px 18px; margin: 18px 0;
+  }
+  .callout.warn { background: var(--warn-soft); border-left-color: var(--warn); }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout .lbl {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted);
+    display: block; margin-bottom: 7px;
+  }
+
+  ul.plain { padding-left: 1.15em; margin: 0 0 13px; }
+  ul.plain li { margin-bottom: 7px; }
+  ul.plain li::marker { color: var(--accent); }
+
+  footer { padding-top: 40px; color: var(--muted); font-size: 14.5px; }
+</style>
+
+<div class="wrap">
+
+  <header class="top">
+    <span class="kicker">3:30 pm viewing &middot; Denver</span>
+    <h1>House Tour Phrasebook</h1>
+    <p class="sub">What to say, what to check, and how to leave without committing to anything.</p>
+  </header>
+
+  <section>
+    <h2>Your 3:30 is well-timed. Use it.</h2>
+    <p>The tour itself will take 20&ndash;30 minutes. The valuable part is what happens on either side of it &mdash; rush hour builds from about 4:00, so arriving early and leaving late gives you the noise answer for free.</p>
+
+    <ul class="clock">
+      <li><time>3:10</time><div><b>Arrive early. Stay in the car.</b><span>Window down, engine off. Just listen for ten minutes. This is your baseline.</span></div></li>
+      <li><time>3:25</time><div><b>Walk the block once.</b><span>Look at the neighbours' houses, the street parking, where the bins go, how close the traffic actually is.</span></div></li>
+      <li><time>3:30</time><div><b>The tour.</b><span>Phrases below. Film as you walk.</span></div></li>
+      <li><time>4:05</time><div><b>Ask for a few minutes alone in the main bedroom.</b><span>Open the window. Listen. Close it. Listen again. That single test answers your biggest question.</span></div></li>
+      <li><time>4:20</time><div><b>Stand outside once more before you drive off.</b><span>Traffic is heavier now than when you arrived. If it still feels fine, it's fine.</span></div></li>
+    </ul>
+
+    <h3>Bring</h3>
+    <ul class="plain">
+      <li><strong>Your phone charger</strong> &mdash; plug it into an outlet in each room to check they work</li>
+      <li><strong>A decibel meter app</strong> &mdash; outdoors, ~55 dB is quiet, 65+ is arterial</li>
+      <li><strong>A compass app</strong> &mdash; to see which way the windows face</li>
+      <li><strong>Your documents</strong>, in case the credit conversation happens: passport, DS&#8209;2019, appointment letter, bank statement</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Opening</h2>
+
+    <div class="phrase">
+      <span class="when">When you arrive</span>
+      <p class="say">"Hi, I'm Po-Hsun. Thanks for making the time."</p>
+      <p class="note">First names are normal in the US, and using theirs back is friendly, not rude.</p>
+    </div>
+
+    <div class="phrase">
+      <span class="when">Setting expectations early</span>
+      <p class="say">"I'm still looking at a few places, so I'm just getting a feel for it today."</p>
+      <p class="note">Say this at the start. It makes it completely natural to leave without applying.</p>
+    </div>
+
+    <div class="phrase">
+      <span class="when">Permission to document</span>
+      <p class="say">"Do you mind if I take some photos and a short video? I want to look at them again later."</p>
+      <p class="note">Almost always yes. Film every room while narrating quietly &mdash; you will forget details, and it records any existing damage.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Asking to test things</h2>
+    <p>Americans expect renters to test things. None of this is rude &mdash; it reads as careful.</p>
+
+    <div class="phrase">
+      <span class="when">Water</span>
+      <p class="say">"May I run the water for a second?"</p>
+      <p class="say">"How long does the hot water usually take?"</p>
+      <p class="note">Turn on the kitchen tap and a shower at the same time and watch the pressure drop.</p>
+    </div>
+
+    <div class="phrase">
+      <span class="when">Heating &mdash; it is nearly October</span>
+      <p class="say">"Could we turn the heat on for a minute, just to check it works?"</p>
+      <p class="say">"How old is the furnace?"</p>
+      <p class="note">The manufacture date is printed on a label on the furnace and the water heater. Photograph both labels.</p>
+    </div>
+
+    <div class="phrase">
+      <span class="when">Windows and noise</span>
+      <p class="say">"Can I open this window?"</p>
+      <p class="say">"Is it noisy here in the morning, around eight?"</p>
+      <p class="note">Ask it as a neutral question, not a worried one. You'll get a more honest answer.</p>
+    </div>
+
+    <div class="phrase">
+      <span class="when">Signal &mdash; you'll be calling Taiwan</span>
+      <p class="say">"Sorry, I'm just checking the phone signal &mdash; I call my family overseas a lot."</p>
+      <p class="note">Check the basement and the main bedroom especially. Also ask which internet providers serve the house.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Money and terms</h2>
+
+    <div class="phrase">
+      <span class="when">The real number</span>
+      <p class="say">"Is $3,900 the full monthly cost, or are there other required fees on top?"</p>
+      <p class="say">"Which utilities am I responsible for?"</p>
+      <p class="note">Ask for a typical winter gas bill. Denver winters are cold and heating a whole house is not cheap.</p>
+    </div>
+
+    <div class="phrase">
+      <span class="when">Up front</span>
+      <p class="say">"What would I need to pay before moving in, in total?"</p>
+      <p class="say">"How much is the security deposit?"</p>
+      <p class="note">Colorado caps the security deposit at one month's rent &mdash; 1.5 if furnished. If they say two months, that's worth questioning politely.</p>
+    </div>
+
+    <div class="phrase">
+      <span class="when">Length</span>
+      <p class="say">"Would you consider a longer lease &mdash; say eighteen or twenty-four months?"</p>
+      <p class="say">"Is the rent fixed for the whole term?"</p>
+      <p class="note">A long lease is genuinely valuable to a landlord. It's your best bargaining chip and it costs you nothing, since you're staying two years.</p>
+    </div>
+
+    <div class="phrase">
+      <span class="when">Responsibilities</span>
+      <p class="say">"Who handles the lawn and the snow?"</p>
+      <p class="say">"Who do I call if something breaks?"</p>
+      <p class="note">Denver requires sidewalks to be cleared within 24 hours of a snowfall. Find out whose job that is before you sign, not after.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>The credit conversation</h2>
+    <p>If it comes up, say it plainly and without apology. Your position is strong &mdash; you just have to frame it correctly.</p>
+
+    <div class="phrase hot">
+      <span class="when">The core line</span>
+      <p class="say">"I should mention &mdash; I don't have a US credit score yet. Not a low score; I have no credit file at all, because I've never held credit in the US. I'm arriving from Taiwan on a research appointment."</p>
+      <p class="note">The distinction between <em>no file</em> and <em>bad credit</em> is the whole argument. Make it explicitly.</p>
+    </div>
+
+    <div class="phrase hot">
+      <span class="when">What you can offer instead</span>
+      <p class="say">"I can show proof of funds covering the whole lease, my appointment letter, and my bank statements. I'm also open to paying several months up front if that helps."</p>
+      <p class="note">You can demonstrate liquid assets worth many times the annual rent. That is a stronger answer to "will this person pay?" than any credit score.</p>
+    </div>
+
+    <div class="phrase hot">
+      <span class="when">Giving them an easy exit</span>
+      <p class="say">"If that doesn't work with your screening policy, I completely understand &mdash; just let me know."</p>
+      <p class="note">Counter-intuitively, this makes people more willing to help, not less.</p>
+    </div>
+
+    <div class="phrase soft">
+      <span class="when">A fair thing to ask for</span>
+      <p class="say">"Could you send me your written screening criteria?"</p>
+      <p class="note">Colorado landlords are required to have a written screening policy. Asking is normal, and the answer tells you whether 650 is a hard rule or a starting point.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>When you don't understand</h2>
+    <p>These are the most useful phrases on this page. Native speakers talk fast and use slang. Asking someone to repeat themselves is completely normal and nobody minds.</p>
+
+    <div class="phrase soft">
+      <span class="when">Use freely</span>
+      <p class="say">"Sorry, could you say that again a bit more slowly?"</p>
+      <p class="say">"What does ___ mean?"</p>
+      <p class="say">"Let me make sure I understood &mdash; you're saying ___?"</p>
+      <p class="say">"Could you write that down for me?"</p>
+      <p class="note">"Let me make sure I understood" is the strongest one. It makes you sound careful rather than confused, and it catches misunderstandings before they cost you money.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Words you'll hear</h2>
+    <dl class="vocab">
+      <div><dt>utilities</dt><dd>Gas, electricity, water, trash. "Utilities included" means they're in the rent.</dd></div>
+      <div><dt>HVAC</dt><dd>The heating and air conditioning system as a whole.</dd></div>
+      <div><dt>furnace</dt><dd>The gas heater. Denver houses almost all have one.</dd></div>
+      <div><dt>garbage disposal</dt><dd>The grinder in the kitchen sink drain.</dd></div>
+      <div><dt>security deposit</dt><dd>Refundable money held against damage. Capped at one month in Colorado.</dd></div>
+      <div><dt>application fee</dt><dd>Non-refundable fee to run your background check.</dd></div>
+      <div><dt>co-signer / guarantor</dt><dd>Someone who promises to pay if you don't.</dd></div>
+      <div><dt>lease term</dt><dd>How many months the lease runs.</dd></div>
+      <div><dt>month-to-month</dt><dd>No fixed end date; either side can end it with notice. Usually costs more.</dd></div>
+      <div><dt>walk-through</dt><dd>The inspection you do together at move-in and move-out. Insist on one.</dd></div>
+      <div><dt>as-is</dt><dd>They won't repair it before you move in.</dd></div>
+      <div><dt>renter's insurance</dt><dd>Cheap insurance most landlords require. About $15&ndash;25 a month.</dd></div>
+      <div><dt>break the lease</dt><dd>Leave before the end date. Ask what the penalty is.</dd></div>
+    </dl>
+  </section>
+
+  <section>
+    <h2>While you walk &mdash; look for these</h2>
+    <ul class="check">
+      <li><b>Water stains on ceilings</b><span>Especially under bathrooms and in the basement. Brown rings mean a leak, past or present.</span></li>
+      <li><b>A musty smell</b><span>Denver is dry. Mustiness means moisture, and moisture means a problem.</span></li>
+      <li><b>Windows that open, close and lock</b><span>Try several. Painted-shut windows are a bad sign about upkeep.</span></li>
+      <li><b>Water pressure and hot water timing</b><span>Two taps at once.</span></li>
+      <li><b>Outlets</b><span>Your charger, one per room.</span></li>
+      <li><b>Which way the main rooms face</b><span>West gets the mountains and the hot afternoon sun. East gets the morning.</span></li>
+      <li><b>Where you'd park in snow</b><span>And who shovels the walk.</span></li>
+      <li><b>Phone signal in every room</b></li>
+      <li><b>Any existing damage</b><span>Photograph it all today. It protects your deposit in two years.</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Leaving without committing</h2>
+
+    <div class="callout warn">
+      <span class="lbl">Expect this</span>
+      <p>Agents often push for an application on the spot &mdash; "there's a lot of interest," "I have another showing tonight." Sometimes true, often just pressure. <strong>Do not sign or pay anything today.</strong> A good property will still be there tomorrow, and if it isn't, another one will be.</p>
+    </div>
+
+    <div class="phrase">
+      <span class="when">The polite exit</span>
+      <p class="say">"Thank you &mdash; this is helpful. I'd like to think it over tonight and get back to you tomorrow."</p>
+      <p class="say">"I have one more place to see before I decide."</p>
+      <p class="note">Both are complete answers. You don't owe an explanation, and adding one weakens it.</p>
+    </div>
+
+    <div class="phrase">
+      <span class="when">If they push</span>
+      <p class="say">"I understand. I'm not comfortable applying before I've read the lease, but I'll let you know tomorrow morning."</p>
+      <p class="note">Calm and final. Reasonable people accept this immediately; the ones who don't have told you something useful.</p>
+    </div>
+
+    <div class="phrase">
+      <span class="when">Before you go</span>
+      <p class="say">"Could you email me the lease so I can read it properly?"</p>
+      <p class="say">"What's the best way to reach you?"</p>
+      <p class="note">Getting the lease in advance is the single most useful thing you can leave with.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>One last thing: if it feels wrong when you're standing there, that's real information. You are choosing where you'll live for two years, and you have options &mdash; Denver is a renter's market right now.</p>
+  </footer>
+
+</div>
