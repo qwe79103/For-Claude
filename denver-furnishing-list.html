@@ -1,0 +1,309 @@
+<title>Furnishing a Denver Rental</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=JetBrains+Mono:wght@400;500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
+
+<style>
+  :root {
+    --ground:#EDF1F0; --surface:#FFFFFF; --surface-2:#E2EAE8;
+    --ink:#101819; --ink-2:#36474A; --muted:#6B7C7E;
+    --line:#D5DEDC; --line-strong:#B8C6C3;
+    --accent:#0A6A5E; --accent-soft:#DCEDE9;
+    --warn:#9E3B2B; --warn-soft:#F7E5E1;
+    --display:"Bricolage Grotesque",system-ui,sans-serif;
+    --sans:"Source Sans 3",system-ui,-apple-system,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:#0C1113; --surface:#151E20; --surface-2:#1D282A;
+      --ink:#E6EDEC; --ink-2:#B2C0BE; --muted:#7C8B8A;
+      --line:#253130; --line-strong:#374745;
+      --accent:#52C0AE; --accent-soft:#123330;
+      --warn:#E08D7C; --warn-soft:#2D1B17;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:#0C1113; --surface:#151E20; --surface-2:#1D282A;
+    --ink:#E6EDEC; --ink-2:#B2C0BE; --muted:#7C8B8A;
+    --line:#253130; --line-strong:#374745;
+    --accent:#52C0AE; --accent-soft:#123330;
+    --warn:#E08D7C; --warn-soft:#2D1B17;
+  }
+
+  * { box-sizing:border-box; }
+  body {
+    background:var(--ground); color:var(--ink); font-family:var(--sans);
+    font-size:17px; line-height:1.55; margin:0; padding:0 16px 80px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap { max-width:660px; margin:0 auto; }
+
+  header.top {
+    padding:44px 0 22px; border-bottom:3px solid var(--accent);
+    display:flex; flex-direction:column; gap:12px;
+  }
+  .kicker {
+    font-family:var(--mono); font-size:11px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--accent);
+  }
+  h1 {
+    font-family:var(--display); font-weight:700;
+    font-size:clamp(2rem,8vw,2.7rem); line-height:1.02;
+    letter-spacing:-.02em; text-wrap:balance; margin:0;
+  }
+  .sub { color:var(--ink-2); margin:0; font-size:1.02rem; }
+
+  section { padding-top:40px; }
+  h2 {
+    font-family:var(--display); font-weight:700;
+    font-size:clamp(1.3rem,5vw,1.55rem); line-height:1.15;
+    letter-spacing:-.012em; text-wrap:balance;
+    margin:0 0 14px; padding-bottom:9px; border-bottom:1px solid var(--line-strong);
+  }
+  h3 { font-family:var(--display); font-weight:500; font-size:1.05rem; margin:24px 0 9px; }
+  p { margin:0 0 13px; }
+  strong { font-weight:600; }
+
+  /* headline numbers */
+  .heads { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1px;
+           background:var(--line); border:1px solid var(--line); margin:22px 0 6px; }
+  .heads div { background:var(--surface); padding:14px 15px; }
+  .heads dt { font-family:var(--mono); font-size:10.5px; letter-spacing:.09em;
+              text-transform:uppercase; color:var(--muted); margin-bottom:4px; }
+  .heads dd { margin:0; font-family:var(--display); font-weight:700; font-size:1.5rem;
+              color:var(--ink); letter-spacing:-.01em; }
+  .heads dd small { display:block; font-family:var(--sans); font-weight:400;
+                    font-size:13px; color:var(--muted); letter-spacing:0; margin-top:3px; }
+
+  /* price list */
+  .list { border:1px solid var(--line); background:var(--surface); margin:14px 0 4px; }
+  .list .hd, .list .row, .list .sub-t {
+    display:grid; grid-template-columns:1fr 62px 62px; gap:8px;
+    padding:9px 14px; align-items:baseline;
+  }
+  .list .hd {
+    font-family:var(--mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--muted); border-bottom:1px solid var(--line-strong);
+  }
+  .list .row { border-bottom:1px solid var(--line); font-size:15.5px; }
+  .list .row:last-of-type { border-bottom:none; }
+  .list .row em { font-style:normal; color:var(--muted); font-size:13.5px; display:block; }
+  .list .n { font-family:var(--mono); font-size:14px; font-variant-numeric:tabular-nums;
+             text-align:right; color:var(--ink-2); white-space:nowrap; }
+  .list .sub-t { background:var(--surface-2); border-top:1px solid var(--line-strong);
+                 font-weight:600; font-size:15px; }
+  .list .sub-t .n { color:var(--ink); font-weight:500; }
+
+  .callout { background:var(--accent-soft); border:1px solid var(--line);
+             border-left:4px solid var(--accent); padding:16px 18px; margin:18px 0; }
+  .callout.warn { background:var(--warn-soft); border-left-color:var(--warn); }
+  .callout p:last-child { margin-bottom:0; }
+  .callout .lbl { font-family:var(--mono); font-size:10.5px; letter-spacing:.1em;
+                  text-transform:uppercase; color:var(--muted); display:block; margin-bottom:7px; }
+
+  ul.plain { padding-left:1.15em; margin:0 0 13px; }
+  ul.plain li { margin-bottom:7px; }
+  ul.plain li::marker { color:var(--accent); }
+
+  .check { list-style:none; padding:0; margin:14px 0 0; }
+  .check li { position:relative; padding:11px 0 11px 30px;
+              border-bottom:1px solid var(--line); margin:0; }
+  .check li::before { content:""; position:absolute; left:0; top:17px; width:14px; height:14px;
+                      border:2px solid var(--line-strong); border-radius:3px; }
+  .check b { font-weight:600; }
+  .check span { color:var(--muted); font-size:15px; display:block; }
+
+  footer { padding-top:38px; color:var(--muted); font-size:14.5px; }
+
+  @media (max-width:430px) {
+    .list .hd, .list .row, .list .sub-t { grid-template-columns:1fr 56px 56px; padding:9px 11px; }
+    .list .n { font-size:13px; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="top">
+    <span class="kicker">3-bedroom rental &middot; Denver</span>
+    <h1>Furnishing a Denver Rental</h1>
+    <p class="sub">Mattresses on the floor, two big tables, six chairs. No sofa, no TV. What it costs, and what you'll forget to budget for.</p>
+  </header>
+
+  <dl class="heads">
+    <div><dt>Lean</dt><dd>$2,535<small>Everything new, cheapest acceptable</small></dd></div>
+    <div><dt>Comfortable</dt><dd>$5,405<small>Good quality throughout</small></dd></div>
+    <div><dt>Realistic</dt><dd>~$4,000<small>Good where it matters, cheap elsewhere</small></dd></div>
+    <div><dt>True 2-yr cost</dt><dd>$117/mo<small>After reselling when you leave</small></dd></div>
+  </dl>
+
+  <section>
+    <h2>Before you buy anything</h2>
+    <div class="callout warn">
+      <span class="lbl">This can swing the budget by $1,500</span>
+      <p>Ask Henry exactly what stays in the house. US rentals almost always include a fridge, oven/range and dishwasher &mdash; but <strong>microwave, washer and dryer, window coverings and ceiling lights are all coin flips</strong>. A washer/dryer pair alone is $700&ndash;1,200.</p>
+    </div>
+
+    <ul class="check">
+      <li><b>Washer and dryer</b><span>Included, or just hookups? This is the single biggest unknown.</span></li>
+      <li><b>Microwave</b><span>Often not provided. Budgeted below at $90&ndash;150.</span></li>
+      <li><b>Blinds or curtains on every window</b><span>Usually blinds are there. If not, add $100&ndash;200.</span></li>
+      <li><b>Ceiling lights in the bedrooms</b><span>See the warning below &mdash; this one surprises everyone.</span></li>
+      <li><b>Refrigerator, range, dishwasher</b><span>Confirm anyway, in writing.</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Sleeping</h2>
+    <div class="list">
+      <div class="hd"><span>Item</span><span class="n">Lean</span><span class="n">Good</span></div>
+      <div class="row"><span>Queen mattress, primary<em>Siena ~$399, DreamFoam CopperFlex ~$393, Puffy Original ~$599</em></span><span class="n">$350</span><span class="n">$600</span></div>
+      <div class="row"><span>Bunkie board / low platform<em>Not a bed frame &mdash; see note below</em></span><span class="n">$50</span><span class="n">$90</span></div>
+      <div class="row"><span>Second mattress, full<em>Guest room. Skip if you'd rather use an air bed</em></span><span class="n">$200</span><span class="n">$350</span></div>
+      <div class="row"><span>Second bunkie board</span><span class="n">$40</span><span class="n">$70</span></div>
+      <div class="row"><span>Pillows &times;4</span><span class="n">$50</span><span class="n">$100</span></div>
+      <div class="row"><span>Sheet sets &times;3</span><span class="n">$75</span><span class="n">$150</span></div>
+      <div class="row"><span>Comforters &times;2</span><span class="n">$70</span><span class="n">$140</span></div>
+      <div class="row"><span>Mattress protectors &times;2</span><span class="n">$40</span><span class="n">$70</span></div>
+      <div class="sub-t"><span>Subtotal</span><span class="n">$875</span><span class="n">$1,570</span></div>
+    </div>
+
+    <div class="callout">
+      <span class="lbl">On skipping the bed frame</span>
+      <p>Fine in Denver &mdash; the dry air makes the mould risk far lower than in Taiwan. But don't put the mattress <em>directly</em> on the floor: body moisture still can't escape downward, and floors are noticeably colder in a Denver winter. A <strong>bunkie board or slat base at $50&ndash;90</strong> lifts it a few inches and solves both. It's the cheapest item on this page with the biggest payoff.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Tables and chairs</h2>
+    <div class="list">
+      <div class="hd"><span>Item</span><span class="n">Lean</span><span class="n">Good</span></div>
+      <div class="row"><span>Dining table, large</span><span class="n">$120</span><span class="n">$320</span></div>
+      <div class="row"><span>Second table / work desk</span><span class="n">$100</span><span class="n">$250</span></div>
+      <div class="row"><span>6 dining chairs</span><span class="n">$150</span><span class="n">$360</span></div>
+      <div class="row"><span>1 proper task chair<em>If either of you works from home</em></span><span class="n">$90</span><span class="n">$220</span></div>
+      <div class="sub-t"><span>Subtotal</span><span class="n">$460</span><span class="n">$1,150</span></div>
+    </div>
+    <p>Buy all four of these <strong>used</strong>. Tables and chairs are bulky, boring, and barely depreciate once you've bought them second-hand &mdash; which means you'll sell them for close to what you paid when you leave.</p>
+    <p>One exception worth paying for: a real task chair. Eight hours a day on a dining chair becomes a back problem. Denver has an unusually good used market for Herman Miller and Steelcase from office closures &mdash; $150&ndash;300 for a chair that cost $1,200 new.</p>
+  </section>
+
+  <section>
+    <h2>Clothes storage</h2>
+    <div class="list">
+      <div class="hd"><span>Item</span><span class="n">Lean</span><span class="n">Good</span></div>
+      <div class="row"><span>2 dressers, or garment racks + fabric bins</span><span class="n">$90</span><span class="n">$260</span></div>
+      <div class="row"><span>Hangers</span><span class="n">$20</span><span class="n">$35</span></div>
+      <div class="sub-t"><span>Subtotal</span><span class="n">$110</span><span class="n">$295</span></div>
+    </div>
+    <p>Easy to forget when you're thinking about tables. Check the closets first &mdash; US houses often have deep built-in closets that make dressers unnecessary.</p>
+  </section>
+
+  <section>
+    <h2>Kitchen</h2>
+    <div class="list">
+      <div class="hd"><span>Item</span><span class="n">Lean</span><span class="n">Good</span></div>
+      <div class="row"><span>Cookware set, pots and pans</span><span class="n">$80</span><span class="n">$160</span></div>
+      <div class="row"><span>Rice cooker<em>Basic ~$45 · Tiger ~$120 · Zojirushi $200+</em></span><span class="n">$45</span><span class="n">$150</span></div>
+      <div class="row"><span>Knives + cutting board</span><span class="n">$45</span><span class="n">$90</span></div>
+      <div class="row"><span>Dishes, bowls, mugs for 6</span><span class="n">$55</span><span class="n">$110</span></div>
+      <div class="row"><span>Cutlery</span><span class="n">$25</span><span class="n">$50</span></div>
+      <div class="row"><span>Glasses</span><span class="n">$20</span><span class="n">$40</span></div>
+      <div class="row"><span>Electric kettle</span><span class="n">$25</span><span class="n">$50</span></div>
+      <div class="row"><span>Microwave<em>Only if not provided</em></span><span class="n">$90</span><span class="n">$150</span></div>
+      <div class="row"><span>Food storage containers</span><span class="n">$25</span><span class="n">$45</span></div>
+      <div class="row"><span>Dish rack and sundries</span><span class="n">$30</span><span class="n">$55</span></div>
+      <div class="sub-t"><span>Subtotal</span><span class="n">$440</span><span class="n">$900</span></div>
+    </div>
+    <p>The kitchen is where "minimum" quietly becomes $500. Costco is the best single stop for cookware, knives and towels at once.</p>
+  </section>
+
+  <section>
+    <h2>Lighting</h2>
+    <div class="list">
+      <div class="hd"><span>Item</span><span class="n">Lean</span><span class="n">Good</span></div>
+      <div class="row"><span>4 floor / table lamps</span><span class="n">$100</span><span class="n">$220</span></div>
+      <div class="row"><span>Bulbs</span><span class="n">$20</span><span class="n">$35</span></div>
+      <div class="sub-t"><span>Subtotal</span><span class="n">$120</span><span class="n">$255</span></div>
+    </div>
+
+    <div class="callout warn">
+      <span class="lbl">The classic US rental surprise</span>
+      <p>Many American bedrooms and living rooms have <strong>no ceiling light at all</strong> &mdash; just a wall switch wired to one half of a power outlet. You plug a lamp into that outlet and the switch controls it. If you move in at night with no lamps, you will be sitting in the dark. Check every room during the walk-through and buy lamps before move-in day.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Denver climate</h2>
+    <div class="list">
+      <div class="hd"><span>Item</span><span class="n">Lean</span><span class="n">Good</span></div>
+      <div class="row"><span>2 humidifiers<em>Bedroom first, then living area</em></span><span class="n">$90</span><span class="n">$200</span></div>
+      <div class="row"><span>Space heater<em>For one cold room</em></span><span class="n">$35</span><span class="n">$70</span></div>
+      <div class="sub-t"><span>Subtotal</span><span class="n">$125</span><span class="n">$270</span></div>
+    </div>
+
+    <div class="callout">
+      <span class="lbl">Don't skip this one</span>
+      <p>Taipei sits around 70&ndash;80% humidity. Denver is frequently <strong>20&ndash;30%</strong>, and lower indoors in winter with the heating on. Coming straight from Taiwan, expect nosebleeds, cracked lips, dry eyes, sore throat and broken sleep in the first few weeks. A bedroom humidifier is the single highest-value $60 you will spend. It is not a luxury item here.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Cleaning, bathroom, and the rest</h2>
+    <div class="list">
+      <div class="hd"><span>Item</span><span class="n">Lean</span><span class="n">Good</span></div>
+      <div class="row"><span>Vacuum<em>A real one &mdash; US houses are mostly carpeted</em></span><span class="n">$80</span><span class="n">$180</span></div>
+      <div class="row"><span>Broom, mop, bucket</span><span class="n">$35</span><span class="n">$60</span></div>
+      <div class="row"><span>3 trash cans</span><span class="n">$40</span><span class="n">$75</span></div>
+      <div class="row"><span>2 laundry hampers</span><span class="n">$25</span><span class="n">$50</span></div>
+      <div class="row"><span>Drying rack</span><span class="n">$25</span><span class="n">$45</span></div>
+      <div class="row"><span>Towel set</span><span class="n">$55</span><span class="n">$110</span></div>
+      <div class="row"><span>2 shower curtain sets</span><span class="n">$30</span><span class="n">$55</span></div>
+      <div class="row"><span>Bath mats</span><span class="n">$25</span><span class="n">$45</span></div>
+      <div class="row"><span>Plunger, brush, small bins</span><span class="n">$25</span><span class="n">$40</span></div>
+      <div class="row"><span>Basic tool kit</span><span class="n">$25</span><span class="n">$50</span></div>
+      <div class="row"><span>Power strips, extension cords</span><span class="n">$25</span><span class="n">$45</span></div>
+      <div class="row"><span>Door mat</span><span class="n">$15</span><span class="n">$30</span></div>
+      <div class="row"><span>Curtains<em>Only if the house has none</em></span><span class="n">$0</span><span class="n">$180</span></div>
+      <div class="sub-t"><span>Subtotal</span><span class="n">$405</span><span class="n">$965</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>What it actually costs you</h2>
+    <p>You're here two years, so the number that matters isn't what you spend &mdash; it's what you don't get back. Expect to recover roughly 25&ndash;30% on things bought new, and 50&ndash;60% on things you bought used in the first place.</p>
+    <div class="list">
+      <div class="hd"><span>If you spend</span><span class="n">Resell</span><span class="n">Per mo.</span></div>
+      <div class="row"><span>$2,535 &mdash; lean</span><span class="n">~$630</span><span class="n">$79</span></div>
+      <div class="row"><span>$4,000 &mdash; realistic</span><span class="n">~$1,200</span><span class="n">$117</span></div>
+      <div class="row"><span>$5,405 &mdash; comfortable</span><span class="n">~$1,620</span><span class="n">$158</span></div>
+    </div>
+    <p>So the honest range is <strong>$80&ndash;160 a month</strong> on top of rent. Against $3,000+ rent, the difference between lean and comfortable is small &mdash; which argues for buying decent things and enjoying them.</p>
+
+    <h3>The split that works</h3>
+    <ul class="plain">
+      <li><strong>New:</strong> anything touching your body &mdash; mattress, pillows, bedding, towels. Also anything cheap new, like kitchen basics.</li>
+      <li><strong>Used:</strong> tables, chairs, desks, dressers, lamps, bookshelves. Bulky, durable, and they hold their resale value because you already bought at the bottom.</li>
+      <li><strong>Sell it all before you fly home.</strong> List in April or August when students are arriving. Start four weeks out, not four days.</li>
+    </ul>
+
+    <h3>Where to go in Denver</h3>
+    <ul class="plain">
+      <li><strong>IKEA Centennial</strong> &mdash; about 25 minutes south. Best value for new tables, chairs, lamps and storage.</li>
+      <li><strong>Costco</strong> &mdash; mattresses, towels, cookware, kitchen basics. One trip covers a lot.</li>
+      <li><strong>Facebook Marketplace and OfferUp</strong> &mdash; where the real savings are. Denver has a big transient professional and student population, so quality used furniture moves constantly.</li>
+      <li><strong>ARC Thrift and Habitat for Humanity ReStore</strong> &mdash; cheap, hit or miss, worth one visit.</li>
+      <li><strong>Target</strong> &mdash; good for the fiddly household items in one go.</li>
+    </ul>
+
+    <div class="callout">
+      <span class="lbl">A small piece of luck</span>
+      <p>US tariffs on furniture currently hit <strong>upholstered seating and kitchen cabinets at 25%</strong>, with increases scheduled for January 2027. Plain wooden furniture &mdash; tables, non-upholstered chairs, desks &mdash; isn't covered. By skipping the sofa you've skipped the one category that's been getting more expensive.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>Prices are US dollars, for the Denver metro, as of October 2026. Treat them as planning figures &mdash; mattress pricing in particular swings hard on sales, so check before you buy. Budget a little slack: nobody has ever furnished a house for exactly the estimate.</p>
+  </footer>
+
+</div>
