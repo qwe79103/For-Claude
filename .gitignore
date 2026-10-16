@@ -7,3 +7,7 @@ kamel-briefing.html
 icorps-notes.html
 icorps-speech.html
 interview-cheatsheet.html
+
+# Customer-discovery interview write-ups — named third parties, unpublished project.
+# Kept local; this repository is public.
+*.docx
