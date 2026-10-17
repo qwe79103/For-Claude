@@ -1,0 +1,14 @@
+# Personal briefing notes — contain third-party health and private details.
+# Kept local and published as a private artifact instead.
+kamel-briefing.html
+
+# I-Corps meeting notes — contain unpublished project and Pre-Submission detail.
+# Kept local; this repository is public.
+icorps-notes.html
+icorps-speech.html
+interview-cheatsheet.html
+vangie-interview.html
+
+# Customer-discovery interview write-ups — named third parties, unpublished project.
+# Kept local; this repository is public.
+*.docx
