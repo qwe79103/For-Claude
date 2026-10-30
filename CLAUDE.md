@@ -14,3 +14,6 @@ Essentials, in case Notion is unreachable:
   then go one point at a time.
 - Verify facts by searching, not from memory.
 - Po-Hsun writes in mixed Chinese and English. That is fine.
+- Notion: write rarely, only lasting facts and settled decisions,
+  batched once per topic (one update call per page). Don't ask first;
+  say in one line what you filed. One fact, one home.
